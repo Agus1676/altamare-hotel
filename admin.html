@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full bg-[#0F1115]">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Administración | Alta Mare Hotel & Suites</title>
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#120D09" />
+  <meta name="theme-color" content="#0F1115" />
   <link rel="icon" type="image/png" href="./assets/images/logo.png" />
 
-  <!-- Google Fonts: Plus Jakarta Sans + Playfair Display -->
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,25 +20,24 @@
       theme: {
         extend: {
           colors: {
-            admin: {
-              50: '#FAF8F5',
-              100: '#F5EFEA',
-              200: '#E8DFD5',
-              300: '#D5C5B5',
-              700: '#5A4638',
-              800: '#2E2218',
-              900: '#1A130D',
-              950: '#120D09',
+            brand: {
+              gold: '#C5A880',
+              goldLight: '#D8C2A2',
+              goldDark: '#A6875C',
             },
-            gold: {
-              400: '#D4B26F',
-              500: '#B89358',
-              600: '#997539',
+            panel: {
+              bg: '#0F1115',
+              surface: '#181B20',
+              card: '#1F232B',
+              cardHover: '#262B35',
+              border: '#2A2F3A',
+              borderLight: '#373E4D',
+              text: '#E6E9F0',
+              textMuted: '#8E98AA',
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
           }
         }
       }
@@ -46,617 +45,694 @@
   </script>
 
   <style>
-    .tab-btn.active {
-      background-color: #1A130D;
-      color: #FAF8F5;
-      font-weight: 700;
-      border-left: 4px solid #D4B26F;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
+    /* Custom clean scrollbars */
+    ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background-color: #D5C5B5;
-      border-radius: 9999px;
+    ::-webkit-scrollbar-track {
+      background: #121418;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2E3440;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3B4252;
+    }
+
+    .nav-tab.active {
+      background-color: #232832;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    .nav-tab.active .nav-icon {
+      color: #C5A880;
+    }
+
+    .dropzone-active {
+      border-color: #C5A880 !important;
+      background-color: rgba(197, 168, 128, 0.08) !important;
     }
   </style>
 </head>
 
-<body class="bg-[#F7F4F0] text-admin-900 font-sans antialiased min-h-screen flex flex-col">
+<body class="h-full bg-[#0F1115] text-[#E6E9F0] font-sans antialiased flex flex-col">
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 1. PANTALLA DE ACCESO / LOGIN               -->
+  <!-- 1. LOGIN SCREEN                              -->
   <!-- ═══════════════════════════════════════════ -->
-  <div id="login-screen" class="fixed inset-0 z-50 bg-[#120D09] flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 sm:p-10 space-y-6 border border-admin-200 relative overflow-hidden">
-      <!-- Glow superior -->
-      <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600"></div>
-
+  <div id="login-screen" class="fixed inset-0 z-50 bg-[#0F1115] flex items-center justify-center p-4">
+    <div class="bg-[#181B20] rounded-2xl shadow-2xl max-w-md w-full p-8 border border-[#2A2F3A] space-y-6">
+      
       <div class="text-center space-y-3">
-        <img src="./assets/images/logo.png" alt="Alta Mare" class="h-16 w-auto mx-auto object-contain" />
+        <div class="w-16 h-16 rounded-2xl bg-[#232832] border border-[#2A2F3A] flex items-center justify-center mx-auto p-2">
+          <img src="./assets/images/logo.png" alt="Alta Mare" class="h-10 w-auto brightness-0 invert opacity-90 object-contain" />
+        </div>
         <div>
-          <h1 class="font-serif text-2xl font-bold text-admin-950">Panel de Encargado</h1>
-          <p class="text-xs text-admin-700 mt-1">Gestor de Contenido &bull; Alta Mare Hotel & Suites</p>
+          <h1 class="text-xl font-bold text-white tracking-tight">Panel de Administración</h1>
+          <p class="text-xs text-[#8E98AA] mt-1">Alta Mare Hotel & Suites &bull; Acceso Encargado</p>
         </div>
       </div>
 
-      <form id="login-form" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4 pt-2">
+      <form id="login-form" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4 pt-1">
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-admin-700 mb-1.5">Contraseña de Administrador</label>
+          <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Contraseña de acceso</label>
           <div class="relative">
-            <input type="password" id="admin-pass" required placeholder="••••••••" class="w-full bg-admin-50 border border-admin-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:bg-white transition-all font-mono" />
-            <button type="button" onclick="togglePassVisibility('admin-pass')" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-admin-700 hover:text-admin-950 text-xs font-bold">
-              Ver
+            <input type="password" id="admin-pass" required placeholder="Ingresá tu contraseña..." 
+                   class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white placeholder-[#525B6C] focus:outline-none transition-colors" />
+            <button type="button" onclick="togglePassVisibility('admin-pass')" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#8E98AA] hover:text-white transition-colors">
+              Mostrar
             </button>
           </div>
-          <p class="text-[11px] text-admin-700 mt-2 flex items-center justify-between">
-            <span>Clave inicial: <code class="bg-admin-100 text-admin-900 px-1.5 py-0.5 rounded font-mono font-bold">altamare2026</code></span>
-          </p>
+          <p class="text-[11px] text-[#525B6C] mt-2">Clave inicial: <code class="bg-[#121418] text-[#8E98AA] px-1.5 py-0.5 rounded font-mono">altamare2026</code></p>
         </div>
 
-        <button type="submit" class="w-full bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold py-3.5 px-6 rounded-xl text-xs uppercase tracking-widest transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
-          <span>Ingresar al Gestor</span>
+        <button type="submit" class="w-full bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2">
+          <span>Ingresar al Sistema</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
       </form>
 
-      <div class="pt-4 border-t border-admin-100 text-center">
-        <a href="index.html" class="text-xs text-admin-700 hover:text-gold-600 transition-colors font-medium">
+      <div class="pt-4 border-t border-[#2A2F3A] text-center">
+        <a href="index.html" class="text-xs text-[#8E98AA] hover:text-white transition-colors">
           &larr; Volver al sitio público
         </a>
       </div>
+
     </div>
   </div>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 2. PANEL PRINCIPAL DE ADMINISTRACIÓN        -->
+  <!-- 2. MAIN ADMIN DASHBOARD                     -->
   <!-- ═══════════════════════════════════════════ -->
-  <div id="admin-dashboard" class="hidden min-h-screen flex flex-col">
+  <div id="admin-dashboard" class="hidden h-full flex flex-col">
     
-    <!-- Topbar Admin -->
-    <header class="bg-[#120D09] text-white border-b border-[#261B12] sticky top-0 z-30 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-md">
+    <!-- Top Header Bar -->
+    <header class="bg-[#181B20] border-b border-[#2A2F3A] px-6 py-3.5 flex items-center justify-between shrink-0 z-20">
       <div class="flex items-center gap-4">
-        <img src="./assets/images/logo.png" alt="Alta Mare" class="h-10 w-auto brightness-0 invert opacity-95" />
-        <div class="hidden sm:block border-l border-[#332418] pl-4">
-          <h2 class="text-sm font-bold text-[#FAF8F5] font-serif tracking-wide">Panel de Gestión Hotelera</h2>
-          <span class="text-[11px] text-emerald-400 font-medium flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Sincronización en Vivo Activa
-          </span>
+        <img src="./assets/images/logo.png" alt="Alta Mare" class="h-8 w-auto brightness-0 invert opacity-90" />
+        <div class="hidden sm:block border-l border-[#2A2F3A] pl-4">
+          <span class="text-xs font-bold text-white tracking-wide">Alta Mare Hotel & Suites</span>
+          <span class="text-[11px] text-[#8E98AA] block">Gestor de Contenido & Multimedia</span>
         </div>
       </div>
 
-      <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Shortcut indicator -->
-        <span class="hidden md:inline-flex items-center text-[10px] text-[#A89686] bg-[#1E150F] px-2.5 py-1 rounded border border-[#332418]">
-          Tip: <kbd class="font-mono text-gold-400 ml-1">Ctrl + S</kbd> para guardar
-        </span>
-
-        <a href="index.html" target="_blank" class="inline-flex items-center gap-1.5 bg-[#261B12] hover:bg-[#38281B] text-[#E8DFD5] hover:text-white font-semibold px-3.5 py-2 rounded-lg text-xs uppercase tracking-wider transition-all border border-[#3D2C20]">
-          <span>Ver Web</span>
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+      <div class="flex items-center gap-3">
+        <a href="index.html" target="_blank" class="inline-flex items-center gap-2 bg-[#232832] hover:bg-[#2A2F3A] text-[#E6E9F0] text-xs font-medium px-3.5 py-2 rounded-lg border border-[#2A2F3A] transition-colors">
+          <span>Ver Sitio Web</span>
+          <svg class="w-3.5 h-3.5 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
 
-        <button onclick="logoutAdmin()" class="bg-rose-950/80 hover:bg-rose-900 text-rose-300 hover:text-white font-semibold px-3.5 py-2 rounded-lg text-xs uppercase tracking-wider transition-all border border-rose-900/50">
+        <button onclick="logoutAdmin()" class="bg-[#2B1B1F] hover:bg-[#3D2228] text-rose-300 text-xs font-medium px-3.5 py-2 rounded-lg border border-rose-900/40 transition-colors">
           Cerrar Sesión
         </button>
       </div>
     </header>
 
-    <!-- Main Container -->
-    <div class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+    <!-- App Body: Sidebar + Main Content -->
+    <div class="flex-1 flex overflow-hidden">
       
-      <!-- Sidebar de Pestañas -->
-      <aside class="lg:col-span-3 bg-white rounded-2xl border border-admin-200 p-3.5 shadow-sm space-y-1 sticky top-20">
-        <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-gold-600 border-b border-admin-100 mb-1">
-          Módulos Editables
-        </div>
-        <button onclick="showTab('tab-general')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all active flex items-center gap-2.5">
-          <span>🏨</span> <span>Contacto & General</span>
-        </button>
-        <button onclick="showTab('tab-promo')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>📢</span> <span>Aviso Promocional</span>
-        </button>
-        <button onclick="showTab('tab-home')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>🏠</span> <span>Página de Inicio</span>
-        </button>
-        <button onclick="showTab('tab-habitaciones')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>🛏️</span> <span>Habitaciones & Suites</span>
-        </button>
-        <button onclick="showTab('tab-microcine')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>🎬</span> <span>Microcine 60 Pax</span>
-        </button>
-        <button onclick="showTab('tab-servicios')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>☕</span> <span>Servicios & Spa</span>
-        </button>
-        <button onclick="showTab('tab-faqs')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>❓</span> <span>Preguntas Frecuentes</span>
-        </button>
+      <!-- Left Navigation Sidebar -->
+      <aside class="w-64 bg-[#14171C] border-r border-[#2A2F3A] flex flex-col shrink-0 overflow-y-auto">
+        <div class="p-3 space-y-1">
+          
+          <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-[#525B6C]">
+            Contenido
+          </div>
 
-        <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-gold-600 border-b border-admin-100 pt-3 mb-1">
-          Herramientas & Seguridad
+          <button onclick="showTab('tab-general')" class="nav-tab active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            <span>General & Contacto</span>
+          </button>
+
+          <button onclick="showTab('tab-home')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span>Página de Inicio</span>
+          </button>
+
+          <button onclick="showTab('tab-habitaciones')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <span>Habitaciones & Fotos</span>
+          </button>
+
+          <button onclick="showTab('tab-microcine')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+            <span>Microcine 60 Pax</span>
+          </button>
+
+          <button onclick="showTab('tab-servicios')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            <span>Servicios & Spa</span>
+          </button>
+
+          <button onclick="showTab('tab-promo')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+            <span>Aviso Promocional</span>
+          </button>
+
+          <button onclick="showTab('tab-faqs')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Preguntas Frecuentes</span>
+          </button>
+
+          <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-[#525B6C] pt-4">
+            Sistema
+          </div>
+
+          <button onclick="showTab('tab-seguridad')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span>Contraseña de Acceso</span>
+          </button>
+
+          <button onclick="showTab('tab-backup')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
+            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+            <span>Respaldos & JSON</span>
+          </button>
+
         </div>
-        <button onclick="showTab('tab-media')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>🖼️</span> <span>Galería de Fotos</span>
-        </button>
-        <button onclick="showTab('tab-seguridad')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>🔑</span> <span>Cambiar Contraseña</span>
-        </button>
-        <button onclick="showTab('tab-backup')" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all flex items-center gap-2.5">
-          <span>💾</span> <span>Respaldos & JSON</span>
-        </button>
       </aside>
 
-      <!-- Área de Formularios y Edición -->
-      <main class="lg:col-span-9 space-y-6">
-        
-        <!-- Pestaña 1: General & Contacto -->
-        <div id="tab-general" class="tab-content bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4 flex justify-between items-start">
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-admin-950">Datos Generales & Contacto</h3>
-              <p class="text-xs text-admin-700 mt-1">Configuración del hotel, teléfonos, WhatsApp y dirección visible en toda la web.</p>
-            </div>
-            <a href="index.html" target="_blank" class="text-xs text-gold-600 hover:underline font-semibold flex items-center gap-1">
-              <span>Probar en vivo</span> &rarr;
-            </a>
-          </div>
-
-          <form onsubmit="event.preventDefault(); saveGeneralData();" class="space-y-5">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Main Form Area -->
+      <main class="flex-1 overflow-y-auto p-6 sm:p-8">
+        <div class="max-w-4xl mx-auto space-y-6 pb-12">
+          
+          <!-- TAB: GENERAL & CONTACTO -->
+          <div id="tab-general" class="tab-content space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4 flex justify-between items-center">
               <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Nombre del Hotel</label>
-                <input type="text" id="g-nombre" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Distancia al Mar</label>
-                <input type="text" id="g-distancia" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" placeholder="30m" />
+                <h2 class="text-lg font-bold text-white">General & Canales de Contacto</h2>
+                <p class="text-xs text-[#8E98AA]">Información corporativa, números de teléfono y dirección del hotel.</p>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Número de WhatsApp (Sin espacios ni símbolos)</label>
-                <input type="text" id="g-whatsapp" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm font-mono focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" placeholder="5492262672626" />
-                <p class="text-[11px] text-admin-700 mt-1">Ej: 5492262672626 (Código de país + área + celular)</p>
-              </div>
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Teléfono con Formato Visible</label>
-                <input type="text" id="g-telefono" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm font-mono focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" placeholder="+54 9 2262 67-2626" />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Correo Electrónico Oficial</label>
-                <input type="email" id="g-email" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Usuario de Instagram</label>
-                <input type="text" id="g-instagram" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" placeholder="@altamare.hotel" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Dirección Completa</label>
-              <input type="text" id="g-direccion" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div class="pt-4 flex justify-end">
-              <button type="submit" class="bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all">
-                Guardar Datos de Contacto
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Pestaña 2: Cintillo / Aviso Promocional -->
-        <div id="tab-promo" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Aviso / Banner Promocional Superior</h3>
-            <p class="text-xs text-admin-700 mt-1">Podés activar un cintillo superior en la web con novedades, descuentos de temporada o avisos especiales.</p>
-          </div>
-
-          <form onsubmit="event.preventDefault(); savePromoData();" class="space-y-5">
-            <div class="flex items-center gap-3 p-4 bg-admin-50 rounded-xl border border-admin-200">
-              <input type="checkbox" id="p-active" class="w-5 h-5 text-gold-600 rounded focus:ring-gold-500 border-admin-300" />
-              <div>
-                <label for="p-active" class="text-sm font-bold text-admin-950 cursor-pointer">Activar Banner Promocional en toda la web</label>
-                <p class="text-xs text-admin-700">Si está marcado, se mostrará un anuncio en la barra superior de todas las páginas.</p>
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Texto del Anuncio</label>
-              <input type="text" id="p-texto" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" placeholder="🌟 Temporada 2026: Reservá directo con 10% de descuento en estadías semanales." />
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Texto del Botón (Opcional)</label>
-                <input type="text" id="p-btn-text" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" placeholder="Consultar Promo" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Enlace del Botón</label>
-                <input type="text" id="p-btn-url" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" placeholder="https://wa.me/5492262672626 o reservas.html" />
-              </div>
-            </div>
-
-            <div class="pt-4 flex justify-end">
-              <button type="submit" class="bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all">
-                Guardar Configuración del Banner
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Pestaña 3: Página de Inicio -->
-        <div id="tab-home" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Página de Inicio (Home)</h3>
-            <p class="text-xs text-admin-700 mt-1">Editá los textos del hero principal, la foto de fondo y la sección institucional.</p>
-          </div>
-
-          <form onsubmit="event.preventDefault(); saveHomeData();" class="space-y-5">
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Insignia Superior del Hero</label>
-              <input type="text" id="h-badge" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Título Principal del Hero</label>
-              <input type="text" id="h-titulo" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm font-serif text-lg focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Subtítulo / Bajada del Hero</label>
-              <textarea id="h-subtitulo" rows="2" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-            </div>
-
-            <div>
-              <div class="flex justify-between items-center mb-1.5">
-                <label class="block text-xs font-bold uppercase text-admin-700">Foto de Fondo del Hero</label>
-                <button type="button" onclick="triggerFileUpload('h-img-hero', 'prev-h-hero')" class="text-xs text-gold-600 hover:underline font-semibold">📁 Subir desde mi dispositivo</button>
-              </div>
-              <input type="url" id="h-img-hero" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-xs font-mono focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" oninput="previewImg('h-img-hero', 'prev-h-hero')" />
-              <img id="prev-h-hero" class="mt-2.5 h-44 w-full object-cover rounded-xl border border-admin-200" />
-            </div>
-
-            <div class="pt-6 border-t border-admin-100 space-y-4">
-              <h4 class="font-serif text-lg font-bold text-admin-950">Sección Institucional (Bienvenidos)</h4>
-              
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Título Institucional</label>
-                <input type="text" id="h-about-title" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Párrafo 1</label>
-                <textarea id="h-about-p1" rows="3" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Párrafo 2</label>
-                <textarea id="h-about-p2" rows="3" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-              </div>
-
-              <div>
-                <div class="flex justify-between items-center mb-1.5">
-                  <label class="block text-xs font-bold uppercase text-admin-700">Foto Institucional</label>
-                  <button type="button" onclick="triggerFileUpload('h-img-about', 'prev-h-about')" class="text-xs text-gold-600 hover:underline font-semibold">📁 Subir desde mi dispositivo</button>
+            <form onsubmit="event.preventDefault(); saveGeneralData();" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Nombre del Hotel</label>
+                  <input type="text" id="g-nombre" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
                 </div>
-                <input type="url" id="h-img-about" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-xs font-mono focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" oninput="previewImg('h-img-about', 'prev-h-about')" />
-                <img id="prev-h-about" class="mt-2.5 h-44 w-full object-cover rounded-xl border border-admin-200" />
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Distancia a la Playa</label>
+                  <input type="text" id="g-distancia" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="30m" />
+                </div>
               </div>
-            </div>
 
-            <div class="pt-4 flex justify-end">
-              <button type="submit" class="bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all">
-                Guardar Cambios de Inicio
-              </button>
-            </div>
-          </form>
-        </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">WhatsApp Directo (Sin espacios)</label>
+                  <input type="text" id="g-whatsapp" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white font-mono focus:outline-none transition-colors" placeholder="5492262672626" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Teléfono Visible</label>
+                  <input type="text" id="g-telefono" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white font-mono focus:outline-none transition-colors" placeholder="+54 9 2262 67-2626" />
+                </div>
+              </div>
 
-        <!-- Pestaña 4: Habitaciones & Suites -->
-        <div id="tab-habitaciones" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Habitaciones & Suites</h3>
-            <p class="text-xs text-admin-700 mt-1">Gestioná las fotos del slider, descripciones y equipamiento de cada suite.</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Correo Electrónico</label>
+                  <input type="email" id="g-email" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Instagram</label>
+                  <input type="text" id="g-instagram" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="@altamare.hotel" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Dirección Completa</label>
+                <input type="text" id="g-direccion" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+              </div>
+
+              <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+                  Guardar Cambios
+                </button>
+              </div>
+            </form>
           </div>
 
-          <form onsubmit="event.preventDefault(); saveRoomsData();" class="space-y-8">
-            
-            <!-- Preferencial -->
-            <div class="p-6 bg-admin-50 rounded-2xl border border-admin-200 space-y-4">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-widest text-gold-600">Categoría 1: Preferencial al Frente</span>
-                <span class="text-[11px] bg-gold-500/10 text-gold-600 font-bold px-2.5 py-0.5 rounded-full">Con Hidromasaje</span>
+          <!-- TAB: HOME -->
+          <div id="tab-home" class="tab-content hidden space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4">
+              <h2 class="text-lg font-bold text-white">Página de Inicio</h2>
+              <p class="text-xs text-[#8E98AA]">Banner principal, textos institucionales e imágenes destacadas.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); saveHomeData();" class="space-y-6">
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">Hero / Banner Principal</h3>
+                
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Insignia Superior</label>
+                  <input type="text" id="h-badge" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título Principal</label>
+                  <input type="text" id="h-titulo" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Bajada / Subtítulo</label>
+                  <textarea id="h-subtitulo" rows="2" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                </div>
+
+                <!-- Dropzone Hero Image -->
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Foto de Fondo del Hero</label>
+                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
+                       onclick="triggerSingleUpload('h-img-hero', 'prev-h-hero')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-hero', 'prev-h-hero')">
+                    <div class="space-y-2">
+                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá una foto desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para explorar</span></p>
+                      <p class="text-[11px] text-[#525B6C]">PNG, JPG, WEBP de alta resolución</p>
+                    </div>
+                  </div>
+                  <input type="hidden" id="h-img-hero" />
+                  <div class="mt-3 relative rounded-xl overflow-hidden border border-[#2A2F3A]">
+                    <img id="prev-h-hero" class="h-44 w-full object-cover" />
+                  </div>
+                </div>
               </div>
+
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">Sección Institucional (Bienvenidos)</h3>
+                
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título de Sección</label>
+                  <input type="text" id="h-about-title" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Párrafo 1</label>
+                  <textarea id="h-about-p1" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Párrafo 2</label>
+                  <textarea id="h-about-p2" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                </div>
+
+                <!-- Dropzone About Image -->
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Foto Institucional</label>
+                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
+                       onclick="triggerSingleUpload('h-img-about', 'prev-h-about')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-about', 'prev-h-about')">
+                    <div class="space-y-2">
+                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá una foto desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para explorar</span></p>
+                    </div>
+                  </div>
+                  <input type="hidden" id="h-img-about" />
+                  <div class="mt-3 relative rounded-xl overflow-hidden border border-[#2A2F3A]">
+                    <img id="prev-h-about" class="h-44 w-full object-cover" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+                  Guardar Cambios de Inicio
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- TAB: HABITACIONES & SUITES -->
+          <div id="tab-habitaciones" class="tab-content hidden space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4">
+              <h2 class="text-lg font-bold text-white">Habitaciones & Galerías de Fotos</h2>
+              <p class="text-xs text-[#8E98AA]">Subí y administrá fotos para los sliders interactivos de cada habitación.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); saveRoomsData();" class="space-y-8">
               
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Título de la Suite</label>
-                <input type="text" id="r-pref-title" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
+              <!-- 1. Preferencial -->
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-5">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">1. Habitación Preferencial al Frente (Con Hidro)</h3>
+                  <span class="text-[10px] bg-[#C5A880]/10 text-[#C5A880] font-bold px-2.5 py-0.5 rounded-full">Suite Principal</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título de la Suite</label>
+                  <input type="text" id="r-pref-title" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Descripción</label>
+                  <textarea id="r-pref-desc" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                </div>
+
+                <!-- Dropzone Multiple Images for Preferencial -->
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá varias fotos desde tu escritorio)</label>
+                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
+                       onclick="triggerMultiUpload('pref-gallery-grid')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropMulti(event, 'pref-gallery-grid')">
+                    <div class="space-y-2">
+                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá fotos desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para seleccionar</span></p>
+                      <p class="text-[11px] text-[#525B6C]">Podés seleccionar varias fotos juntas</p>
+                    </div>
+                  </div>
+
+                  <!-- Visual Grid of photos -->
+                  <div id="pref-gallery-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4"></div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Equipamiento (1 por línea)</label>
+                  <textarea id="r-pref-eq" rows="4" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-xs text-white font-mono focus:outline-none transition-colors"></textarea>
+                </div>
               </div>
 
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Descripción</label>
-                <textarea id="r-pref-desc" rows="3" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
+              <!-- 2. Standard -->
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-5">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">2. Habitación Standard</h3>
+                  <span class="text-[10px] bg-[#2A2F3A] text-[#8E98AA] font-bold px-2.5 py-0.5 rounded-full">Matrimonial / Twin</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título de la Habitación</label>
+                  <input type="text" id="r-std-title" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Descripción</label>
+                  <textarea id="r-std-desc" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                </div>
+
+                <!-- Dropzone Multiple Images for Standard -->
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá varias fotos desde tu escritorio)</label>
+                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
+                       onclick="triggerMultiUpload('std-gallery-grid')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropMulti(event, 'std-gallery-grid')">
+                    <div class="space-y-2">
+                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá fotos desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para seleccionar</span></p>
+                      <p class="text-[11px] text-[#525B6C]">Podés seleccionar varias fotos juntas</p>
+                    </div>
+                  </div>
+
+                  <!-- Visual Grid of photos -->
+                  <div id="std-gallery-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4"></div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Equipamiento (1 por línea)</label>
+                  <textarea id="r-std-eq" rows="4" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-xs text-white font-mono focus:outline-none transition-colors"></textarea>
+                </div>
               </div>
 
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Fotos del Slider (1 URL por línea)</label>
-                <textarea id="r-pref-imgs" rows="4" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs font-mono focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
+              <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+                  Guardar Habitaciones & Galerías
+                </button>
               </div>
+            </form>
+          </div>
 
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Equipamiento (1 ítem por línea)</label>
-                <textarea id="r-pref-eq" rows="4" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-              </div>
+          <!-- TAB: MICROCINE -->
+          <div id="tab-microcine" class="tab-content hidden space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4">
+              <h2 class="text-lg font-bold text-white">Microcine & Auditorio 60 Pax</h2>
+              <p class="text-xs text-[#8E98AA]">Capacidad, tecnología audiovisual y foto principal del espacio.</p>
             </div>
 
-            <!-- Standard -->
-            <div class="p-6 bg-admin-50 rounded-2xl border border-admin-200 space-y-4">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-widest text-gold-600">Categoría 2: Habitación Standard</span>
-                <span class="text-[11px] bg-admin-200 text-admin-800 font-bold px-2.5 py-0.5 rounded-full">Matrimonial / Twin</span>
+            <form onsubmit="event.preventDefault(); saveMicrocineData();" class="space-y-5">
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Insignia / Capacidad</label>
+                <input type="text" id="m-badge" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
               </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título</label>
+                <input type="text" id="m-titulo" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Descripción</label>
+                <textarea id="m-desc" rows="3" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+              </div>
+
+              <!-- Dropzone Microcine -->
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Foto Principal del Auditorio</label>
+                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#181B20] transition-colors cursor-pointer"
+                     onclick="triggerSingleUpload('m-img', 'prev-m-img')"
+                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'm-img', 'prev-m-img')">
+                  <div class="space-y-2">
+                    <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá una foto desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para explorar</span></p>
+                  </div>
+                </div>
+                <input type="hidden" id="m-img" />
+                <div class="mt-3 relative rounded-xl overflow-hidden border border-[#2A2F3A]">
+                  <img id="prev-m-img" class="h-44 w-full object-cover" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Especificaciones Técnicas (1 por línea)</label>
+                <textarea id="m-specs" rows="5" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-xs text-white font-mono focus:outline-none transition-colors"></textarea>
+              </div>
+
+              <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+                  Guardar Cambios de Microcine
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- TAB: SERVICIOS & SPA -->
+          <div id="tab-servicios" class="tab-content hidden space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4">
+              <h2 class="text-lg font-bold text-white">Servicios & Espacios</h2>
+              <p class="text-xs text-[#8E98AA]">Desayuno buffet, sauna seco, gimnasio y recepción 24 horas.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); saveServicesData();" class="space-y-6">
               
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Título de la Habitación</label>
-                <input type="text" id="r-std-title" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
+              <!-- Desayuno -->
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">1. Desayuno & Snack Bar</h3>
+                <input type="text" id="s-des-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <textarea id="s-des-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                <input type="text" id="s-des-horario" placeholder="Horario..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                
+                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                     onclick="triggerSingleUpload('s-des-img', 'prev-s-des-img')"
+                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-des-img', 'prev-s-des-img')">
+                  <p class="text-xs text-[#E6E9F0]">Subir foto de desayuno desde escritorio</p>
+                </div>
+                <input type="hidden" id="s-des-img" />
+                <img id="prev-s-des-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
               </div>
 
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Descripción</label>
-                <textarea id="r-std-desc" rows="3" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
+              <!-- Sauna -->
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">2. Sauna & Relax</h3>
+                <input type="text" id="s-sau-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <textarea id="s-sau-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                
+                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                     onclick="triggerSingleUpload('s-sau-img', 'prev-s-sau-img')"
+                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-sau-img', 'prev-s-sau-img')">
+                  <p class="text-xs text-[#E6E9F0]">Subir foto de sauna desde escritorio</p>
+                </div>
+                <input type="hidden" id="s-sau-img" />
+                <img id="prev-s-sau-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
               </div>
 
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Fotos del Slider (1 URL por línea)</label>
-                <textarea id="r-std-imgs" rows="4" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs font-mono focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
+              <!-- Gym -->
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">3. Mini Gym</h3>
+                <input type="text" id="s-gym-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <textarea id="s-gym-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                
+                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                     onclick="triggerSingleUpload('s-gym-img', 'prev-s-gym-img')"
+                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-gym-img', 'prev-s-gym-img')">
+                  <p class="text-xs text-[#E6E9F0]">Subir foto de gimnasio desde escritorio</p>
+                </div>
+                <input type="hidden" id="s-gym-img" />
+                <img id="prev-s-gym-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
               </div>
 
-              <div>
-                <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Equipamiento (1 ítem por línea)</label>
-                <textarea id="r-std-eq" rows="4" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
+              <!-- Recepción -->
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">4. Recepción 24 Horas</h3>
+                <input type="text" id="s-rec-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <textarea id="s-rec-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                
+                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                     onclick="triggerSingleUpload('s-rec-img', 'prev-s-rec-img')"
+                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-rec-img', 'prev-s-rec-img')">
+                  <p class="text-xs text-[#E6E9F0]">Subir foto de recepción desde escritorio</p>
+                </div>
+                <input type="hidden" id="s-rec-img" />
+                <img id="prev-s-rec-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
               </div>
+
+              <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+                  Guardar Cambios de Servicios
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- TAB: AVISO PROMO -->
+          <div id="tab-promo" class="tab-content hidden space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4">
+              <h2 class="text-lg font-bold text-white">Aviso / Banner Promocional</h2>
+              <p class="text-xs text-[#8E98AA]">Activá o desactivá un cintillo superior en todo el sitio web.</p>
             </div>
+
+            <form onsubmit="event.preventDefault(); savePromoData();" class="space-y-5">
+              <div class="flex items-center gap-3 p-5 bg-[#181B20] rounded-2xl border border-[#2A2F3A]">
+                <input type="checkbox" id="p-active" class="w-5 h-5 accent-[#C5A880] rounded cursor-pointer" />
+                <div>
+                  <label for="p-active" class="text-sm font-semibold text-white cursor-pointer">Activar Cintillo Promocional Superior</label>
+                  <p class="text-xs text-[#8E98AA]">Se mostrará en la cabecera de todas las páginas para los visitantes.</p>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Texto del Mensaje</label>
+                <input type="text" id="p-texto" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="🌟 Temporada 2026: Reservá directo con 10% de descuento abonando en efectivo." />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Texto del Botón (Opcional)</label>
+                  <input type="text" id="p-btn-text" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="Ver Promoción" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Enlace de Destino</label>
+                  <input type="text" id="p-btn-url" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="https://wa.me/5492262672626 o reservas.html" />
+                </div>
+              </div>
+
+              <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+                  Guardar Configuración del Banner
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- TAB: FAQS -->
+          <div id="tab-faqs" class="tab-content hidden space-y-6">
+            <div class="flex items-center justify-between border-b border-[#2A2F3A] pb-4">
+              <div>
+                <h2 class="text-lg font-bold text-white">Preguntas Frecuentes</h2>
+                <p class="text-xs text-[#8E98AA]">Respuestas a dudas comunes de los huéspedes.</p>
+              </div>
+              <button onclick="addNewFaq()" class="bg-[#232832] hover:bg-[#2A2F3A] text-[#C5A880] font-semibold px-4 py-2 rounded-xl text-xs uppercase tracking-wider border border-[#2A2F3A] transition-colors">
+                + Nueva Pregunta
+              </button>
+            </div>
+
+            <div id="faqs-list" class="space-y-4"></div>
 
             <div class="pt-4 flex justify-end">
-              <button type="submit" class="bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all">
-                Guardar Habitaciones & Suites
+              <button onclick="saveFaqsData()" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+                Guardar Preguntas Frecuentes
               </button>
             </div>
-          </form>
-        </div>
-
-        <!-- Pestaña 5: Microcine -->
-        <div id="tab-microcine" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Microcine & Auditorio 60 Pax</h3>
-            <p class="text-xs text-admin-700 mt-1">Editá las especificaciones audiovisuales, foto y textos del auditorio.</p>
           </div>
 
-          <form onsubmit="event.preventDefault(); saveMicrocineData();" class="space-y-5">
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Insignia / Capacidad</label>
-              <input type="text" id="m-badge" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
+          <!-- TAB: SEGURIDAD -->
+          <div id="tab-seguridad" class="tab-content hidden space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4">
+              <h2 class="text-lg font-bold text-white">Seguridad & Contraseña</h2>
+              <p class="text-xs text-[#8E98AA]">Modificá la clave para el acceso del encargado.</p>
             </div>
 
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Título</label>
-              <input type="text" id="m-titulo" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm font-serif focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Descripción</label>
-              <textarea id="m-desc" rows="3" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-            </div>
-
-            <div>
-              <div class="flex justify-between items-center mb-1.5">
-                <label class="block text-xs font-bold uppercase text-admin-700">Foto Principal del Auditorio</label>
-                <button type="button" onclick="triggerFileUpload('m-img', 'prev-m-img')" class="text-xs text-gold-600 hover:underline font-semibold">📁 Subir desde mi dispositivo</button>
+            <form onsubmit="event.preventDefault(); handleChangePassword();" class="max-w-md space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Contraseña Actual</label>
+                <input type="password" id="pwd-current" required placeholder="••••••••" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
               </div>
-              <input type="url" id="m-img" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-xs font-mono focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none" oninput="previewImg('m-img', 'prev-m-img')" />
-              <img id="prev-m-img" class="mt-2.5 h-44 w-full object-cover rounded-xl border border-admin-200" />
-            </div>
 
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Especificaciones Técnicas (1 por línea)</label>
-              <textarea id="m-specs" rows="5" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-xs font-mono focus:bg-white focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-            </div>
-
-            <div class="pt-4 flex justify-end">
-              <button type="submit" class="bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all">
-                Guardar Cambios de Microcine
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Pestaña 6: Servicios & Spa -->
-        <div id="tab-servicios" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Servicios & Espacios</h3>
-            <p class="text-xs text-admin-700 mt-1">Configurá el desayuno, sauna, mini gym y recepción.</p>
-          </div>
-
-          <form onsubmit="event.preventDefault(); saveServicesData();" class="space-y-6">
-            
-            <div class="p-5 bg-admin-50 rounded-2xl border border-admin-200 space-y-3">
-              <h4 class="font-serif font-bold text-base text-admin-950">1. Desayuno & Snack Bar</h4>
-              <input type="text" id="s-des-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              <textarea id="s-des-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-              <input type="text" id="s-des-horario" placeholder="Horarios" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              <input type="url" id="s-des-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs font-mono focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div class="p-5 bg-admin-50 rounded-2xl border border-admin-200 space-y-3">
-              <h4 class="font-serif font-bold text-base text-admin-950">2. Sauna & Relax</h4>
-              <input type="text" id="s-sau-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              <textarea id="s-sau-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-              <input type="url" id="s-sau-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs font-mono focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div class="p-5 bg-admin-50 rounded-2xl border border-admin-200 space-y-3">
-              <h4 class="font-serif font-bold text-base text-admin-950">3. Mini Gym</h4>
-              <input type="text" id="s-gym-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              <textarea id="s-gym-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-              <input type="url" id="s-gym-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs font-mono focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div class="p-5 bg-admin-50 rounded-2xl border border-admin-200 space-y-3">
-              <h4 class="font-serif font-bold text-base text-admin-950">4. Hall & Recepción 24h</h4>
-              <input type="text" id="s-rec-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-              <textarea id="s-rec-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
-              <input type="url" id="s-rec-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-xl p-3 text-xs font-mono focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div class="pt-4 flex justify-end">
-              <button type="submit" class="bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all">
-                Guardar Cambios de Servicios
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Pestaña 7: FAQs -->
-        <div id="tab-faqs" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-admin-100 pb-4">
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-admin-950">Preguntas Frecuentes</h3>
-              <p class="text-xs text-admin-700 mt-1">Respuestas que ayudan al huésped a resolver dudas de reservas, horarios y políticas.</p>
-            </div>
-            <button onclick="addNewFaq()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow transition-all">
-              + Nueva Pregunta
-            </button>
-          </div>
-
-          <div id="faqs-list" class="space-y-4"></div>
-
-          <div class="pt-4 flex justify-end">
-            <button onclick="saveFaqsData()" class="bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all">
-              Guardar Preguntas Frecuentes
-            </button>
-          </div>
-        </div>
-
-        <!-- Pestaña 8: Galería de Fotos & Presets -->
-        <div id="tab-media" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Galería de Imágenes & Presets</h3>
-            <p class="text-xs text-admin-700 mt-1">Hacé clic en cualquier foto para copiar su enlace directo al portapapeles y pegarlo en cualquier sección.</p>
-          </div>
-
-          <!-- Subida rápida -->
-          <div class="p-5 bg-admin-50 rounded-2xl border border-admin-200 space-y-3">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-admin-800">Subir nueva foto desde tu computadora o teléfono</h4>
-            <div class="flex items-center gap-3">
-              <input type="file" id="media-file-input" accept="image/*" class="text-xs text-admin-700 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-admin-950 file:text-gold-400 hover:file:bg-black cursor-pointer" />
-            </div>
-            <div id="media-preview-box" class="hidden pt-2 space-y-2">
-              <img id="media-preview-img" class="h-32 w-auto rounded-lg border border-admin-200" />
-              <p class="text-[11px] text-emerald-600 font-bold">✓ Foto optimizada lista para usar.</p>
-            </div>
-          </div>
-
-          <!-- Presets del hotel -->
-          <div class="space-y-3 pt-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-gold-600">Fotos Curadas de Alta Resolución</h4>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="presets-grid"></div>
-          </div>
-        </div>
-
-        <!-- Pestaña 9: Seguridad & Contraseña -->
-        <div id="tab-seguridad" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Seguridad del Panel</h3>
-            <p class="text-xs text-admin-700 mt-1">Cambiá la contraseña de acceso de administrador.</p>
-          </div>
-
-          <form onsubmit="event.preventDefault(); handleChangePassword();" class="max-w-md space-y-4">
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Contraseña Actual</label>
-              <input type="password" id="pwd-current" required placeholder="••••••••" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Nueva Contraseña</label>
-              <input type="password" id="pwd-new" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase text-admin-700 mb-1.5">Confirmar Nueva Contraseña</label>
-              <input type="password" id="pwd-confirm" required minlength="6" placeholder="Repetí la nueva contraseña" class="w-full bg-admin-50 border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" />
-            </div>
-
-            <div class="pt-2">
-              <button type="submit" class="w-full bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold py-3.5 px-6 rounded-xl text-xs uppercase tracking-widest shadow-md transition-all">
-                Actualizar Contraseña
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Pestaña 10: Backup & Exportar -->
-        <div id="tab-backup" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="border-b border-admin-100 pb-4">
-            <h3 class="font-serif text-2xl font-bold text-admin-950">Respaldo & Exportación de Contenido</h3>
-            <p class="text-xs text-admin-700 mt-1">Descargá una copia de seguridad o restaurá una copia anterior en segundos.</p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="p-6 bg-admin-50 rounded-2xl border border-admin-200 space-y-3">
-              <div class="flex items-center gap-2">
-                <span class="text-xl">📥</span>
-                <h4 class="font-serif font-bold text-base text-admin-950">Descargar Copia de Seguridad</h4>
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Nueva Contraseña</label>
+                <input type="password" id="pwd-new" required minlength="6" placeholder="Mínimo 6 caracteres..." class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
               </div>
-              <p class="text-xs text-admin-700 leading-relaxed">Genera un archivo JSON con todos los textos, imágenes y configuraciones actuales.</p>
-              <button onclick="exportContentAsJSON()" class="w-full bg-admin-950 hover:bg-black text-gold-400 hover:text-white font-bold py-3 rounded-xl text-xs uppercase tracking-widest transition-all">
-                Exportar Archivo JSON
+
+              <div>
+                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Confirmar Nueva Contraseña</label>
+                <input type="password" id="pwd-confirm" required minlength="6" placeholder="Repetí la nueva contraseña..." class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+              </div>
+
+              <div class="pt-2">
+                <button type="submit" class="w-full bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all">
+                  Actualizar Contraseña
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- TAB: BACKUP & RESTORE -->
+          <div id="tab-backup" class="tab-content hidden space-y-6">
+            <div class="border-b border-[#2A2F3A] pb-4">
+              <h2 class="text-lg font-bold text-white">Respaldos & Archivos JSON</h2>
+              <p class="text-xs text-[#8E98AA]">Exportá o restaurá una copia exacta de todos los datos y fotos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-3">
+                <h3 class="text-sm font-bold text-white">Descargar Copia de Seguridad</h3>
+                <p class="text-xs text-[#8E98AA]">Genera un archivo JSON con todos los textos, imágenes y configuraciones actuales.</p>
+                <button onclick="exportContentAsJSON()" class="w-full bg-[#232832] hover:bg-[#2A2F3A] text-white font-semibold py-3 rounded-xl text-xs uppercase tracking-wider border border-[#2A2F3A] transition-all">
+                  Exportar JSON
+                </button>
+              </div>
+
+              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-3">
+                <h3 class="text-sm font-bold text-white">Restaurar desde JSON</h3>
+                <p class="text-xs text-[#8E98AA]">Cargá un archivo de copia de seguridad previamente descargado.</p>
+                <input type="file" id="import-json-file" accept=".json" class="w-full text-xs text-[#8E98AA] file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#232832] file:text-white cursor-pointer" onchange="handleImportJSON(event)" />
+              </div>
+            </div>
+
+            <div class="bg-[#2B1B1F] p-6 rounded-2xl border border-rose-900/40 space-y-3">
+              <h3 class="text-sm font-bold text-rose-300">Restablecer Valores de Fábrica</h3>
+              <p class="text-xs text-rose-200/70">Esta acción restaurará los textos y fotos originales por defecto del hotel.</p>
+              <button onclick="handleResetContent()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-5 rounded-xl text-xs uppercase tracking-wider transition-colors">
+                Restablecer Todo
               </button>
             </div>
-
-            <div class="p-6 bg-admin-50 rounded-2xl border border-admin-200 space-y-3">
-              <div class="flex items-center gap-2">
-                <span class="text-xl">📤</span>
-                <h4 class="font-serif font-bold text-base text-admin-950">Cargar Copia de Seguridad</h4>
-              </div>
-              <p class="text-xs text-admin-700 leading-relaxed">Seleccioná un archivo JSON previamente exportado para restaurar el contenido.</p>
-              <input type="file" id="import-json-file" accept=".json" class="text-xs text-admin-700 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-admin-200 file:text-admin-800 cursor-pointer" onchange="handleImportJSON(event)" />
-            </div>
           </div>
 
-          <div class="p-6 bg-rose-50/60 rounded-2xl border border-rose-200 space-y-3 mt-4">
-            <div class="flex items-center gap-2">
-              <span class="text-xl">⚠️</span>
-              <h4 class="font-serif font-bold text-base text-rose-900">Restablecer Valores de Fábrica</h4>
-            </div>
-            <p class="text-xs text-rose-800 leading-relaxed">Esta acción borrará los cambios personalizados locales y volverá a los textos y fotos originales por defecto.</p>
-            <button onclick="handleResetContent()" class="bg-rose-700 hover:bg-rose-800 text-white font-bold py-3 px-6 rounded-xl text-xs uppercase tracking-widest transition-all shadow">
-              Restablecer Valores Iniciales
-            </button>
-          </div>
         </div>
-
       </main>
 
     </div>
   </div>
 
   <!-- Toast Notification -->
-  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 bg-[#120D09] text-white px-5 py-3 rounded-xl shadow-2xl border border-gold-500/50 text-xs font-bold tracking-wider uppercase transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center gap-2.5">
-    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-    <span id="toast-text">¡Cambios guardados con éxito!</span>
+  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 bg-[#181B20] text-white px-5 py-3 rounded-xl shadow-2xl border border-[#2A2F3A] text-xs font-semibold tracking-wide transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center gap-3">
+    <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+    <span id="toast-text">Cambios guardados con éxito</span>
   </div>
 
-  <!-- Hidden File Input for Image Uploading -->
-  <input type="file" id="global-img-uploader" accept="image/*" class="hidden" />
+  <!-- Hidden File Input for Single Image -->
+  <input type="file" id="single-file-input" accept="image/*" class="hidden" />
 
-  <!-- Scripts del Admin -->
+  <!-- Hidden File Input for Multi Images -->
+  <input type="file" id="multi-file-input" accept="image/*" multiple class="hidden" />
+
+  <!-- Core Scripts -->
   <script src="./assets/js/default-content.js"></script>
   <script src="./assets/js/content-manager.js"></script>
 
@@ -686,7 +762,6 @@
       document.getElementById('login-screen').classList.add('hidden');
       document.getElementById('admin-dashboard').classList.remove('hidden');
       loadAllFormData();
-      renderPresets();
     }
 
     function logoutAdmin() {
@@ -694,30 +769,19 @@
       location.reload();
     }
 
-    // Auto-login si ya inició sesión en la pestaña
     if (sessionStorage.getItem('altamare_admin_auth') === 'true') {
       showDashboard();
     }
 
-    // Pestañas
     function showTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
       const activeContent = document.getElementById(tabId);
       if (activeContent) activeContent.classList.remove('hidden');
       if (event && event.currentTarget) event.currentTarget.classList.add('active');
     }
 
-    // Previews de imágenes
-    function previewImg(inputId, imgId) {
-      const url = document.getElementById(inputId).value;
-      if (url) {
-        document.getElementById(imgId).src = url;
-      }
-    }
-
-    // Notificación Toast
-    function showToast(msg = '¡Cambios guardados con éxito!') {
+    function showToast(msg = 'Cambios guardados con éxito') {
       const toast = document.getElementById('admin-toast');
       const text = document.getElementById('toast-text');
       text.textContent = msg;
@@ -727,7 +791,122 @@
       }, 2500);
     }
 
-    // Cargar todos los datos en los formularios
+    // Drag & Drop helpers
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.currentTarget.classList.add('dropzone-active');
+    }
+
+    function handleDragLeave(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.currentTarget.classList.remove('dropzone-active');
+    }
+
+    // Single File Drop / Upload
+    let targetSingleInputId = null;
+    let targetSinglePreviewId = null;
+
+    function triggerSingleUpload(inputId, previewId) {
+      targetSingleInputId = inputId;
+      targetSinglePreviewId = previewId;
+      document.getElementById('single-file-input').click();
+    }
+
+    document.getElementById('single-file-input').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      readFileAsDataURL(file, (dataUrl) => {
+        if (targetSingleInputId) document.getElementById(targetSingleInputId).value = dataUrl;
+        if (targetSinglePreviewId) document.getElementById(targetSinglePreviewId).src = dataUrl;
+        showToast('Foto cargada desde tu escritorio');
+      });
+    });
+
+    function handleDropSingle(e, inputId, previewId) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.currentTarget.classList.remove('dropzone-active');
+      const file = e.dataTransfer.files[0];
+      if (!file || !file.type.startsWith('image/')) return;
+      readFileAsDataURL(file, (dataUrl) => {
+        document.getElementById(inputId).value = dataUrl;
+        document.getElementById(previewId).src = dataUrl;
+        showToast('Foto soltada y cargada');
+      });
+    }
+
+    // Multi File Drop / Upload for Rooms Gallery
+    let targetMultiContainerId = null;
+
+    function triggerMultiUpload(containerId) {
+      targetMultiContainerId = containerId;
+      document.getElementById('multi-file-input').click();
+    }
+
+    document.getElementById('multi-file-input').addEventListener('change', function(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+      processMultiFiles(files, targetMultiContainerId);
+    });
+
+    function handleDropMulti(e, containerId) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.currentTarget.classList.remove('dropzone-active');
+      const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+      if (!files.length) return;
+      processMultiFiles(files, containerId);
+    }
+
+    function processMultiFiles(files, containerId) {
+      let loaded = 0;
+      files.forEach(file => {
+        readFileAsDataURL(file, (dataUrl) => {
+          appendPhotoCard(containerId, dataUrl);
+          loaded++;
+          if (loaded === files.length) {
+            showToast(`${loaded} foto(s) agregada(s) a la galería`);
+          }
+        });
+      });
+    }
+
+    function readFileAsDataURL(file, callback) {
+      const reader = new FileReader();
+      reader.onload = (evt) => callback(evt.target.result);
+      reader.readAsDataURL(file);
+    }
+
+    function appendPhotoCard(containerId, url) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const card = document.createElement('div');
+      card.className = 'photo-card relative rounded-xl overflow-hidden border border-[#2A2F3A] group h-28 bg-[#121418]';
+      card.innerHTML = `
+        <img src="${url}" class="w-full h-full object-cover" />
+        <button type="button" onclick="this.closest('.photo-card').remove();" class="absolute top-1.5 right-1.5 bg-black/80 hover:bg-rose-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all" title="Eliminar foto">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      `;
+      container.appendChild(card);
+    }
+
+    function renderPhotoCards(containerId, urls) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+      urls.forEach(url => appendPhotoCard(containerId, url));
+    }
+
+    function getUrlsFromContainer(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return [];
+      return Array.from(container.querySelectorAll('img')).map(img => img.src);
+    }
+
+    // Load Data into Forms
     function loadAllFormData() {
       const data = getHotelContent();
 
@@ -740,7 +919,7 @@
       document.getElementById('g-instagram').value = data.general.instagram || '';
       document.getElementById('g-direccion').value = data.general.direccion || '';
 
-      // Promo Banner
+      // Promo
       if (data.promoBanner) {
         document.getElementById('p-active').checked = !!data.promoBanner.activo;
         document.getElementById('p-texto').value = data.promoBanner.texto || '';
@@ -753,22 +932,22 @@
       document.getElementById('h-titulo').value = data.home.heroTitulo || '';
       document.getElementById('h-subtitulo').value = data.home.heroSubtitulo || '';
       document.getElementById('h-img-hero').value = data.home.heroImagen || '';
-      previewImg('h-img-hero', 'prev-h-hero');
+      document.getElementById('prev-h-hero').src = data.home.heroImagen || '';
       document.getElementById('h-about-title').value = data.home.nosotrosTitulo || '';
       document.getElementById('h-about-p1').value = data.home.nosotrosTexto1 || '';
       document.getElementById('h-about-p2').value = data.home.nosotrosTexto2 || '';
       document.getElementById('h-img-about').value = data.home.nosotrosImagen || '';
-      previewImg('h-img-about', 'prev-h-about');
+      document.getElementById('prev-h-about').src = data.home.nosotrosImagen || '';
 
-      // Habitaciones
+      // Rooms
       document.getElementById('r-pref-title').value = data.habitaciones.preferencial.titulo || '';
       document.getElementById('r-pref-desc').value = data.habitaciones.preferencial.descripcion || '';
-      document.getElementById('r-pref-imgs').value = (data.habitaciones.preferencial.imagenes || []).join('\n');
+      renderPhotoCards('pref-gallery-grid', data.habitaciones.preferencial.imagenes || []);
       document.getElementById('r-pref-eq').value = (data.habitaciones.preferencial.equipamiento || []).join('\n');
 
       document.getElementById('r-std-title').value = data.habitaciones.standard.titulo || '';
       document.getElementById('r-std-desc').value = data.habitaciones.standard.descripcion || '';
-      document.getElementById('r-std-imgs').value = (data.habitaciones.standard.imagenes || []).join('\n');
+      renderPhotoCards('std-gallery-grid', data.habitaciones.standard.imagenes || []);
       document.getElementById('r-std-eq').value = (data.habitaciones.standard.equipamiento || []).join('\n');
 
       // Microcine
@@ -776,32 +955,36 @@
       document.getElementById('m-titulo').value = data.microcine.titulo || '';
       document.getElementById('m-desc').value = data.microcine.descripcion || '';
       document.getElementById('m-img').value = data.microcine.imagenPrincipal || '';
-      previewImg('m-img', 'prev-m-img');
+      document.getElementById('prev-m-img').src = data.microcine.imagenPrincipal || '';
       document.getElementById('m-specs').value = (data.microcine.especificaciones || []).join('\n');
 
-      // Servicios
+      // Services
       document.getElementById('s-des-title').value = data.servicios.desayuno.titulo || '';
       document.getElementById('s-des-desc').value = data.servicios.desayuno.descripcion || '';
       document.getElementById('s-des-horario').value = data.servicios.desayuno.horario || '';
       document.getElementById('s-des-img').value = data.servicios.desayuno.imagen || '';
+      document.getElementById('prev-s-des-img').src = data.servicios.desayuno.imagen || '';
 
       document.getElementById('s-sau-title').value = data.servicios.sauna.titulo || '';
       document.getElementById('s-sau-desc').value = data.servicios.sauna.descripcion || '';
       document.getElementById('s-sau-img').value = data.servicios.sauna.imagen || '';
+      document.getElementById('prev-s-sau-img').src = data.servicios.sauna.imagen || '';
 
       document.getElementById('s-gym-title').value = data.servicios.gym.titulo || '';
       document.getElementById('s-gym-desc').value = data.servicios.gym.descripcion || '';
       document.getElementById('s-gym-img').value = data.servicios.gym.imagen || '';
+      document.getElementById('prev-s-gym-img').src = data.servicios.gym.imagen || '';
 
       document.getElementById('s-rec-title').value = data.servicios.recepcion.titulo || '';
       document.getElementById('s-rec-desc').value = data.servicios.recepcion.descripcion || '';
       document.getElementById('s-rec-img').value = data.servicios.recepcion.imagen || '';
+      document.getElementById('prev-s-rec-img').src = data.servicios.recepcion.imagen || '';
 
       // FAQs
       renderFaqsList(data.faqs || []);
     }
 
-    // Guardar General
+    // Save Functions
     function saveGeneralData() {
       const data = getHotelContent();
       data.general.nombre = document.getElementById('g-nombre').value;
@@ -812,10 +995,9 @@
       data.general.instagram = document.getElementById('g-instagram').value;
       data.general.direccion = document.getElementById('g-direccion').value;
       saveHotelContent(data);
-      showToast('Datos de contacto guardados');
+      showToast('Datos de contacto actualizados');
     }
 
-    // Guardar Promo Banner
     function savePromoData() {
       const data = getHotelContent();
       data.promoBanner = {
@@ -828,7 +1010,6 @@
       showToast('Aviso promocional guardado');
     }
 
-    // Guardar Home
     function saveHomeData() {
       const data = getHotelContent();
       data.home.heroBadge = document.getElementById('h-badge').value;
@@ -840,26 +1021,25 @@
       data.home.nosotrosTexto2 = document.getElementById('h-about-p2').value;
       data.home.nosotrosImagen = document.getElementById('h-img-about').value;
       saveHotelContent(data);
-      showToast('Página de inicio guardada');
+      showToast('Página de inicio actualizada');
     }
 
-    // Guardar Habitaciones
     function saveRoomsData() {
       const data = getHotelContent();
       data.habitaciones.preferencial.titulo = document.getElementById('r-pref-title').value;
       data.habitaciones.preferencial.descripcion = document.getElementById('r-pref-desc').value;
-      data.habitaciones.preferencial.imagenes = document.getElementById('r-pref-imgs').value.split('\n').map(s => s.trim()).filter(Boolean);
+      data.habitaciones.preferencial.imagenes = getUrlsFromContainer('pref-gallery-grid');
       data.habitaciones.preferencial.equipamiento = document.getElementById('r-pref-eq').value.split('\n').map(s => s.trim()).filter(Boolean);
 
       data.habitaciones.standard.titulo = document.getElementById('r-std-title').value;
       data.habitaciones.standard.descripcion = document.getElementById('r-std-desc').value;
-      data.habitaciones.standard.imagenes = document.getElementById('r-std-imgs').value.split('\n').map(s => s.trim()).filter(Boolean);
+      data.habitaciones.standard.imagenes = getUrlsFromContainer('std-gallery-grid');
       data.habitaciones.standard.equipamiento = document.getElementById('r-std-eq').value.split('\n').map(s => s.trim()).filter(Boolean);
+      
       saveHotelContent(data);
-      showToast('Habitaciones y suites guardadas');
+      showToast('Habitaciones y fotos guardadas');
     }
 
-    // Guardar Microcine
     function saveMicrocineData() {
       const data = getHotelContent();
       data.microcine.badge = document.getElementById('m-badge').value;
@@ -868,10 +1048,9 @@
       data.microcine.imagenPrincipal = document.getElementById('m-img').value;
       data.microcine.especificaciones = document.getElementById('m-specs').value.split('\n').map(s => s.trim()).filter(Boolean);
       saveHotelContent(data);
-      showToast('Microcine guardado');
+      showToast('Microcine actualizado');
     }
 
-    // Guardar Servicios
     function saveServicesData() {
       const data = getHotelContent();
       data.servicios.desayuno.titulo = document.getElementById('s-des-title').value;
@@ -892,23 +1071,22 @@
       data.servicios.recepcion.imagen = document.getElementById('s-rec-img').value;
 
       saveHotelContent(data);
-      showToast('Servicios guardados');
+      showToast('Servicios actualizados');
     }
 
-    // Render FAQs
     function renderFaqsList(faqs) {
       const container = document.getElementById('faqs-list');
       container.innerHTML = '';
       faqs.forEach((faq, index) => {
         const item = document.createElement('div');
-        item.className = 'p-4 sm:p-5 bg-admin-50 rounded-2xl border border-admin-200 space-y-2';
+        item.className = 'p-5 bg-[#181B20] rounded-2xl border border-[#2A2F3A] space-y-3';
         item.innerHTML = `
           <div class="flex justify-between items-center">
-            <span class="text-xs font-bold text-admin-800">Pregunta #${index + 1}</span>
-            <button onclick="removeFaq(${index})" class="text-xs text-rose-600 font-bold hover:underline">Eliminar</button>
+            <span class="text-xs font-bold text-[#C5A880]">Pregunta #${index + 1}</span>
+            <button type="button" onclick="removeFaq(${index})" class="text-xs text-rose-400 font-semibold hover:underline">Eliminar</button>
           </div>
-          <input type="text" class="faq-q w-full bg-white border border-admin-200 rounded-xl p-3 text-sm font-semibold focus:ring-2 focus:ring-gold-500 focus:outline-none" value="${faq.pregunta}" placeholder="Pregunta..." />
-          <textarea class="faq-a w-full bg-white border border-admin-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none" rows="2" placeholder="Respuesta...">${faq.respuesta}</textarea>
+          <input type="text" class="faq-q w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm font-semibold text-white focus:outline-none" value="${faq.pregunta}" placeholder="Pregunta..." />
+          <textarea class="faq-a w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none" rows="2" placeholder="Respuesta...">${faq.respuesta}</textarea>
         `;
         container.appendChild(item);
       });
@@ -944,85 +1122,6 @@
       showToast('Preguntas Frecuentes guardadas');
     }
 
-    // Subida de archivos / File Uploader
-    let currentUploadTargetInput = null;
-    let currentUploadTargetPreview = null;
-
-    function triggerFileUpload(inputId, previewId) {
-      currentUploadTargetInput = inputId;
-      currentUploadTargetPreview = previewId;
-      const fileInp = document.getElementById('global-img-uploader');
-      fileInp.click();
-    }
-
-    document.getElementById('global-img-uploader').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const base64 = evt.target.result;
-        if (currentUploadTargetInput) {
-          document.getElementById(currentUploadTargetInput).value = base64;
-          if (currentUploadTargetPreview) {
-            document.getElementById(currentUploadTargetPreview).src = base64;
-          }
-          showToast('Foto cargada exitosamente');
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-
-    // Subida en Pestaña Media
-    document.getElementById('media-file-input').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const b64 = evt.target.result;
-        document.getElementById('media-preview-img').src = b64;
-        document.getElementById('media-preview-box').classList.remove('hidden');
-        navigator.clipboard.writeText(b64).then(() => {
-          showToast('Foto copiada al portapapeles');
-        });
-      };
-      reader.readAsDataURL(file);
-    });
-
-    // Galería Presets
-    const PRESET_IMAGES = [
-      { name: 'Fachada & Vista Mar', url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop' },
-      { name: 'Suite Preferencial', url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop' },
-      { name: 'Habitación Standard', url: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop' },
-      { name: 'Microcine 60 Pax', url: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop' },
-      { name: 'Desayuno Buffet', url: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=1200&auto=format&fit=crop' },
-      { name: 'Sauna & Relax', url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop' },
-    ];
-
-    function renderPresets() {
-      const grid = document.getElementById('presets-grid');
-      if (!grid) return;
-      grid.innerHTML = '';
-      PRESET_IMAGES.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'group relative rounded-xl overflow-hidden border border-admin-200 shadow-sm cursor-pointer';
-        card.innerHTML = `
-          <img src="${item.url}" alt="${item.name}" class="h-28 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-2 text-center text-white">
-            <span class="text-xs font-bold">${item.name}</span>
-            <span class="text-[10px] text-gold-400 font-semibold mt-1">Copiar URL</span>
-          </div>
-        `;
-        card.onclick = () => {
-          navigator.clipboard.writeText(item.url).then(() => {
-            showToast(`URL copiada: ${item.name}`);
-          });
-        };
-        grid.appendChild(card);
-      });
-    }
-
-    // Cambiar Contraseña
     function handleChangePassword() {
       const current = document.getElementById('pwd-current').value;
       const newPwd = document.getElementById('pwd-new').value;
@@ -1045,17 +1144,16 @@
       document.getElementById('pwd-current').value = '';
       document.getElementById('pwd-new').value = '';
       document.getElementById('pwd-confirm').value = '';
-      showToast('¡Contraseña actualizada exitosamente!');
+      showToast('Contraseña actualizada con éxito');
     }
 
-    // Importar JSON
     function handleImportJSON(event) {
       const file = event.target.files[0];
       if (!file) return;
       importContentFromJSON(file, (success, res) => {
         if (success) {
           loadAllFormData();
-          showToast('Contenido importado con éxito');
+          showToast('Copia de seguridad restaurada');
         } else {
           alert('Error al importar archivo JSON');
         }
@@ -1063,24 +1161,12 @@
     }
 
     function handleResetContent() {
-      if (confirm('¿Estás seguro de restablecer todos los textos y fotos a los valores por defecto?')) {
+      if (confirm('¿Estás seguro de restablecer todos los textos y fotos a los valores por defecto de fábrica?')) {
         resetHotelContent();
         loadAllFormData();
-        showToast('Valores restablecidos de fábrica');
+        showToast('Valores restablecidos');
       }
     }
-
-    // Atajo de teclado: Ctrl+S o Cmd+S para guardar la pestaña activa
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-        e.preventDefault();
-        const activeTab = document.querySelector('.tab-content:not(.hidden)');
-        if (activeTab) {
-          const submitBtn = activeTab.querySelector('button[type="submit"], button[onclick*="save"]');
-          if (submitBtn) submitBtn.click();
-        }
-      }
-    });
   </script>
 
 </body>
