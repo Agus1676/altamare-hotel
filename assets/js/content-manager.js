@@ -106,6 +106,29 @@ document.addEventListener('DOMContentLoaded', () => {
     el.textContent = data.general.email;
     el.setAttribute('href', `mailto:${data.general.email}`);
   });
+
+  // 6. Banner Promocional Superior (si está activo y no estamos en admin)
+  if (data.promoBanner && data.promoBanner.activo && data.promoBanner.texto && !window.location.pathname.includes('admin.html')) {
+    const existingBanner = document.getElementById('altamare-promo-banner');
+    if (!existingBanner) {
+      const banner = document.createElement('div');
+      banner.id = 'altamare-promo-banner';
+      banner.className = 'bg-[#C5A880] text-[#140E0A] py-2 px-4 text-xs font-medium text-center flex items-center justify-center gap-3 relative z-50 shadow-sm';
+      
+      let btnHtml = '';
+      if (data.promoBanner.botonTexto && data.promoBanner.botonUrl) {
+        btnHtml = `<a href="${data.promoBanner.botonUrl}" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#140E0A] hover:bg-black text-[#FAF8F5] text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded transition-colors ml-2">${data.promoBanner.botonTexto} &rarr;</a>`;
+      }
+
+      banner.innerHTML = `
+        <div class="flex items-center justify-center flex-wrap gap-2">
+          <span>${data.promoBanner.texto}</span>
+          ${btnHtml}
+        </div>
+      `;
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+  }
 });
 
 // Función auxiliar para leer rutas de objetos anidados como 'general.telefono'

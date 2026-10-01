@@ -15,6 +15,14 @@ const DEFAULT_HOTEL_CONTENT = {
     checkoutHora: "10:00 hs"
   },
 
+  // Cintillo Promocional (Opcional)
+  promoBanner: {
+    activo: false,
+    texto: "🌟 Temporada 2026: Reserve su estadía directamente con recepción con beneficios exclusivos.",
+    botonTexto: "Consultar Tarifas",
+    botonUrl: "reservas.html"
+  },
+
   // Inicio (Home)
   home: {
     heroBadge: "Necochea • A 30 Metros del Mar",
