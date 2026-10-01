@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración | Alta Mare Hotel & Suites</title>
+  <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            admin: {
+              50: '#F8FAFC',
+              100: '#F1F5F9',
+              200: '#E2E8F0',
+              700: '#334155',
+              800: '#1E293B',
+              900: '#0F172A',
+            },
+            gold: {
+              400: '#D4B26F',
+              500: '#B89358',
+              600: '#997539',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .tab-btn.active {
+      background-color: #0F172A;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body class="bg-admin-50 text-admin-900 font-sans antialiased min-h-screen">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 1. PANTALLA DE ACCESO / LOGIN (PIN)         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="login-screen" class="fixed inset-0 z-50 bg-admin-900 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 space-y-6 border border-admin-200">
+      <div class="text-center space-y-2">
+        <img src="./assets/images/logo.png" alt="Alta Mare" class="h-14 w-auto mx-auto object-contain" />
+        <h1 class="font-serif text-2xl font-bold text-admin-900">Panel de Administración</h1>
+        <p class="text-xs text-admin-700">Ingrese la clave de encargado para gestionar la web del hotel.</p>
+      </div>
+
+      <form id="login-form" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-admin-700 mb-1.5">Contraseña de Administrador</label>
+          <input type="password" id="admin-pass" required placeholder="••••••••" class="w-full bg-admin-50 border border-admin-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500" />
+          <p class="text-[11px] text-admin-700 mt-1">Clave predeterminada: <code class="bg-admin-100 px-1.5 py-0.5 rounded font-mono font-bold">altamare2026</code></p>
+        </div>
+
+        <button type="submit" class="w-full bg-admin-900 hover:bg-black text-gold-400 font-bold py-3.5 px-6 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md">
+          Ingresar al Panel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 2. PANEL PRINCIPAL DE ADMINISTRACIÓN        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="admin-dashboard" class="hidden min-h-screen flex flex-col">
+    
+    <!-- Topbar Admin -->
+    <header class="bg-white border-b border-admin-200 sticky top-0 z-30 px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <img src="./assets/images/logo.png" alt="Alta Mare" class="h-10 w-auto" />
+        <div>
+          <h2 class="text-sm font-bold text-admin-900 font-serif">Gestor de Contenido &bull; Alta Mare</h2>
+          <span class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Modo Edición en Vivo Activo
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html" target="_blank" class="inline-flex items-center gap-2 bg-admin-100 hover:bg-admin-200 text-admin-900 font-bold px-4 py-2 rounded-lg text-xs uppercase tracking-wider transition-colors">
+          <span>Ver Sitio Web</span>
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </a>
+
+        <button onclick="logoutAdmin()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold px-4 py-2 rounded-lg text-xs uppercase tracking-wider transition-colors">
+          Salir
+        </button>
+      </div>
+    </header>
+
+    <div class="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Sidebar de Pestañas -->
+      <aside class="lg:col-span-3 bg-white rounded-2xl border border-admin-200 p-4 shadow-sm space-y-1.5 sticky top-24">
+        <button onclick="showTab('tab-general')" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all active">
+          🏨 Contacto & Datos
+        </button>
+        <button onclick="showTab('tab-home')" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all">
+          🏠 Página de Inicio
+        </button>
+        <button onclick="showTab('tab-habitaciones')" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all">
+          🛏️ Habitaciones & Suites
+        </button>
+        <button onclick="showTab('tab-microcine')" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all">
+          🎬 Microcine 60 Pax
+        </button>
+        <button onclick="showTab('tab-servicios')" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all">
+          ☕ Servicios & Spa
+        </button>
+        <button onclick="showTab('tab-faqs')" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all">
+          ❓ Preguntas Frecuentes
+        </button>
+        <button onclick="showTab('tab-backup')" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-admin-700 hover:bg-admin-100 transition-all">
+          💾 Respaldar & Exportar
+        </button>
+      </aside>
+
+      <!-- Área de Formularios y Edición -->
+      <main class="lg:col-span-9 space-y-6">
+        
+        <!-- Pestaña 1: General & Contacto -->
+        <div id="tab-general" class="tab-content bg-white rounded-2xl border border-admin-200 p-8 shadow-sm space-y-6">
+          <div class="border-b border-admin-100 pb-4">
+            <h3 class="font-serif text-2xl font-bold text-admin-900">Datos Generales & Canales de Contacto</h3>
+            <p class="text-xs text-admin-700 mt-1">Modificá el teléfono, WhatsApp, dirección y correo que se muestran en todas las páginas.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); saveGeneralData();" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Nombre del Hotel</label>
+                <input type="text" id="g-nombre" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Distancia al Mar</label>
+                <input type="text" id="g-distancia" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Número de WhatsApp (con código de país, sin espacios)</label>
+                <input type="text" id="g-whatsapp" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm font-mono" placeholder="5492262672626" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Teléfono visible</label>
+                <input type="text" id="g-telefono" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm font-mono" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Correo Electrónico</label>
+                <input type="email" id="g-email" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Usuario de Instagram</label>
+                <input type="text" id="g-instagram" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Dirección Completa</label>
+              <input type="text" id="g-direccion" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-admin-900 hover:bg-black text-gold-400 font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-widest shadow">
+                Guardar Cambios de Contacto
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pestaña 2: Página de Inicio -->
+        <div id="tab-home" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-8 shadow-sm space-y-6">
+          <div class="border-b border-admin-100 pb-4">
+            <h3 class="font-serif text-2xl font-bold text-admin-900">Página de Inicio (Home)</h3>
+            <p class="text-xs text-admin-700 mt-1">Editá los textos del banner principal, la foto de fondo y la sección institucional.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); saveHomeData();" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Insignia Superior del Hero</label>
+              <input type="text" id="h-badge" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Título Principal del Hero</label>
+              <input type="text" id="h-titulo" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm font-serif text-lg" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Subtítulo / Bajada del Hero</label>
+              <textarea id="h-subtitulo" rows="2" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">URL Foto de Fondo del Hero</label>
+              <input type="url" id="h-img-hero" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm font-mono text-xs" onchange="previewImg('h-img-hero', 'prev-h-hero')" />
+              <img id="prev-h-hero" class="mt-2 h-36 w-full object-cover rounded-lg border border-admin-200" />
+            </div>
+
+            <div class="pt-4 border-t border-admin-100 space-y-4">
+              <h4 class="font-bold text-sm text-admin-900">Sección Institucional (Bienvenidos)</h4>
+              
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Título Institucional</label>
+                <input type="text" id="h-about-title" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Párrafo 1</label>
+                <textarea id="h-about-p1" rows="3" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Párrafo 2</label>
+                <textarea id="h-about-p2" rows="3" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">URL Foto Institucional</label>
+                <input type="url" id="h-img-about" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm font-mono text-xs" onchange="previewImg('h-img-about', 'prev-h-about')" />
+                <img id="prev-h-about" class="mt-2 h-36 w-full object-cover rounded-lg border border-admin-200" />
+              </div>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-admin-900 hover:bg-black text-gold-400 font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-widest shadow">
+                Guardar Cambios de Inicio
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pestaña 3: Habitaciones & Suites -->
+        <div id="tab-habitaciones" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-8 shadow-sm space-y-6">
+          <div class="border-b border-admin-100 pb-4">
+            <h3 class="font-serif text-2xl font-bold text-admin-900">Habitaciones & Suites</h3>
+            <p class="text-xs text-admin-700 mt-1">Gestioná las fotos del slider, descripciones y equipamiento de cada suite.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); saveRoomsData();" class="space-y-8">
+            
+            <!-- Preferencial -->
+            <div class="p-6 bg-admin-50 rounded-xl border border-admin-200 space-y-4">
+              <span class="text-xs font-bold uppercase text-gold-600">Categoría 1: Preferencial al Frente</span>
+              
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Título de la Suite</label>
+                <input type="text" id="r-pref-title" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Descripción</label>
+                <textarea id="r-pref-desc" rows="3" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-sm"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Fotos del Slider (1 URL por línea)</label>
+                <textarea id="r-pref-imgs" rows="4" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-xs font-mono"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Equipamiento (1 ítem por línea)</label>
+                <textarea id="r-pref-eq" rows="4" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-xs"></textarea>
+              </div>
+            </div>
+
+            <!-- Standard -->
+            <div class="p-6 bg-admin-50 rounded-xl border border-admin-200 space-y-4">
+              <span class="text-xs font-bold uppercase text-gold-600">Categoría 2: Habitación Standard</span>
+              
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Título de la Habitación</label>
+                <input type="text" id="r-std-title" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Descripción</label>
+                <textarea id="r-std-desc" rows="3" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-sm"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Fotos del Slider (1 URL por línea)</label>
+                <textarea id="r-std-imgs" rows="4" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-xs font-mono"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Equipamiento (1 ítem por línea)</label>
+                <textarea id="r-std-eq" rows="4" class="w-full bg-white border border-admin-200 rounded-lg p-3 text-xs"></textarea>
+              </div>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-admin-900 hover:bg-black text-gold-400 font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-widest shadow">
+                Guardar Cambios de Habitaciones
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pestaña 4: Microcine -->
+        <div id="tab-microcine" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-8 shadow-sm space-y-6">
+          <div class="border-b border-admin-100 pb-4">
+            <h3 class="font-serif text-2xl font-bold text-admin-900">Microcine & Auditorio 60 Pax</h3>
+            <p class="text-xs text-admin-700 mt-1">Editá las especificaciones audiovisuales, foto y textos del auditorio.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); saveMicrocineData();" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Insignia / Capacidad</label>
+              <input type="text" id="m-badge" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Título</label>
+              <input type="text" id="m-titulo" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm font-serif" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Descripción</label>
+              <textarea id="m-desc" rows="3" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">URL Foto Principal</label>
+              <input type="url" id="m-img" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-sm font-mono text-xs" onchange="previewImg('m-img', 'prev-m-img')" />
+              <img id="prev-m-img" class="mt-2 h-36 w-full object-cover rounded-lg border border-admin-200" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-admin-700 mb-1">Especificaciones Técnicas (1 por línea)</label>
+              <textarea id="m-specs" rows="5" class="w-full bg-admin-50 border border-admin-200 rounded-lg p-3 text-xs font-mono"></textarea>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-admin-900 hover:bg-black text-gold-400 font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-widest shadow">
+                Guardar Cambios de Microcine
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pestaña 5: Servicios & Spa -->
+        <div id="tab-servicios" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-8 shadow-sm space-y-6">
+          <div class="border-b border-admin-100 pb-4">
+            <h3 class="font-serif text-2xl font-bold text-admin-900">Servicios & Espacios</h3>
+            <p class="text-xs text-admin-700 mt-1">Configurá el desayuno, sauna, mini gym y recepción.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); saveServicesData();" class="space-y-6">
+            
+            <div class="p-4 bg-admin-50 rounded-xl border border-admin-200 space-y-3">
+              <h4 class="font-bold text-sm text-admin-900">1. Desayuno & Snack Bar</h4>
+              <input type="text" id="s-des-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm" />
+              <textarea id="s-des-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm"></textarea>
+              <input type="text" id="s-des-horario" placeholder="Horarios" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm" />
+              <input type="url" id="s-des-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-xs font-mono" />
+            </div>
+
+            <div class="p-4 bg-admin-50 rounded-xl border border-admin-200 space-y-3">
+              <h4 class="font-bold text-sm text-admin-900">2. Sauna & Relax</h4>
+              <input type="text" id="s-sau-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm" />
+              <textarea id="s-sau-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm"></textarea>
+              <input type="url" id="s-sau-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-xs font-mono" />
+            </div>
+
+            <div class="p-4 bg-admin-50 rounded-xl border border-admin-200 space-y-3">
+              <h4 class="font-bold text-sm text-admin-900">3. Mini Gym</h4>
+              <input type="text" id="s-gym-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm" />
+              <textarea id="s-gym-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm"></textarea>
+              <input type="url" id="s-gym-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-xs font-mono" />
+            </div>
+
+            <div class="p-4 bg-admin-50 rounded-xl border border-admin-200 space-y-3">
+              <h4 class="font-bold text-sm text-admin-900">4. Hall & Recepción 24h</h4>
+              <input type="text" id="s-rec-title" placeholder="Título" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm" />
+              <textarea id="s-rec-desc" rows="2" placeholder="Descripción" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm"></textarea>
+              <input type="url" id="s-rec-img" placeholder="URL Foto" class="w-full bg-white border border-admin-200 rounded-lg p-2.5 text-xs font-mono" />
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-admin-900 hover:bg-black text-gold-400 font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-widest shadow">
+                Guardar Cambios de Servicios
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pestaña 6: FAQs -->
+        <div id="tab-faqs" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-8 shadow-sm space-y-6">
+          <div class="flex items-center justify-between border-b border-admin-100 pb-4">
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-admin-900">Preguntas Frecuentes</h3>
+              <p class="text-xs text-admin-700 mt-1">Agregá, modificá o quitá preguntas frecuentes que aparecen en el sitio.</p>
+            </div>
+            <button onclick="addNewFaq()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-lg text-xs uppercase tracking-wider">
+              + Nueva Pregunta
+            </button>
+          </div>
+
+          <div id="faqs-list" class="space-y-4"></div>
+
+          <div class="pt-4 flex justify-end">
+            <button onclick="saveFaqsData()" class="bg-admin-900 hover:bg-black text-gold-400 font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-widest shadow">
+              Guardar Preguntas Frecuentes
+            </button>
+          </div>
+        </div>
+
+        <!-- Pestaña 7: Backup & Exportar -->
+        <div id="tab-backup" class="tab-content hidden bg-white rounded-2xl border border-admin-200 p-8 shadow-sm space-y-6">
+          <div class="border-b border-admin-100 pb-4">
+            <h3 class="font-serif text-2xl font-bold text-admin-900">Respaldo & Exportación de Contenido</h3>
+            <p class="text-xs text-admin-700 mt-1">Descargá una copia de seguridad de todos tus cambios o cargá un respaldo anterior.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 bg-admin-50 rounded-xl border border-admin-200 space-y-3">
+              <h4 class="font-bold text-sm text-admin-900">Descargar Copia de Seguridad</h4>
+              <p class="text-xs text-admin-700">Genera un archivo JSON descargable con todos los textos, números y fotos configurados.</p>
+              <button onclick="exportContentAsJSON()" class="w-full bg-admin-900 hover:bg-black text-gold-400 font-bold py-3 rounded-lg text-xs uppercase tracking-widest">
+                Exportar JSON
+              </button>
+            </div>
+
+            <div class="p-6 bg-admin-50 rounded-xl border border-admin-200 space-y-3">
+              <h4 class="font-bold text-sm text-admin-900">Restablecer Valores Iniciales</h4>
+              <p class="text-xs text-admin-700">Restaura todos los textos y fotos originales de fábrica del hotel.</p>
+              <button onclick="handleResetContent()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-widest">
+                Restablecer Todo
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 bg-admin-900 text-white px-6 py-3 rounded-xl shadow-2xl border border-gold-500/40 text-xs font-bold tracking-wider uppercase transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+    ¡Cambios guardados con éxito!
+  </div>
+
+  <!-- Scripts del Admin -->
+  <script src="./assets/js/default-content.js"></script>
+  <script src="./assets/js/content-manager.js"></script>
+
+  <script>
+    const ADMIN_PASS = 'altamare2026';
+
+    function handleLogin() {
+      const pass = document.getElementById('admin-pass').value;
+      if (pass === ADMIN_PASS) {
+        sessionStorage.setItem('altamare_admin_auth', 'true');
+        showDashboard();
+      } else {
+        alert('Contraseña incorrecta. Intente con: altamare2026');
+      }
+    }
+
+    function showDashboard() {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('admin-dashboard').classList.remove('hidden');
+      loadAllFormData();
+    }
+
+    function logoutAdmin() {
+      sessionStorage.removeItem('altamare_admin_auth');
+      location.reload();
+    }
+
+    // Auto-login si ya inició sesión en la pestaña
+    if (sessionStorage.getItem('altamare_admin_auth') === 'true') {
+      showDashboard();
+    }
+
+    // Pestañas
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.remove('hidden');
+      event.target.classList.add('active');
+    }
+
+    // Previews de imágenes
+    function previewImg(inputId, imgId) {
+      const url = document.getElementById(inputId).value;
+      if (url) document.getElementById(imgId).src = url;
+    }
+
+    // Notificación Toast
+    function showToast(msg = '¡Cambios guardados con éxito!') {
+      const toast = document.getElementById('admin-toast');
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      }, 3000);
+    }
+
+    // Cargar todos los datos en los formularios
+    function loadAllFormData() {
+      const data = getHotelContent();
+
+      // General
+      document.getElementById('g-nombre').value = data.general.nombre || '';
+      document.getElementById('g-distancia').value = data.general.distanciaMar || '';
+      document.getElementById('g-whatsapp').value = data.general.whatsappNumero || '';
+      document.getElementById('g-telefono').value = data.general.telefono || '';
+      document.getElementById('g-email').value = data.general.email || '';
+      document.getElementById('g-instagram').value = data.general.instagram || '';
+      document.getElementById('g-direccion').value = data.general.direccion || '';
+
+      // Home
+      document.getElementById('h-badge').value = data.home.heroBadge || '';
+      document.getElementById('h-titulo').value = data.home.heroTitulo || '';
+      document.getElementById('h-subtitulo').value = data.home.heroSubtitulo || '';
+      document.getElementById('h-img-hero').value = data.home.heroImagen || '';
+      previewImg('h-img-hero', 'prev-h-hero');
+      document.getElementById('h-about-title').value = data.home.nosotrosTitulo || '';
+      document.getElementById('h-about-p1').value = data.home.nosotrosTexto1 || '';
+      document.getElementById('h-about-p2').value = data.home.nosotrosTexto2 || '';
+      document.getElementById('h-img-about').value = data.home.nosotrosImagen || '';
+      previewImg('h-img-about', 'prev-h-about');
+
+      // Habitaciones
+      document.getElementById('r-pref-title').value = data.habitaciones.preferencial.titulo || '';
+      document.getElementById('r-pref-desc').value = data.habitaciones.preferencial.descripcion || '';
+      document.getElementById('r-pref-imgs').value = (data.habitaciones.preferencial.imagenes || []).join('\n');
+      document.getElementById('r-pref-eq').value = (data.habitaciones.preferencial.equipamiento || []).join('\n');
+
+      document.getElementById('r-std-title').value = data.habitaciones.standard.titulo || '';
+      document.getElementById('r-std-desc').value = data.habitaciones.standard.descripcion || '';
+      document.getElementById('r-std-imgs').value = (data.habitaciones.standard.imagenes || []).join('\n');
+      document.getElementById('r-std-eq').value = (data.habitaciones.standard.equipamiento || []).join('\n');
+
+      // Microcine
+      document.getElementById('m-badge').value = data.microcine.badge || '';
+      document.getElementById('m-titulo').value = data.microcine.titulo || '';
+      document.getElementById('m-desc').value = data.microcine.descripcion || '';
+      document.getElementById('m-img').value = data.microcine.imagenPrincipal || '';
+      previewImg('m-img', 'prev-m-img');
+      document.getElementById('m-specs').value = (data.microcine.especificaciones || []).join('\n');
+
+      // Servicios
+      document.getElementById('s-des-title').value = data.servicios.desayuno.titulo || '';
+      document.getElementById('s-des-desc').value = data.servicios.desayuno.descripcion || '';
+      document.getElementById('s-des-horario').value = data.servicios.desayuno.horario || '';
+      document.getElementById('s-des-img').value = data.servicios.desayuno.imagen || '';
+
+      document.getElementById('s-sau-title').value = data.servicios.sauna.titulo || '';
+      document.getElementById('s-sau-desc').value = data.servicios.sauna.descripcion || '';
+      document.getElementById('s-sau-img').value = data.servicios.sauna.imagen || '';
+
+      document.getElementById('s-gym-title').value = data.servicios.gym.titulo || '';
+      document.getElementById('s-gym-desc').value = data.servicios.gym.descripcion || '';
+      document.getElementById('s-gym-img').value = data.servicios.gym.imagen || '';
+
+      document.getElementById('s-rec-title').value = data.servicios.recepcion.titulo || '';
+      document.getElementById('s-rec-desc').value = data.servicios.recepcion.descripcion || '';
+      document.getElementById('s-rec-img').value = data.servicios.recepcion.imagen || '';
+
+      // FAQs
+      renderFaqsList(data.faqs || []);
+    }
+
+    // Guardar General
+    function saveGeneralData() {
+      const data = getHotelContent();
+      data.general.nombre = document.getElementById('g-nombre').value;
+      data.general.distanciaMar = document.getElementById('g-distancia').value;
+      data.general.whatsappNumero = document.getElementById('g-whatsapp').value.replace(/[^0-9]/g, '');
+      data.general.telefono = document.getElementById('g-telefono').value;
+      data.general.email = document.getElementById('g-email').value;
+      data.general.instagram = document.getElementById('g-instagram').value;
+      data.general.direccion = document.getElementById('g-direccion').value;
+      saveHotelContent(data);
+      showToast('Datos de contacto guardados');
+    }
+
+    // Guardar Home
+    function saveHomeData() {
+      const data = getHotelContent();
+      data.home.heroBadge = document.getElementById('h-badge').value;
+      data.home.heroTitulo = document.getElementById('h-titulo').value;
+      data.home.heroSubtitulo = document.getElementById('h-subtitulo').value;
+      data.home.heroImagen = document.getElementById('h-img-hero').value;
+      data.home.nosotrosTitulo = document.getElementById('h-about-title').value;
+      data.home.nosotrosTexto1 = document.getElementById('h-about-p1').value;
+      data.home.nosotrosTexto2 = document.getElementById('h-about-p2').value;
+      data.home.nosotrosImagen = document.getElementById('h-img-about').value;
+      saveHotelContent(data);
+      showToast('Página de inicio guardada');
+    }
+
+    // Guardar Habitaciones
+    function saveRoomsData() {
+      const data = getHotelContent();
+      data.habitaciones.preferencial.titulo = document.getElementById('r-pref-title').value;
+      data.habitaciones.preferencial.descripcion = document.getElementById('r-pref-desc').value;
+      data.habitaciones.preferencial.imagenes = document.getElementById('r-pref-imgs').value.split('\n').map(s => s.trim()).filter(Boolean);
+      data.habitaciones.preferencial.equipamiento = document.getElementById('r-pref-eq').value.split('\n').map(s => s.trim()).filter(Boolean);
+
+      data.habitaciones.standard.titulo = document.getElementById('r-std-title').value;
+      data.habitaciones.standard.descripcion = document.getElementById('r-std-desc').value;
+      data.habitaciones.standard.imagenes = document.getElementById('r-std-imgs').value.split('\n').map(s => s.trim()).filter(Boolean);
+      data.habitaciones.standard.equipamiento = document.getElementById('r-std-eq').value.split('\n').map(s => s.trim()).filter(Boolean);
+      saveHotelContent(data);
+      showToast('Habitaciones y suites guardadas');
+    }
+
+    // Guardar Microcine
+    function saveMicrocineData() {
+      const data = getHotelContent();
+      data.microcine.badge = document.getElementById('m-badge').value;
+      data.microcine.titulo = document.getElementById('m-titulo').value;
+      data.microcine.descripcion = document.getElementById('m-desc').value;
+      data.microcine.imagenPrincipal = document.getElementById('m-img').value;
+      data.microcine.especificaciones = document.getElementById('m-specs').value.split('\n').map(s => s.trim()).filter(Boolean);
+      saveHotelContent(data);
+      showToast('Microcine guardado');
+    }
+
+    // Guardar Servicios
+    function saveServicesData() {
+      const data = getHotelContent();
+      data.servicios.desayuno.titulo = document.getElementById('s-des-title').value;
+      data.servicios.desayuno.descripcion = document.getElementById('s-des-desc').value;
+      data.servicios.desayuno.horario = document.getElementById('s-des-horario').value;
+      data.servicios.desayuno.imagen = document.getElementById('s-des-img').value;
+
+      data.servicios.sauna.titulo = document.getElementById('s-sau-title').value;
+      data.servicios.sauna.descripcion = document.getElementById('s-sau-desc').value;
+      data.servicios.sauna.imagen = document.getElementById('s-sau-img').value;
+
+      data.servicios.gym.titulo = document.getElementById('s-gym-title').value;
+      data.servicios.gym.descripcion = document.getElementById('s-gym-desc').value;
+      data.servicios.gym.imagen = document.getElementById('s-gym-img').value;
+
+      data.servicios.recepcion.titulo = document.getElementById('s-rec-title').value;
+      data.servicios.recepcion.descripcion = document.getElementById('s-rec-desc').value;
+      data.servicios.recepcion.imagen = document.getElementById('s-rec-img').value;
+
+      saveHotelContent(data);
+      showToast('Servicios guardados');
+    }
+
+    // Render FAQs
+    function renderFaqsList(faqs) {
+      const container = document.getElementById('faqs-list');
+      container.innerHTML = '';
+      faqs.forEach((faq, index) => {
+        const item = document.createElement('div');
+        item.className = 'p-4 bg-admin-50 rounded-xl border border-admin-200 space-y-2';
+        item.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-admin-700">Pregunta #${index + 1}</span>
+            <button onclick="removeFaq(${index})" class="text-xs text-rose-600 font-bold hover:underline">Eliminar</button>
+          </div>
+          <input type="text" class="faq-q w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm font-semibold" value="${faq.pregunta}" placeholder="Pregunta..." />
+          <textarea class="faq-a w-full bg-white border border-admin-200 rounded-lg p-2.5 text-sm" rows="2" placeholder="Respuesta...">${faq.respuesta}</textarea>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function addNewFaq() {
+      const data = getHotelContent();
+      data.faqs = data.faqs || [];
+      data.faqs.push({ pregunta: 'Nueva Pregunta', respuesta: 'Respuesta correspondiente...' });
+      saveHotelContent(data);
+      renderFaqsList(data.faqs);
+    }
+
+    function removeFaq(index) {
+      const data = getHotelContent();
+      data.faqs.splice(index, 1);
+      saveHotelContent(data);
+      renderFaqsList(data.faqs);
+    }
+
+    function saveFaqsData() {
+      const data = getHotelContent();
+      const questions = document.querySelectorAll('.faq-q');
+      const answers = document.querySelectorAll('.faq-a');
+      data.faqs = [];
+      questions.forEach((q, i) => {
+        data.faqs.push({
+          pregunta: q.value,
+          respuesta: answers[i].value
+        });
+      });
+      saveHotelContent(data);
+      showToast('Preguntas Frecuentes guardadas');
+    }
+
+    function handleResetContent() {
+      if (confirm('¿Estás seguro de restablecer todos los textos y fotos a los valores por defecto?')) {
+        resetHotelContent();
+        loadAllFormData();
+        showToast('Valores restablecidos por defecto');
+      }
+    }
+  </script>
+
+</body>
+</html>

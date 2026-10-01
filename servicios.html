@@ -208,7 +208,11 @@
         </div>
       </div>
       <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-resort-500">
-        <p>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <p>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina. Todos los derechos reservados.</p>
+          <span class="text-resort-700">&bull;</span>
+          <a href="admin.html" class="hover:text-gold-400 transition-colors">Acceso Encargado / Admin</a>
+        </div>
         <div>
           <span>Desarrollado por</span>
           <a href="https://agustinpollan.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:text-white font-bold ml-1 underline">
@@ -218,6 +222,9 @@
       </div>
     </div>
   </footer>
+
+  <script src="./assets/js/default-content.js"></script>
+  <script src="./assets/js/content-manager.js"></script>
 
   <script>
     const mobBtn = document.getElementById('mobile-menu-btn');

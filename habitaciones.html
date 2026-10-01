@@ -281,7 +281,11 @@
         </div>
       </div>
       <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-resort-500">
-        <p>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <p>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina. Todos los derechos reservados.</p>
+          <span class="text-resort-700">&bull;</span>
+          <a href="admin.html" class="hover:text-gold-400 transition-colors">Acceso Encargado / Admin</a>
+        </div>
         <div>
           <span>Desarrollado por</span>
           <a href="https://agustinpollan.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:text-white font-bold ml-1 underline">
@@ -291,6 +295,9 @@
       </div>
     </div>
   </footer>
+
+  <script src="./assets/js/default-content.js"></script>
+  <script src="./assets/js/content-manager.js"></script>
 
   <script>
     // Gallery Switcher Functions
@@ -322,6 +329,27 @@
         mobNav.classList.toggle('hidden');
       });
     }
+
+    // Sincronizar dinámicamente las fotos y textos desde el CMS
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = getHotelContent();
+
+      // Preferencial
+      if (data.habitaciones && data.habitaciones.preferencial) {
+        const pref = data.habitaciones.preferencial;
+        if (pref.imagenes && pref.imagenes.length > 0) {
+          document.getElementById('pref-main-img').src = pref.imagenes[0];
+        }
+      }
+
+      // Standard
+      if (data.habitaciones && data.habitaciones.standard) {
+        const std = data.habitaciones.standard;
+        if (std.imagenes && std.imagenes.length > 0) {
+          document.getElementById('std-main-img').src = std.imagenes[0];
+        }
+      }
+    });
   </script>
 
 </body>
