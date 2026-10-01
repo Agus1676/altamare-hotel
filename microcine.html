@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microcine & Auditorio 60 Pax | Alta Mare Hotel & Suites</title>
+  <meta name="description" content="Microcine y Sala de Conferencias para 60 personas en Alta Mare Hotel & Suites, Necochea. Pantalla gigante de 200 pulgadas, proyector 5000 lumens y sonido profesional." />
+  <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            resort: {
+              50:  '#FAF8F5',
+              100: '#F4EFEA',
+              200: '#E8DFD5',
+              300: '#D5C5B5',
+              400: '#BAA38F',
+              500: '#9E826C',
+              600: '#7F644F',
+              700: '#634C3A',
+              800: '#473629',
+              900: '#2E2218',
+              950: '#1A130D',
+            },
+            gold: {
+              400: '#D4B26F',
+              500: '#B89358',
+              600: '#997539',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-resort-50 text-resort-900 font-sans antialiased flex flex-col min-h-screen">
+
+  <!-- TOP BAR -->
+  <aside class="bg-resort-950 text-resort-200 text-xs py-2.5 px-4 border-b border-resort-800">
+    <div class="max-w-7xl mx-auto flex justify-between items-center tracking-wide">
+      <div class="flex items-center gap-6">
+        <span>Av. 79 Nº 217 &bull; Necochea &bull; <strong class="text-white">A 30m del mar</strong></span>
+        <span class="hidden md:inline text-resort-700">|</span>
+        <span class="hidden md:inline text-resort-300">Recepción 24 Horas</span>
+      </div>
+      <div class="flex items-center gap-6 text-resort-300">
+        <a href="tel:+5492262672626" class="hover:text-gold-400 font-mono">+54 9 2262 67-2626</a>
+        <a href="https://www.instagram.com/altamare.hotel" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 hidden sm:inline">@altamare.hotel</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- NAVBAR -->
+  <header class="bg-white border-b border-resort-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="./assets/images/logo.png" alt="Alta Mare Hotel & Suites" class="h-14 w-auto object-contain" />
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8 text-xs uppercase font-bold tracking-widest text-resort-800">
+          <a href="index.html" class="hover:text-gold-600 transition-colors pb-1">Inicio</a>
+          <a href="habitaciones.html" class="hover:text-gold-600 transition-colors pb-1">Habitaciones</a>
+          <a href="microcine.html" class="text-gold-600 border-b-2 border-gold-600 pb-1">Microcine 60 Pax</a>
+          <a href="servicios.html" class="hover:text-gold-600 transition-colors pb-1">Servicios & Spa</a>
+          <a href="reservas.html" class="hover:text-gold-600 transition-colors pb-1">Ubicación & Contacto</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="reservas.html" class="bg-resort-900 hover:bg-black text-gold-400 hover:text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all">
+            Consultar Tarifas
+          </a>
+          <button id="mobile-menu-btn" type="button" class="lg:hidden p-2.5 rounded-lg border border-resort-300 text-resort-800">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="hidden lg:hidden bg-resort-900 text-white border-t border-resort-800 px-6 py-5 space-y-3">
+      <a href="index.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Inicio</a>
+      <a href="habitaciones.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Habitaciones & Suites</a>
+      <a href="microcine.html" class="block text-gold-400 font-bold uppercase tracking-wider py-2">Microcine 60 Pax</a>
+      <a href="servicios.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Servicios & Spa</a>
+      <a href="reservas.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Ubicación & Contacto</a>
+    </div>
+  </header>
+
+  <!-- BANNER MICROCINE -->
+  <section class="bg-resort-950 text-white py-16 px-4 border-b border-resort-800">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <div class="inline-block bg-gold-500 text-resort-950 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+        Capacidad para 60 Personas
+      </div>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold">Microcine & Sala de Conferencias</h1>
+      <p class="text-resort-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+        Un espacio exclusivo en Necochea con equipamiento audiovisual de alta definición para conferencias, reuniones corporativas, presentaciones y ciclos de cine.
+      </p>
+    </div>
+  </section>
+
+  <!-- DETALLE DEL MICROCINE -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16 flex-1">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-7 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop" alt="Microcine Alta Mare" class="w-full h-[460px] object-cover" />
+      </div>
+
+      <div class="lg:col-span-5 space-y-6">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-gold-600">Equipamiento Audiovisual</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-resort-900 leading-tight">
+          Tecnología de última generación
+        </h2>
+        <p class="text-resort-700 text-sm leading-relaxed">
+          Nuestro auditorio fue diseñado para brindar una experiencia inmersiva con acústica tratada, butacas confortables y conectividad total para disertantes y eventos privados.
+        </p>
+
+        <div class="space-y-3 pt-4 border-t border-resort-200 text-sm font-medium text-resort-800">
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-resort-200">
+            <span class="text-gold-600 font-bold text-base">✓</span>
+            <span><strong>Pantalla Gigante de 200 Pulgadas</strong></span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-resort-200">
+            <span class="text-gold-600 font-bold text-base">✓</span>
+            <span><strong>Proyector Profesional de 5000 Lumens HD</strong></span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-resort-200">
+            <span class="text-gold-600 font-bold text-base">✓</span>
+            <span><strong>Sistema de Sonido Envolvente Pro</strong></span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-resort-200">
+            <span class="text-gold-600 font-bold text-base">✓</span>
+            <span><strong>Ambiente 100% Climatizado Frío/Calor</strong></span>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-resort-200">
+            <span class="text-gold-600 font-bold text-base">✓</span>
+            <span><strong>Capacidad para 60 Espectadores</strong></span>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <a href="https://wa.me/5492262672626?text=Hola!%20Quisiera%20consultar%20por%20el%20alquiler%20y%20reserva%20del%20Microcine%20para%20un%20evento"
+             target="_blank" rel="noopener noreferrer"
+             class="block text-center bg-resort-900 hover:bg-black text-gold-400 font-bold py-3.5 px-6 rounded-lg text-xs uppercase tracking-widest transition-all shadow-md">
+            Consultar Alquiler para Eventos por WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- USOS RECOMENDADOS -->
+    <section class="bg-white rounded-2xl p-8 sm:p-12 border border-resort-200 shadow-md">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-resort-900">Eventos & Proyecciones</h3>
+        <p class="text-resort-600 text-sm mt-2">Ideal para múltiples formatos de encuentro en Necochea</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-resort-50 rounded-xl border border-resort-200 text-center space-y-2">
+          <h4 class="font-serif font-bold text-lg text-resort-900">Conferencias & Empresas</h4>
+          <p class="text-xs text-resort-700 leading-relaxed">Capacitaciones corporativas, lanzamientos de producto y presentaciones con soporte técnico.</p>
+        </div>
+        <div class="p-6 bg-resort-50 rounded-xl border border-resort-200 text-center space-y-2">
+          <h4 class="font-serif font-bold text-lg text-resort-900">Ciclos de Cine & Festivales</h4>
+          <p class="text-xs text-resort-700 leading-relaxed">Proyecciones audiovisuales, muestras independientes y ciclos culturales para grupos.</p>
+        </div>
+        <div class="p-6 bg-resort-50 rounded-xl border border-resort-200 text-center space-y-2">
+          <h4 class="font-serif font-bold text-lg text-resort-900">Jornadas & Talleres</h4>
+          <p class="text-xs text-resort-700 leading-relaxed">Encuentros académicos, seminarios y talleres de formación en un entorno costero.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-resort-950 text-resort-300 pt-16 pb-12 mt-auto border-t border-resort-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-resort-800">
+        <div class="md:col-span-5 space-y-4">
+          <img src="./assets/images/logo.png" alt="Alta Mare" class="h-14 w-auto brightness-0 invert" />
+          <p class="text-resort-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+            Alta Mare Hotel & Suites en Necochea. Exclusividad y confort frente al mar en Av. 79 Nº 217.
+          </p>
+        </div>
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="text-white font-bold text-xs uppercase tracking-widest">Navegación</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-gold-400">&bull; Inicio</a></li>
+            <li><a href="habitaciones.html" class="hover:text-gold-400">&bull; Habitaciones & Suites</a></li>
+            <li><a href="microcine.html" class="hover:text-gold-400">&bull; Microcine 60 Pax</a></li>
+            <li><a href="servicios.html" class="hover:text-gold-400">&bull; Servicios & Spa</a></li>
+            <li><a href="reservas.html" class="hover:text-gold-400">&bull; Ubicación & Reservas</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-4 space-y-3">
+          <h4 class="text-white font-bold text-xs uppercase tracking-widest">Contacto Directo</h4>
+          <p class="text-xs text-resort-300">Av. 79 Nº 217 (a 30m del mar), Necochea, Buenos Aires</p>
+          <p class="text-xs font-mono text-gold-400 font-bold">+54 9 2262 67-2626</p>
+          <p class="text-xs text-resort-300">altamarenecochea@gmail.com</p>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-resort-500">
+        <p>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina. Todos los derechos reservados.</p>
+        <div>
+          <span>Desarrollado por</span>
+          <a href="https://agustinpollan.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:text-white font-bold ml-1 underline">
+            Agustín Pollán
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobBtn = document.getElementById('mobile-menu-btn');
+    const mobNav = document.getElementById('mobile-nav');
+    if (mobBtn && mobNav) {
+      mobBtn.addEventListener('click', () => {
+        mobNav.classList.toggle('hidden');
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubicación & Reservas | Alta Mare Hotel & Suites — Necochea</title>
+  <meta name="description" content="Ubicación y reservas directas en Alta Mare Hotel & Suites en Necochea. A 30 metros del mar en Av. 79 Nº 217. Consultá tarifas y disponibilidad por WhatsApp." />
+  <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            resort: {
+              50:  '#FAF8F5',
+              100: '#F4EFEA',
+              200: '#E8DFD5',
+              300: '#D5C5B5',
+              400: '#BAA38F',
+              500: '#9E826C',
+              600: '#7F644F',
+              700: '#634C3A',
+              800: '#473629',
+              900: '#2E2218',
+              950: '#1A130D',
+            },
+            gold: {
+              400: '#D4B26F',
+              500: '#B89358',
+              600: '#997539',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-resort-50 text-resort-900 font-sans antialiased flex flex-col min-h-screen">
+
+  <!-- TOP BAR -->
+  <aside class="bg-resort-950 text-resort-200 text-xs py-2.5 px-4 border-b border-resort-800">
+    <div class="max-w-7xl mx-auto flex justify-between items-center tracking-wide">
+      <div class="flex items-center gap-6">
+        <span>Av. 79 Nº 217 &bull; Necochea &bull; <strong class="text-white">A 30m del mar</strong></span>
+        <span class="hidden md:inline text-resort-700">|</span>
+        <span class="hidden md:inline text-resort-300">Recepción 24 Horas</span>
+      </div>
+      <div class="flex items-center gap-6 text-resort-300">
+        <a href="tel:+5492262672626" class="hover:text-gold-400 font-mono">+54 9 2262 67-2626</a>
+        <a href="https://www.instagram.com/altamare.hotel" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 hidden sm:inline">@altamare.hotel</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- NAVBAR -->
+  <header class="bg-white border-b border-resort-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="./assets/images/logo.png" alt="Alta Mare Hotel & Suites" class="h-14 w-auto object-contain" />
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8 text-xs uppercase font-bold tracking-widest text-resort-800">
+          <a href="index.html" class="hover:text-gold-600 transition-colors pb-1">Inicio</a>
+          <a href="habitaciones.html" class="hover:text-gold-600 transition-colors pb-1">Habitaciones</a>
+          <a href="microcine.html" class="hover:text-gold-600 transition-colors pb-1">Microcine 60 Pax</a>
+          <a href="servicios.html" class="hover:text-gold-600 transition-colors pb-1">Servicios & Spa</a>
+          <a href="reservas.html" class="text-gold-600 border-b-2 border-gold-600 pb-1">Ubicación & Contacto</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="reservas.html" class="bg-resort-900 hover:bg-black text-gold-400 hover:text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all">
+            Consultar Tarifas
+          </a>
+          <button id="mobile-menu-btn" type="button" class="lg:hidden p-2.5 rounded-lg border border-resort-300 text-resort-800">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="hidden lg:hidden bg-resort-900 text-white border-t border-resort-800 px-6 py-5 space-y-3">
+      <a href="index.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Inicio</a>
+      <a href="habitaciones.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Habitaciones & Suites</a>
+      <a href="microcine.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Microcine 60 Pax</a>
+      <a href="servicios.html" class="block hover:text-gold-400 uppercase tracking-wider py-2">Servicios & Spa</a>
+      <a href="reservas.html" class="block text-gold-400 font-bold uppercase tracking-wider py-2">Ubicación & Contacto</a>
+    </div>
+  </header>
+
+  <!-- BANNER RESERVAS -->
+  <section class="bg-resort-900 text-white py-14 px-4 border-b border-resort-800">
+    <div class="max-w-7xl mx-auto text-center space-y-3">
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-gold-400">Atención Directa</span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold">Ubicación & Reservas</h1>
+      <p class="text-resort-300 text-sm sm:text-base max-w-xl mx-auto">
+        Comunicate directamente con la recepción del hotel para consultar disponibilidad, coordinar fechas especiales y obtener la mejor tarifa garantizada.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16 flex-1">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Formulario de Consulta Directa Izquierda -->
+      <div class="lg:col-span-6 bg-white rounded-2xl p-8 sm:p-10 border border-resort-200 shadow-xl space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gold-600">Recepción 24 Horas</span>
+          <h2 class="font-serif text-3xl font-bold text-resort-900 mt-1">Solicitar Cotización</h2>
+          <p class="text-resort-700 text-sm mt-1">Completá el formulario para recibir respuesta inmediata por WhatsApp.</p>
+        </div>
+
+        <form id="reserva-form" onsubmit="event.preventDefault(); submitReserva();" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-resort-700 mb-1.5">Nombre y Apellido</label>
+            <input type="text" id="res-name" required placeholder="Tu nombre completo" class="w-full bg-resort-50 border border-resort-300 rounded-lg px-4 py-3 text-sm text-resort-900 focus:outline-none focus:border-gold-500" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-resort-700 mb-1.5">Teléfono / WhatsApp</label>
+              <input type="tel" id="res-phone" required placeholder="+54 9..." class="w-full bg-resort-50 border border-resort-300 rounded-lg px-4 py-3 text-sm text-resort-900 focus:outline-none focus:border-gold-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-resort-700 mb-1.5">Habitación Deseada</label>
+              <select id="res-room" class="w-full bg-resort-50 border border-resort-300 rounded-lg px-4 py-3 text-sm text-resort-900 focus:outline-none focus:border-gold-500">
+                <option value="Habitación Preferencial al Frente (Hidromasaje)">Preferencial Frente (Hidro)</option>
+                <option value="Habitación Standard">Habitación Standard</option>
+                <option value="Microcine para Eventos (60 pax)">Microcine 60 Pax</option>
+                <option value="Consulta General">Consulta General</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-resort-700 mb-1.5">Check-in Estimado</label>
+              <input type="date" id="res-in" class="w-full bg-resort-50 border border-resort-300 rounded-lg px-4 py-3 text-sm text-resort-900 focus:outline-none focus:border-gold-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-resort-700 mb-1.5">Check-out Estimado</label>
+              <input type="date" id="res-out" class="w-full bg-resort-50 border border-resort-300 rounded-lg px-4 py-3 text-sm text-resort-900 focus:outline-none focus:border-gold-500" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-resort-700 mb-1.5">Mensaje o Consultas</label>
+            <textarea id="res-msg" rows="3" placeholder="Contanos si viajan adultos/niños o si tenés alguna consulta especial..." class="w-full bg-resort-50 border border-resort-300 rounded-lg px-4 py-3 text-sm text-resort-900 focus:outline-none focus:border-gold-500"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-resort-900 hover:bg-black text-gold-400 font-bold py-4 px-6 rounded-lg text-xs uppercase tracking-widest transition-all shadow-md">
+            Enviar Consulta Directa por WhatsApp
+          </button>
+        </form>
+      </div>
+
+      <!-- Información de Contacto & Canales Derecha -->
+      <div class="lg:col-span-6 space-y-8">
+        
+        <div class="bg-resort-900 text-white rounded-2xl p-8 space-y-5 shadow-xl border border-resort-800">
+          <h3 class="font-serif text-2xl font-bold text-white">Canales Directos del Hotel</h3>
+          
+          <div class="space-y-4 text-sm">
+            <div class="flex items-start gap-4 p-4 bg-resort-950 rounded-xl border border-resort-800">
+              <span class="text-gold-400 text-xl font-bold">📍</span>
+              <div>
+                <strong class="text-white block">Dirección:</strong>
+                <span class="text-resort-300">Av. 79 Nº 217 (a 30m del mar), Necochea, Buenos Aires</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 bg-resort-950 rounded-xl border border-resort-800">
+              <span class="text-gold-400 text-xl font-bold">💬</span>
+              <div>
+                <strong class="text-white block">WhatsApp Oficial:</strong>
+                <a href="https://wa.me/5492262672626" target="_blank" class="text-gold-400 font-mono font-bold hover:underline">
+                  +54 9 2262 67-2626
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 bg-resort-950 rounded-xl border border-resort-800">
+              <span class="text-gold-400 text-xl font-bold">✉️</span>
+              <div>
+                <strong class="text-white block">Correo Electrónico:</strong>
+                <a href="mailto:altamarenecochea@gmail.com" class="text-resort-300 hover:text-white">
+                  altamarenecochea@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 bg-resort-950 rounded-xl border border-resort-800">
+              <span class="text-gold-400 text-xl font-bold">📸</span>
+              <div>
+                <strong class="text-white block">Instagram Oficial:</strong>
+                <a href="https://www.instagram.com/altamare.hotel" target="_blank" class="text-resort-300 hover:text-white">
+                  @altamare.hotel
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps -->
+        <div class="rounded-2xl overflow-hidden shadow-md border border-resort-200 h-80">
+          <iframe
+            src="https://maps.google.com/maps?q=Alta+Mare+Hotel+%26+Suites,+Av+79+217,+Necochea&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Alta Mare Hotel"
+            class="w-full h-full">
+          </iframe>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-resort-950 text-resort-300 pt-16 pb-12 mt-auto border-t border-resort-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-resort-800">
+        <div class="md:col-span-5 space-y-4">
+          <img src="./assets/images/logo.png" alt="Alta Mare" class="h-14 w-auto brightness-0 invert" />
+          <p class="text-resort-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+            Alta Mare Hotel & Suites en Necochea. Exclusividad y confort frente al mar en Av. 79 Nº 217.
+          </p>
+        </div>
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="text-white font-bold text-xs uppercase tracking-widest">Navegación</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-gold-400">&bull; Inicio</a></li>
+            <li><a href="habitaciones.html" class="hover:text-gold-400">&bull; Habitaciones & Suites</a></li>
+            <li><a href="microcine.html" class="hover:text-gold-400">&bull; Microcine 60 Pax</a></li>
+            <li><a href="servicios.html" class="hover:text-gold-400">&bull; Servicios & Spa</a></li>
+            <li><a href="reservas.html" class="hover:text-gold-400">&bull; Ubicación & Reservas</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-4 space-y-3">
+          <h4 class="text-white font-bold text-xs uppercase tracking-widest">Contacto Directo</h4>
+          <p class="text-xs text-resort-300">Av. 79 Nº 217 (a 30m del mar), Necochea, Buenos Aires</p>
+          <p class="text-xs font-mono text-gold-400 font-bold">+54 9 2262 67-2626</p>
+          <p class="text-xs text-resort-300">altamarenecochea@gmail.com</p>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-resort-500">
+        <p>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina. Todos los derechos reservados.</p>
+        <div>
+          <span>Desarrollado por</span>
+          <a href="https://agustinpollan.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:text-white font-bold ml-1 underline">
+            Agustín Pollán
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    const rIn = document.getElementById('res-in');
+    const rOut = document.getElementById('res-out');
+    if (rIn) rIn.min = today;
+    if (rOut) rOut.min = today;
+
+    const mobBtn = document.getElementById('mobile-menu-btn');
+    const mobNav = document.getElementById('mobile-nav');
+    if (mobBtn && mobNav) {
+      mobBtn.addEventListener('click', () => {
+        mobNav.classList.toggle('hidden');
+      });
+    }
+
+    function submitReserva() {
+      const name = document.getElementById('res-name').value;
+      const phone = document.getElementById('res-phone').value;
+      const room = document.getElementById('res-room').value;
+      const cin = document.getElementById('res-in').value;
+      const cout = document.getElementById('res-out').value;
+      const msg = document.getElementById('res-msg').value;
+
+      let text = '¡Hola Alta Mare Hotel & Suites! Mi nombre es *' + name + '*.\n\n';
+      text += '📱 *Teléfono:* ' + phone + '\n';
+      if (room) text += '🏨 *Categoría:* ' + room + '\n';
+      if (cin) text += '📅 *Llegada:* ' + cin + '\n';
+      if (cout) text += '📅 *Salida:* ' + cout + '\n';
+      if (msg) text += '💬 *Mensaje:* ' + msg + '\n';
+
+      window.open('https://wa.me/5492262672626?text=' + encodeURIComponent(text), '_blank');
+    }
+  </script>
+
+</body>
+</html>
