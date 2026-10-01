@@ -63,7 +63,7 @@
 <body class="h-full bg-[#F8FAFC] text-[#0F172A] font-sans antialiased flex flex-col">
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 1. LOGIN SCREEN (MODERNO & CLARO)           -->
+  <!-- 1. LOGIN SCREEN                              -->
   <!-- ═══════════════════════════════════════════ -->
   <div id="login-screen" class="fixed inset-0 z-50 bg-[#F1F5F9] flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-8 sm:p-10 border border-slate-200 space-y-6">
@@ -107,7 +107,7 @@
   </div>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 2. MAIN DASHBOARD (LIGHT & CLEAN)           -->
+  <!-- 2. MAIN DASHBOARD                           -->
   <!-- ═══════════════════════════════════════════ -->
   <div id="admin-dashboard" class="hidden h-full flex flex-col">
     
@@ -280,22 +280,38 @@
                   <textarea id="h-subtitulo" rows="2" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 </div>
 
-                <!-- Dropzone Hero Image -->
+                <!-- Image Uploader: Hero Portada -->
                 <div>
                   <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Foto de Fondo del Hero</label>
-                  <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
-                       onclick="triggerSingleUpload('h-img-hero', 'prev-h-hero')"
-                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-hero', 'prev-h-hero')">
+                  
+                  <div id="drop-h-hero" class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                       onclick="triggerSingleUpload('h-img-hero')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-hero')">
                     <div class="space-y-2">
                       <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                       <p class="text-xs text-slate-700 font-medium">Arrastrá una foto desde tu escritorio o <span class="text-slate-900 underline font-semibold">explorá tus archivos</span></p>
-                      <p class="text-[11px] text-slate-400">Archivos JPG, PNG o WEBP</p>
+                      <p class="text-[11px] text-slate-400">JPG, PNG o WEBP</p>
+                    </div>
+                  </div>
+
+                  <div id="prev-card-h-hero" class="hidden mt-3 flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center gap-3">
+                      <img id="img-h-hero" class="w-16 h-16 object-cover rounded-xl border border-slate-200 bg-white" />
+                      <div>
+                        <span class="text-xs font-semibold text-slate-800 block">Foto de portada lista</span>
+                        <span class="text-[11px] text-emerald-600 font-medium">✓ Imagen configurada</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <button type="button" onclick="triggerSingleUpload('h-img-hero')" class="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition-colors">
+                        Cambiar
+                      </button>
+                      <button type="button" onclick="clearSingleImage('h-img-hero')" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold transition-colors">
+                        Quitar
+                      </button>
                     </div>
                   </div>
                   <input type="hidden" id="h-img-hero" />
-                  <div class="mt-3 relative rounded-xl overflow-hidden border border-slate-200">
-                    <img id="prev-h-hero" class="h-40 w-full object-cover" />
-                  </div>
                 </div>
 
                 <div class="pt-6 border-t border-slate-100 space-y-4">
@@ -316,21 +332,37 @@
                     <textarea id="h-about-p2" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                   </div>
 
-                  <!-- Dropzone About Image -->
+                  <!-- Image Uploader: Foto Institucional -->
                   <div>
                     <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Foto Institucional</label>
-                    <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
-                         onclick="triggerSingleUpload('h-img-about', 'prev-h-about')"
-                         ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-about', 'prev-h-about')">
+                    
+                    <div id="drop-h-about" class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                         onclick="triggerSingleUpload('h-img-about')"
+                         ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-about')">
                       <div class="space-y-2">
                         <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         <p class="text-xs text-slate-700 font-medium">Arrastrá una foto desde tu escritorio o <span class="text-slate-900 underline font-semibold">explorá tus archivos</span></p>
                       </div>
                     </div>
-                    <input type="hidden" id="h-img-about" />
-                    <div class="mt-3 relative rounded-xl overflow-hidden border border-slate-200">
-                      <img id="prev-h-about" class="h-40 w-full object-cover" />
+
+                    <div id="prev-card-h-about" class="hidden mt-3 flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-2xl">
+                      <div class="flex items-center gap-3">
+                        <img id="img-h-about" class="w-16 h-16 object-cover rounded-xl border border-slate-200 bg-white" />
+                        <div>
+                          <span class="text-xs font-semibold text-slate-800 block">Foto institucional</span>
+                          <span class="text-[11px] text-emerald-600 font-medium">✓ Imagen configurada</span>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <button type="button" onclick="triggerSingleUpload('h-img-about')" class="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition-colors">
+                          Cambiar
+                        </button>
+                        <button type="button" onclick="clearSingleImage('h-img-about')" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold transition-colors">
+                          Quitar
+                        </button>
+                      </div>
                     </div>
+                    <input type="hidden" id="h-img-about" />
                   </div>
                 </div>
 
@@ -371,7 +403,7 @@
 
                 <!-- Dropzone Multiple Images for Preferencial -->
                 <div>
-                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá tus fotos desde el escritorio)</label>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá fotos desde tu escritorio)</label>
                   <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                        onclick="triggerMultiUpload('pref-gallery-grid')"
                        ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropMulti(event, 'pref-gallery-grid')">
@@ -410,7 +442,7 @@
 
                 <!-- Dropzone Multiple Images for Standard -->
                 <div>
-                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá tus fotos desde el escritorio)</label>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá fotos desde tu escritorio)</label>
                   <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                        onclick="triggerMultiUpload('std-gallery-grid')"
                        ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropMulti(event, 'std-gallery-grid')">
@@ -461,21 +493,37 @@
                 <textarea id="m-desc" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
               </div>
 
-              <!-- Dropzone Microcine -->
+              <!-- Image Uploader: Microcine -->
               <div>
                 <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Foto Principal del Auditorio</label>
-                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
-                     onclick="triggerSingleUpload('m-img', 'prev-m-img')"
-                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'm-img', 'prev-m-img')">
+                
+                <div id="drop-m-img" class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                     onclick="triggerSingleUpload('m-img')"
+                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'm-img')">
                   <div class="space-y-2">
                     <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                     <p class="text-xs text-slate-700 font-medium">Arrastrá una foto desde tu escritorio o <span class="text-slate-900 underline font-semibold">explorá tus archivos</span></p>
                   </div>
                 </div>
-                <input type="hidden" id="m-img" />
-                <div class="mt-3 relative rounded-xl overflow-hidden border border-slate-200">
-                  <img id="prev-m-img" class="h-40 w-full object-cover" />
+
+                <div id="prev-card-m-img" class="hidden mt-3 flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-2xl">
+                  <div class="flex items-center gap-3">
+                    <img id="img-m-img" class="w-16 h-16 object-cover rounded-xl border border-slate-200 bg-white" />
+                    <div>
+                      <span class="text-xs font-semibold text-slate-800 block">Foto del auditorio</span>
+                      <span class="text-[11px] text-emerald-600 font-medium">✓ Imagen configurada</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button type="button" onclick="triggerSingleUpload('m-img')" class="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition-colors">
+                      Cambiar
+                    </button>
+                    <button type="button" onclick="clearSingleImage('m-img')" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold transition-colors">
+                      Quitar
+                    </button>
+                  </div>
                 </div>
+                <input type="hidden" id="m-img" />
               </div>
 
               <div>
@@ -507,13 +555,24 @@
                 <textarea id="s-des-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 <input type="text" id="s-des-horario" placeholder="Horario..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 
-                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
-                     onclick="triggerSingleUpload('s-des-img', 'prev-s-des-img')"
-                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-des-img', 'prev-s-des-img')">
-                  <p class="text-xs text-slate-700 font-medium">Subir foto de desayuno desde escritorio</p>
+                <div>
+                  <div id="drop-s-des-img" class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                       onclick="triggerSingleUpload('s-des-img')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-des-img')">
+                    <p class="text-xs text-slate-700 font-medium">Subir foto de desayuno desde escritorio</p>
+                  </div>
+                  <div id="prev-card-s-des-img" class="hidden mt-2 flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div class="flex items-center gap-2.5">
+                      <img id="img-s-des-img" class="w-12 h-12 object-cover rounded-lg border border-slate-200 bg-white" />
+                      <span class="text-xs font-semibold text-slate-800">Desayuno</span>
+                    </div>
+                    <div class="flex gap-1.5">
+                      <button type="button" onclick="triggerSingleUpload('s-des-img')" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded-lg text-xs font-medium">Cambiar</button>
+                      <button type="button" onclick="clearSingleImage('s-des-img')" class="px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg text-xs font-medium">Quitar</button>
+                    </div>
+                  </div>
+                  <input type="hidden" id="s-des-img" />
                 </div>
-                <input type="hidden" id="s-des-img" />
-                <img id="prev-s-des-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
               <!-- Sauna -->
@@ -522,13 +581,24 @@
                 <input type="text" id="s-sau-title" placeholder="Título..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 <textarea id="s-sau-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 
-                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
-                     onclick="triggerSingleUpload('s-sau-img', 'prev-s-sau-img')"
-                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-sau-img', 'prev-s-sau-img')">
-                  <p class="text-xs text-slate-700 font-medium">Subir foto de sauna desde escritorio</p>
+                <div>
+                  <div id="drop-s-sau-img" class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                       onclick="triggerSingleUpload('s-sau-img')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-sau-img')">
+                    <p class="text-xs text-slate-700 font-medium">Subir foto de sauna desde escritorio</p>
+                  </div>
+                  <div id="prev-card-s-sau-img" class="hidden mt-2 flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div class="flex items-center gap-2.5">
+                      <img id="img-s-sau-img" class="w-12 h-12 object-cover rounded-lg border border-slate-200 bg-white" />
+                      <span class="text-xs font-semibold text-slate-800">Sauna</span>
+                    </div>
+                    <div class="flex gap-1.5">
+                      <button type="button" onclick="triggerSingleUpload('s-sau-img')" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded-lg text-xs font-medium">Cambiar</button>
+                      <button type="button" onclick="clearSingleImage('s-sau-img')" class="px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg text-xs font-medium">Quitar</button>
+                    </div>
+                  </div>
+                  <input type="hidden" id="s-sau-img" />
                 </div>
-                <input type="hidden" id="s-sau-img" />
-                <img id="prev-s-sau-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
               <!-- Gym -->
@@ -537,13 +607,24 @@
                 <input type="text" id="s-gym-title" placeholder="Título..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 <textarea id="s-gym-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 
-                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
-                     onclick="triggerSingleUpload('s-gym-img', 'prev-s-gym-img')"
-                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-gym-img', 'prev-s-gym-img')">
-                  <p class="text-xs text-slate-700 font-medium">Subir foto de gimnasio desde escritorio</p>
+                <div>
+                  <div id="drop-s-gym-img" class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                       onclick="triggerSingleUpload('s-gym-img')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-gym-img')">
+                    <p class="text-xs text-slate-700 font-medium">Subir foto de gimnasio desde escritorio</p>
+                  </div>
+                  <div id="prev-card-s-gym-img" class="hidden mt-2 flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div class="flex items-center gap-2.5">
+                      <img id="img-s-gym-img" class="w-12 h-12 object-cover rounded-lg border border-slate-200 bg-white" />
+                      <span class="text-xs font-semibold text-slate-800">Gimnasio</span>
+                    </div>
+                    <div class="flex gap-1.5">
+                      <button type="button" onclick="triggerSingleUpload('s-gym-img')" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded-lg text-xs font-medium">Cambiar</button>
+                      <button type="button" onclick="clearSingleImage('s-gym-img')" class="px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg text-xs font-medium">Quitar</button>
+                    </div>
+                  </div>
+                  <input type="hidden" id="s-gym-img" />
                 </div>
-                <input type="hidden" id="s-gym-img" />
-                <img id="prev-s-gym-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
               <!-- Recepción -->
@@ -552,13 +633,24 @@
                 <input type="text" id="s-rec-title" placeholder="Título..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 <textarea id="s-rec-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 
-                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
-                     onclick="triggerSingleUpload('s-rec-img', 'prev-s-rec-img')"
-                     ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-rec-img', 'prev-s-rec-img')">
-                  <p class="text-xs text-slate-700 font-medium">Subir foto de recepción desde escritorio</p>
+                <div>
+                  <div id="drop-s-rec-img" class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                       onclick="triggerSingleUpload('s-rec-img')"
+                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-rec-img')">
+                    <p class="text-xs text-slate-700 font-medium">Subir foto de recepción desde escritorio</p>
+                  </div>
+                  <div id="prev-card-s-rec-img" class="hidden mt-2 flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div class="flex items-center gap-2.5">
+                      <img id="img-s-rec-img" class="w-12 h-12 object-cover rounded-lg border border-slate-200 bg-white" />
+                      <span class="text-xs font-semibold text-slate-800">Recepción</span>
+                    </div>
+                    <div class="flex gap-1.5">
+                      <button type="button" onclick="triggerSingleUpload('s-rec-img')" class="px-2.5 py-1 bg-white text-slate-700 border border-slate-200 rounded-lg text-xs font-medium">Cambiar</button>
+                      <button type="button" onclick="clearSingleImage('s-rec-img')" class="px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg text-xs font-medium">Quitar</button>
+                    </div>
+                  </div>
+                  <input type="hidden" id="s-rec-img" />
                 </div>
-                <input type="hidden" id="s-rec-img" />
-                <img id="prev-s-rec-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
               <div class="pt-3 flex justify-end">
@@ -785,11 +877,9 @@
 
     // Single File Drop / Upload
     let targetSingleInputId = null;
-    let targetSinglePreviewId = null;
 
-    function triggerSingleUpload(inputId, previewId) {
+    function triggerSingleUpload(inputId) {
       targetSingleInputId = inputId;
-      targetSinglePreviewId = previewId;
       document.getElementById('single-file-input').click();
     }
 
@@ -797,23 +887,49 @@
       const file = e.target.files[0];
       if (!file) return;
       readFileAsDataURL(file, (dataUrl) => {
-        if (targetSingleInputId) document.getElementById(targetSingleInputId).value = dataUrl;
-        if (targetSinglePreviewId) document.getElementById(targetSinglePreviewId).src = dataUrl;
-        showToast('Foto cargada desde tu escritorio');
+        if (targetSingleInputId) {
+          setSingleImage(targetSingleInputId, dataUrl);
+          showToast('Foto cargada desde tu equipo');
+        }
       });
+      // reset file input
+      this.value = '';
     });
 
-    function handleDropSingle(e, inputId, previewId) {
+    function handleDropSingle(e, inputId) {
       e.preventDefault();
       e.stopPropagation();
       e.currentTarget.classList.remove('dropzone-active');
       const file = e.dataTransfer.files[0];
       if (!file || !file.type.startsWith('image/')) return;
       readFileAsDataURL(file, (dataUrl) => {
-        document.getElementById(inputId).value = dataUrl;
-        document.getElementById(previewId).src = dataUrl;
+        setSingleImage(inputId, dataUrl);
         showToast('Foto soltada y cargada');
       });
+    }
+
+    function setSingleImage(inputId, url) {
+      const hiddenInput = document.getElementById(inputId);
+      const prevCard = document.getElementById('prev-card-' + inputId);
+      const img = document.getElementById('img-' + inputId);
+      const dropzone = document.getElementById('drop-' + inputId);
+
+      if (hiddenInput) hiddenInput.value = url || '';
+      
+      if (url && url.trim() !== '') {
+        if (img) img.src = url;
+        if (prevCard) prevCard.classList.remove('hidden');
+        if (dropzone) dropzone.classList.add('hidden');
+      } else {
+        if (img) img.removeAttribute('src');
+        if (prevCard) prevCard.classList.add('hidden');
+        if (dropzone) dropzone.classList.remove('hidden');
+      }
+    }
+
+    function clearSingleImage(inputId) {
+      setSingleImage(inputId, '');
+      showToast('Foto eliminada');
     }
 
     // Multi File Drop / Upload for Rooms Gallery
@@ -828,6 +944,7 @@
       const files = Array.from(e.target.files);
       if (!files.length) return;
       processMultiFiles(files, targetMultiContainerId);
+      this.value = '';
     });
 
     function handleDropMulti(e, containerId) {
@@ -859,13 +976,14 @@
     }
 
     function appendPhotoCard(containerId, url) {
+      if (!url || url.trim() === '') return;
       const container = document.getElementById(containerId);
       if (!container) return;
       const card = document.createElement('div');
       card.className = 'photo-card relative rounded-xl overflow-hidden border border-slate-200 group h-28 bg-slate-100 shadow-sm';
       card.innerHTML = `
         <img src="${url}" class="w-full h-full object-cover" />
-        <button type="button" onclick="this.closest('.photo-card').remove();" class="absolute top-1.5 right-1.5 bg-black/70 hover:bg-rose-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow" title="Eliminar foto">
+        <button type="button" onclick="this.closest('.photo-card').remove();" class="absolute top-1.5 right-1.5 bg-black/70 hover:bg-rose-600 text-white p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow" title="Eliminar foto">
           <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       `;
@@ -876,13 +994,13 @@
       const container = document.getElementById(containerId);
       if (!container) return;
       container.innerHTML = '';
-      urls.forEach(url => appendPhotoCard(containerId, url));
+      (urls || []).forEach(url => appendPhotoCard(containerId, url));
     }
 
     function getUrlsFromContainer(containerId) {
       const container = document.getElementById(containerId);
       if (!container) return [];
-      return Array.from(container.querySelectorAll('img')).map(img => img.src);
+      return Array.from(container.querySelectorAll('img')).map(img => img.src).filter(src => src && src.trim() !== '');
     }
 
     // Load Data into Forms
@@ -910,13 +1028,12 @@
       document.getElementById('h-badge').value = data.home.heroBadge || '';
       document.getElementById('h-titulo').value = data.home.heroTitulo || '';
       document.getElementById('h-subtitulo').value = data.home.heroSubtitulo || '';
-      document.getElementById('h-img-hero').value = data.home.heroImagen || '';
-      document.getElementById('prev-h-hero').src = data.home.heroImagen || '';
+      setSingleImage('h-img-hero', data.home.heroImagen || '');
+
       document.getElementById('h-about-title').value = data.home.nosotrosTitulo || '';
       document.getElementById('h-about-p1').value = data.home.nosotrosTexto1 || '';
       document.getElementById('h-about-p2').value = data.home.nosotrosTexto2 || '';
-      document.getElementById('h-img-about').value = data.home.nosotrosImagen || '';
-      document.getElementById('prev-h-about').src = data.home.nosotrosImagen || '';
+      setSingleImage('h-img-about', data.home.nosotrosImagen || '');
 
       // Rooms
       document.getElementById('r-pref-title').value = data.habitaciones.preferencial.titulo || '';
@@ -933,31 +1050,26 @@
       document.getElementById('m-badge').value = data.microcine.badge || '';
       document.getElementById('m-titulo').value = data.microcine.titulo || '';
       document.getElementById('m-desc').value = data.microcine.descripcion || '';
-      document.getElementById('m-img').value = data.microcine.imagenPrincipal || '';
-      document.getElementById('prev-m-img').src = data.microcine.imagenPrincipal || '';
+      setSingleImage('m-img', data.microcine.imagenPrincipal || '');
       document.getElementById('m-specs').value = (data.microcine.especificaciones || []).join('\n');
 
       // Services
       document.getElementById('s-des-title').value = data.servicios.desayuno.titulo || '';
       document.getElementById('s-des-desc').value = data.servicios.desayuno.descripcion || '';
       document.getElementById('s-des-horario').value = data.servicios.desayuno.horario || '';
-      document.getElementById('s-des-img').value = data.servicios.desayuno.imagen || '';
-      document.getElementById('prev-s-des-img').src = data.servicios.desayuno.imagen || '';
+      setSingleImage('s-des-img', data.servicios.desayuno.imagen || '');
 
       document.getElementById('s-sau-title').value = data.servicios.sauna.titulo || '';
       document.getElementById('s-sau-desc').value = data.servicios.sauna.descripcion || '';
-      document.getElementById('s-sau-img').value = data.servicios.sauna.imagen || '';
-      document.getElementById('prev-s-sau-img').src = data.servicios.sauna.imagen || '';
+      setSingleImage('s-sau-img', data.servicios.sauna.imagen || '');
 
       document.getElementById('s-gym-title').value = data.servicios.gym.titulo || '';
       document.getElementById('s-gym-desc').value = data.servicios.gym.descripcion || '';
-      document.getElementById('s-gym-img').value = data.servicios.gym.imagen || '';
-      document.getElementById('prev-s-gym-img').src = data.servicios.gym.imagen || '';
+      setSingleImage('s-gym-img', data.servicios.gym.imagen || '');
 
       document.getElementById('s-rec-title').value = data.servicios.recepcion.titulo || '';
       document.getElementById('s-rec-desc').value = data.servicios.recepcion.descripcion || '';
-      document.getElementById('s-rec-img').value = data.servicios.recepcion.imagen || '';
-      document.getElementById('prev-s-rec-img').src = data.servicios.recepcion.imagen || '';
+      setSingleImage('s-rec-img', data.servicios.recepcion.imagen || '');
 
       // FAQs
       renderFaqsList(data.faqs || []);
