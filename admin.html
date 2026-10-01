@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-[#0F1115]">
+<html lang="es" class="h-full bg-[#F8FAFC]">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Administración | Alta Mare Hotel & Suites</title>
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#0F1115" />
+  <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" type="image/png" href="./assets/images/logo.png" />
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,23 +19,6 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            brand: {
-              gold: '#C5A880',
-              goldLight: '#D8C2A2',
-              goldDark: '#A6875C',
-            },
-            panel: {
-              bg: '#0F1115',
-              surface: '#181B20',
-              card: '#1F232B',
-              cardHover: '#262B35',
-              border: '#2A2F3A',
-              borderLight: '#373E4D',
-              text: '#E6E9F0',
-              textMuted: '#8E98AA',
-            }
-          },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
           }
@@ -51,72 +34,72 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #121418;
+      background: #F1F5F9;
     }
     ::-webkit-scrollbar-thumb {
-      background: #2E3440;
+      background: #CBD5E1;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #3B4252;
+      background: #94A3B8;
     }
 
     .nav-tab.active {
-      background-color: #232832;
+      background-color: #0F172A;
       color: #FFFFFF;
       font-weight: 600;
     }
-    .nav-tab.active .nav-icon {
+    .nav-tab.active svg {
       color: #C5A880;
     }
 
     .dropzone-active {
-      border-color: #C5A880 !important;
-      background-color: rgba(197, 168, 128, 0.08) !important;
+      border-color: #0F172A !important;
+      background-color: #F1F5F9 !important;
     }
   </style>
 </head>
 
-<body class="h-full bg-[#0F1115] text-[#E6E9F0] font-sans antialiased flex flex-col">
+<body class="h-full bg-[#F8FAFC] text-[#0F172A] font-sans antialiased flex flex-col">
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 1. LOGIN SCREEN                              -->
+  <!-- 1. LOGIN SCREEN (MODERNO & CLARO)           -->
   <!-- ═══════════════════════════════════════════ -->
-  <div id="login-screen" class="fixed inset-0 z-50 bg-[#0F1115] flex items-center justify-center p-4">
-    <div class="bg-[#181B20] rounded-2xl shadow-2xl max-w-md w-full p-8 border border-[#2A2F3A] space-y-6">
+  <div id="login-screen" class="fixed inset-0 z-50 bg-[#F1F5F9] flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-8 sm:p-10 border border-slate-200 space-y-6">
       
       <div class="text-center space-y-3">
-        <div class="w-16 h-16 rounded-2xl bg-[#232832] border border-[#2A2F3A] flex items-center justify-center mx-auto p-2">
-          <img src="./assets/images/logo.png" alt="Alta Mare" class="h-10 w-auto brightness-0 invert opacity-90 object-contain" />
+        <div class="w-16 h-16 rounded-2xl bg-[#0F172A] flex items-center justify-center mx-auto p-3 shadow-md">
+          <img src="./assets/images/logo.png" alt="Alta Mare" class="h-10 w-auto brightness-0 invert opacity-95 object-contain" />
         </div>
         <div>
-          <h1 class="text-xl font-bold text-white tracking-tight">Panel de Administración</h1>
-          <p class="text-xs text-[#8E98AA] mt-1">Alta Mare Hotel & Suites &bull; Acceso Encargado</p>
+          <h1 class="text-2xl font-bold text-[#0F172A] tracking-tight">Panel de Encargado</h1>
+          <p class="text-xs text-slate-500 mt-1">Alta Mare Hotel & Suites &bull; Administración</p>
         </div>
       </div>
 
       <form id="login-form" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4 pt-1">
         <div>
-          <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Contraseña de acceso</label>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Contraseña de acceso</label>
           <div class="relative">
-            <input type="password" id="admin-pass" required placeholder="Ingresá tu contraseña..." 
-                   class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white placeholder-[#525B6C] focus:outline-none transition-colors" />
-            <button type="button" onclick="togglePassVisibility('admin-pass')" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#8E98AA] hover:text-white transition-colors">
+            <input type="password" id="admin-pass" required placeholder="Ingresá la clave..." 
+                   class="w-full bg-slate-50 border border-slate-200 focus:border-[#0F172A] focus:bg-white rounded-xl px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none transition-all" />
+            <button type="button" onclick="togglePassVisibility('admin-pass')" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors">
               Mostrar
             </button>
           </div>
-          <p class="text-[11px] text-[#525B6C] mt-2">Clave inicial: <code class="bg-[#121418] text-[#8E98AA] px-1.5 py-0.5 rounded font-mono">altamare2026</code></p>
+          <p class="text-[11px] text-slate-500 mt-2">Clave inicial: <code class="bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded font-mono font-medium">altamare2026</code></p>
         </div>
 
-        <button type="submit" class="w-full bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2">
+        <button type="submit" class="w-full bg-[#0F172A] hover:bg-slate-800 text-white font-semibold py-3.5 px-4 rounded-xl text-xs uppercase tracking-widest transition-all shadow-sm flex items-center justify-center gap-2">
           <span>Ingresar al Sistema</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
       </form>
 
-      <div class="pt-4 border-t border-[#2A2F3A] text-center">
-        <a href="index.html" class="text-xs text-[#8E98AA] hover:text-white transition-colors">
-          &larr; Volver al sitio público
+      <div class="pt-4 border-t border-slate-100 text-center">
+        <a href="index.html" class="text-xs text-slate-500 hover:text-slate-800 transition-colors font-medium">
+          &larr; Volver al sitio web del hotel
         </a>
       </div>
 
@@ -124,149 +107,149 @@
   </div>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 2. MAIN ADMIN DASHBOARD                     -->
+  <!-- 2. MAIN DASHBOARD (LIGHT & CLEAN)           -->
   <!-- ═══════════════════════════════════════════ -->
   <div id="admin-dashboard" class="hidden h-full flex flex-col">
     
     <!-- Top Header Bar -->
-    <header class="bg-[#181B20] border-b border-[#2A2F3A] px-6 py-3.5 flex items-center justify-between shrink-0 z-20">
+    <header class="bg-white border-b border-slate-200 px-6 py-3.5 flex items-center justify-between shrink-0 z-20">
       <div class="flex items-center gap-4">
-        <img src="./assets/images/logo.png" alt="Alta Mare" class="h-8 w-auto brightness-0 invert opacity-90" />
-        <div class="hidden sm:block border-l border-[#2A2F3A] pl-4">
-          <span class="text-xs font-bold text-white tracking-wide">Alta Mare Hotel & Suites</span>
-          <span class="text-[11px] text-[#8E98AA] block">Gestor de Contenido & Multimedia</span>
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="./assets/images/logo.png" alt="Alta Mare" class="h-9 w-auto object-contain" />
+        </a>
+        <div class="hidden sm:block border-l border-slate-200 pl-4">
+          <span class="text-xs font-bold text-[#0F172A] tracking-wide block">Alta Mare Hotel & Suites</span>
+          <span class="text-[11px] text-slate-500 block">Panel de Control &bull; Necochea</span>
         </div>
       </div>
 
       <div class="flex items-center gap-3">
-        <a href="index.html" target="_blank" class="inline-flex items-center gap-2 bg-[#232832] hover:bg-[#2A2F3A] text-[#E6E9F0] text-xs font-medium px-3.5 py-2 rounded-lg border border-[#2A2F3A] transition-colors">
+        <a href="index.html" target="_blank" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold px-3.5 py-2 rounded-xl transition-colors">
           <span>Ver Sitio Web</span>
-          <svg class="w-3.5 h-3.5 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
 
-        <button onclick="logoutAdmin()" class="bg-[#2B1B1F] hover:bg-[#3D2228] text-rose-300 text-xs font-medium px-3.5 py-2 rounded-lg border border-rose-900/40 transition-colors">
+        <button onclick="logoutAdmin()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold px-3.5 py-2 rounded-xl border border-rose-200 transition-colors">
           Cerrar Sesión
         </button>
       </div>
     </header>
 
-    <!-- App Body: Sidebar + Main Content -->
+    <!-- App Body: Sidebar + Content -->
     <div class="flex-1 flex overflow-hidden">
       
       <!-- Left Navigation Sidebar -->
-      <aside class="w-64 bg-[#14171C] border-r border-[#2A2F3A] flex flex-col shrink-0 overflow-y-auto">
-        <div class="p-3 space-y-1">
+      <aside class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 overflow-y-auto">
+        <div class="p-4 space-y-1">
           
-          <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-[#525B6C]">
+          <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Contenido
           </div>
 
-          <button onclick="showTab('tab-general')" class="nav-tab active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <button onclick="showTab('tab-general')" class="nav-tab active w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
             <span>General & Contacto</span>
           </button>
 
-          <button onclick="showTab('tab-home')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <button onclick="showTab('tab-home')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
             <span>Página de Inicio</span>
           </button>
 
-          <button onclick="showTab('tab-habitaciones')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <button onclick="showTab('tab-habitaciones')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
             <span>Habitaciones & Fotos</span>
           </button>
 
-          <button onclick="showTab('tab-microcine')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+          <button onclick="showTab('tab-microcine')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
             <span>Microcine 60 Pax</span>
           </button>
 
-          <button onclick="showTab('tab-servicios')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          <button onclick="showTab('tab-servicios')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
             <span>Servicios & Spa</span>
           </button>
 
-          <button onclick="showTab('tab-promo')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+          <button onclick="showTab('tab-promo')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
             <span>Aviso Promocional</span>
           </button>
 
-          <button onclick="showTab('tab-faqs')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <button onclick="showTab('tab-faqs')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <span>Preguntas Frecuentes</span>
           </button>
 
-          <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-[#525B6C] pt-4">
-            Sistema
+          <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 pt-4">
+            Ajustes
           </div>
 
-          <button onclick="showTab('tab-seguridad')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            <span>Contraseña de Acceso</span>
+          <button onclick="showTab('tab-seguridad')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span>Contraseña</span>
           </button>
 
-          <button onclick="showTab('tab-backup')" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-[#8E98AA] hover:bg-[#1E232B] hover:text-white transition-all text-left">
-            <svg class="nav-icon w-4 h-4 text-[#8E98AA]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-            <span>Respaldos & JSON</span>
+          <button onclick="showTab('tab-backup')" class="nav-tab w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+            <span>Respaldos JSON</span>
           </button>
 
         </div>
       </aside>
 
       <!-- Main Form Area -->
-      <main class="flex-1 overflow-y-auto p-6 sm:p-8">
-        <div class="max-w-4xl mx-auto space-y-6 pb-12">
+      <main class="flex-1 overflow-y-auto p-6 sm:p-8 bg-[#F8FAFC]">
+        <div class="max-w-3xl mx-auto space-y-6 pb-12">
           
           <!-- TAB: GENERAL & CONTACTO -->
-          <div id="tab-general" class="tab-content space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4 flex justify-between items-center">
-              <div>
-                <h2 class="text-lg font-bold text-white">General & Canales de Contacto</h2>
-                <p class="text-xs text-[#8E98AA]">Información corporativa, números de teléfono y dirección del hotel.</p>
-              </div>
+          <div id="tab-general" class="tab-content bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h2 class="text-xl font-bold text-slate-900">General & Canales de Contacto</h2>
+              <p class="text-xs text-slate-500 mt-1">Información corporativa, WhatsApp, teléfono y dirección del hotel.</p>
             </div>
 
             <form onsubmit="event.preventDefault(); saveGeneralData();" class="space-y-5">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Nombre del Hotel</label>
-                  <input type="text" id="g-nombre" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Nombre del Hotel</label>
+                  <input type="text" id="g-nombre" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Distancia a la Playa</label>
-                  <input type="text" id="g-distancia" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="30m" />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">WhatsApp Directo (Sin espacios)</label>
-                  <input type="text" id="g-whatsapp" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white font-mono focus:outline-none transition-colors" placeholder="5492262672626" />
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Teléfono Visible</label>
-                  <input type="text" id="g-telefono" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white font-mono focus:outline-none transition-colors" placeholder="+54 9 2262 67-2626" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Distancia a la Playa</label>
+                  <input type="text" id="g-distancia" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" placeholder="30m" />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Correo Electrónico</label>
-                  <input type="email" id="g-email" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">WhatsApp (Sin espacios ni símbolos)</label>
+                  <input type="text" id="g-whatsapp" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm font-mono text-slate-900 focus:outline-none transition-all" placeholder="5492262672626" />
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Instagram</label>
-                  <input type="text" id="g-instagram" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="@altamare.hotel" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Teléfono Visible</label>
+                  <input type="text" id="g-telefono" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm font-mono text-slate-900 focus:outline-none transition-all" placeholder="+54 9 2262 67-2626" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Correo Electrónico</label>
+                  <input type="email" id="g-email" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Instagram</label>
+                  <input type="text" id="g-instagram" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" placeholder="@altamare.hotel" />
                 </div>
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Dirección Completa</label>
-                <input type="text" id="g-direccion" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Dirección Completa</label>
+                <input type="text" id="g-direccion" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
               </div>
 
-              <div class="pt-4 flex justify-end">
-                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+              <div class="pt-3 flex justify-end">
+                <button type="submit" class="bg-[#0F172A] hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
                   Guardar Cambios
                 </button>
               </div>
@@ -275,129 +258,126 @@
 
           <!-- TAB: HOME -->
           <div id="tab-home" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4">
-              <h2 class="text-lg font-bold text-white">Página de Inicio</h2>
-              <p class="text-xs text-[#8E98AA]">Banner principal, textos institucionales e imágenes destacadas.</p>
-            </div>
+            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+              <div class="border-b border-slate-100 pb-4">
+                <h2 class="text-xl font-bold text-slate-900">Hero / Banner Principal</h2>
+                <p class="text-xs text-slate-500 mt-1">Título principal, bajada e imagen de fondo de la portada.</p>
+              </div>
 
-            <form onsubmit="event.preventDefault(); saveHomeData();" class="space-y-6">
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">Hero / Banner Principal</h3>
-                
+              <form onsubmit="event.preventDefault(); saveHomeData();" class="space-y-5">
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Insignia Superior</label>
-                  <input type="text" id="h-badge" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Insignia Superior</label>
+                  <input type="text" id="h-badge" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título Principal</label>
-                  <input type="text" id="h-titulo" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Título Principal</label>
+                  <input type="text" id="h-titulo" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all font-serif text-base" />
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Bajada / Subtítulo</label>
-                  <textarea id="h-subtitulo" rows="2" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Bajada / Subtítulo</label>
+                  <textarea id="h-subtitulo" rows="2" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 </div>
 
                 <!-- Dropzone Hero Image -->
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Foto de Fondo del Hero</label>
-                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Foto de Fondo del Hero</label>
+                  <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                        onclick="triggerSingleUpload('h-img-hero', 'prev-h-hero')"
                        ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-hero', 'prev-h-hero')">
                     <div class="space-y-2">
-                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá una foto desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para explorar</span></p>
-                      <p class="text-[11px] text-[#525B6C]">PNG, JPG, WEBP de alta resolución</p>
+                      <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                      <p class="text-xs text-slate-700 font-medium">Arrastrá una foto desde tu escritorio o <span class="text-slate-900 underline font-semibold">explorá tus archivos</span></p>
+                      <p class="text-[11px] text-slate-400">Archivos JPG, PNG o WEBP</p>
                     </div>
                   </div>
                   <input type="hidden" id="h-img-hero" />
-                  <div class="mt-3 relative rounded-xl overflow-hidden border border-[#2A2F3A]">
-                    <img id="prev-h-hero" class="h-44 w-full object-cover" />
+                  <div class="mt-3 relative rounded-xl overflow-hidden border border-slate-200">
+                    <img id="prev-h-hero" class="h-40 w-full object-cover" />
                   </div>
                 </div>
-              </div>
 
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">Sección Institucional (Bienvenidos)</h3>
-                
-                <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título de Sección</label>
-                  <input type="text" id="h-about-title" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
-                </div>
+                <div class="pt-6 border-t border-slate-100 space-y-4">
+                  <h3 class="text-base font-bold text-slate-900">Sección Bienvenidos (Institucional)</h3>
+                  
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Título Institucional</label>
+                    <input type="text" id="h-about-title" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
+                  </div>
 
-                <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Párrafo 1</label>
-                  <textarea id="h-about-p1" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
-                </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Párrafo 1</label>
+                    <textarea id="h-about-p1" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
+                  </div>
 
-                <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Párrafo 2</label>
-                  <textarea id="h-about-p2" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
-                </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Párrafo 2</label>
+                    <textarea id="h-about-p2" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
+                  </div>
 
-                <!-- Dropzone About Image -->
-                <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Foto Institucional</label>
-                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
-                       onclick="triggerSingleUpload('h-img-about', 'prev-h-about')"
-                       ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-about', 'prev-h-about')">
-                    <div class="space-y-2">
-                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá una foto desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para explorar</span></p>
+                  <!-- Dropzone About Image -->
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Foto Institucional</label>
+                    <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
+                         onclick="triggerSingleUpload('h-img-about', 'prev-h-about')"
+                         ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'h-img-about', 'prev-h-about')">
+                      <div class="space-y-2">
+                        <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <p class="text-xs text-slate-700 font-medium">Arrastrá una foto desde tu escritorio o <span class="text-slate-900 underline font-semibold">explorá tus archivos</span></p>
+                      </div>
+                    </div>
+                    <input type="hidden" id="h-img-about" />
+                    <div class="mt-3 relative rounded-xl overflow-hidden border border-slate-200">
+                      <img id="prev-h-about" class="h-40 w-full object-cover" />
                     </div>
                   </div>
-                  <input type="hidden" id="h-img-about" />
-                  <div class="mt-3 relative rounded-xl overflow-hidden border border-[#2A2F3A]">
-                    <img id="prev-h-about" class="h-44 w-full object-cover" />
-                  </div>
                 </div>
-              </div>
 
-              <div class="pt-4 flex justify-end">
-                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
-                  Guardar Cambios de Inicio
-                </button>
-              </div>
-            </form>
+                <div class="pt-3 flex justify-end">
+                  <button type="submit" class="bg-[#0F172A] hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
+                    Guardar Cambios de Inicio
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
 
           <!-- TAB: HABITACIONES & SUITES -->
           <div id="tab-habitaciones" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4">
-              <h2 class="text-lg font-bold text-white">Habitaciones & Galerías de Fotos</h2>
-              <p class="text-xs text-[#8E98AA]">Subí y administrá fotos para los sliders interactivos de cada habitación.</p>
+            <div class="border-b border-slate-200 pb-4">
+              <h2 class="text-xl font-bold text-slate-900">Habitaciones & Galerías de Fotos</h2>
+              <p class="text-xs text-slate-500 mt-1">Subí fotos directamente desde tu escritorio para cada tipo de habitación.</p>
             </div>
 
-            <form onsubmit="event.preventDefault(); saveRoomsData();" class="space-y-8">
+            <form onsubmit="event.preventDefault(); saveRoomsData();" class="space-y-6">
               
               <!-- 1. Preferencial -->
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-5">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">1. Habitación Preferencial al Frente (Con Hidro)</h3>
-                  <span class="text-[10px] bg-[#C5A880]/10 text-[#C5A880] font-bold px-2.5 py-0.5 rounded-full">Suite Principal</span>
+              <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <h3 class="text-base font-bold text-slate-900">1. Habitación Preferencial al Frente</h3>
+                  <span class="text-[11px] bg-amber-50 text-amber-800 font-semibold px-2.5 py-1 rounded-full border border-amber-200">Con Hidromasaje</span>
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título de la Suite</label>
-                  <input type="text" id="r-pref-title" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Título de la Suite</label>
+                  <input type="text" id="r-pref-title" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Descripción</label>
-                  <textarea id="r-pref-desc" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Descripción</label>
+                  <textarea id="r-pref-desc" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 </div>
 
                 <!-- Dropzone Multiple Images for Preferencial -->
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá varias fotos desde tu escritorio)</label>
-                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá tus fotos desde el escritorio)</label>
+                  <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                        onclick="triggerMultiUpload('pref-gallery-grid')"
                        ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropMulti(event, 'pref-gallery-grid')">
                     <div class="space-y-2">
-                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá fotos desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para seleccionar</span></p>
-                      <p class="text-[11px] text-[#525B6C]">Podés seleccionar varias fotos juntas</p>
+                      <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                      <p class="text-xs text-slate-700 font-medium">Arrastrá varias fotos aquí o <span class="text-slate-900 underline font-semibold">explorá en tu equipo</span></p>
                     </div>
                   </div>
 
@@ -406,38 +386,37 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Equipamiento (1 por línea)</label>
-                  <textarea id="r-pref-eq" rows="4" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-xs text-white font-mono focus:outline-none transition-colors"></textarea>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Equipamiento (1 por línea)</label>
+                  <textarea id="r-pref-eq" rows="4" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-xs text-slate-900 font-mono focus:outline-none transition-all"></textarea>
                 </div>
               </div>
 
               <!-- 2. Standard -->
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-5">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">2. Habitación Standard</h3>
-                  <span class="text-[10px] bg-[#2A2F3A] text-[#8E98AA] font-bold px-2.5 py-0.5 rounded-full">Matrimonial / Twin</span>
+              <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <h3 class="text-base font-bold text-slate-900">2. Habitación Standard</h3>
+                  <span class="text-[11px] bg-slate-100 text-slate-700 font-semibold px-2.5 py-1 rounded-full border border-slate-200">Matrimonial / Twin</span>
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título de la Habitación</label>
-                  <input type="text" id="r-std-title" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Título de la Habitación</label>
+                  <input type="text" id="r-std-title" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Descripción</label>
-                  <textarea id="r-std-desc" rows="3" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Descripción</label>
+                  <textarea id="r-std-desc" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 </div>
 
                 <!-- Dropzone Multiple Images for Standard -->
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá varias fotos desde tu escritorio)</label>
-                  <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#121418] transition-colors cursor-pointer"
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Fotos del Slider (Arrastrá tus fotos desde el escritorio)</label>
+                  <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                        onclick="triggerMultiUpload('std-gallery-grid')"
                        ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropMulti(event, 'std-gallery-grid')">
                     <div class="space-y-2">
-                      <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                      <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá fotos desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para seleccionar</span></p>
-                      <p class="text-[11px] text-[#525B6C]">Podés seleccionar varias fotos juntas</p>
+                      <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                      <p class="text-xs text-slate-700 font-medium">Arrastrá varias fotos aquí o <span class="text-slate-900 underline font-semibold">explorá en tu equipo</span></p>
                     </div>
                   </div>
 
@@ -446,13 +425,13 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Equipamiento (1 por línea)</label>
-                  <textarea id="r-std-eq" rows="4" class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-xs text-white font-mono focus:outline-none transition-colors"></textarea>
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Equipamiento (1 por línea)</label>
+                  <textarea id="r-std-eq" rows="4" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-xs text-slate-900 font-mono focus:outline-none transition-all"></textarea>
                 </div>
               </div>
 
-              <div class="pt-4 flex justify-end">
-                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+              <div class="pt-3 flex justify-end">
+                <button type="submit" class="bg-[#0F172A] hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
                   Guardar Habitaciones & Galerías
                 </button>
               </div>
@@ -460,52 +439,52 @@
           </div>
 
           <!-- TAB: MICROCINE -->
-          <div id="tab-microcine" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4">
-              <h2 class="text-lg font-bold text-white">Microcine & Auditorio 60 Pax</h2>
-              <p class="text-xs text-[#8E98AA]">Capacidad, tecnología audiovisual y foto principal del espacio.</p>
+          <div id="tab-microcine" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h2 class="text-xl font-bold text-slate-900">Microcine & Auditorio 60 Pax</h2>
+              <p class="text-xs text-slate-500 mt-1">Capacidad, equipamiento audiovisual y fotografía del espacio.</p>
             </div>
 
             <form onsubmit="event.preventDefault(); saveMicrocineData();" class="space-y-5">
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Insignia / Capacidad</label>
-                <input type="text" id="m-badge" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Insignia / Capacidad</label>
+                <input type="text" id="m-badge" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Título</label>
-                <input type="text" id="m-titulo" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Título</label>
+                <input type="text" id="m-titulo" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Descripción</label>
-                <textarea id="m-desc" rows="3" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Descripción</label>
+                <textarea id="m-desc" rows="3" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
               </div>
 
               <!-- Dropzone Microcine -->
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Foto Principal del Auditorio</label>
-                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-2xl p-6 text-center bg-[#181B20] transition-colors cursor-pointer"
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Foto Principal del Auditorio</label>
+                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-2xl p-6 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                      onclick="triggerSingleUpload('m-img', 'prev-m-img')"
                      ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 'm-img', 'prev-m-img')">
                   <div class="space-y-2">
-                    <svg class="w-8 h-8 text-[#8E98AA] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <p class="text-xs text-[#E6E9F0] font-medium">Arrastrá una foto desde tu escritorio o <span class="text-[#C5A880] underline">hacé clic para explorar</span></p>
+                    <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <p class="text-xs text-slate-700 font-medium">Arrastrá una foto desde tu escritorio o <span class="text-slate-900 underline font-semibold">explorá tus archivos</span></p>
                   </div>
                 </div>
                 <input type="hidden" id="m-img" />
-                <div class="mt-3 relative rounded-xl overflow-hidden border border-[#2A2F3A]">
-                  <img id="prev-m-img" class="h-44 w-full object-cover" />
+                <div class="mt-3 relative rounded-xl overflow-hidden border border-slate-200">
+                  <img id="prev-m-img" class="h-40 w-full object-cover" />
                 </div>
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Especificaciones Técnicas (1 por línea)</label>
-                <textarea id="m-specs" rows="5" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-xs text-white font-mono focus:outline-none transition-colors"></textarea>
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Especificaciones Técnicas (1 por línea)</label>
+                <textarea id="m-specs" rows="5" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-xs text-slate-900 font-mono focus:outline-none transition-all"></textarea>
               </div>
 
-              <div class="pt-4 flex justify-end">
-                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+              <div class="pt-3 flex justify-end">
+                <button type="submit" class="bg-[#0F172A] hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
                   Guardar Cambios de Microcine
                 </button>
               </div>
@@ -514,76 +493,76 @@
 
           <!-- TAB: SERVICIOS & SPA -->
           <div id="tab-servicios" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4">
-              <h2 class="text-lg font-bold text-white">Servicios & Espacios</h2>
-              <p class="text-xs text-[#8E98AA]">Desayuno buffet, sauna seco, gimnasio y recepción 24 horas.</p>
+            <div class="border-b border-slate-200 pb-4">
+              <h2 class="text-xl font-bold text-slate-900">Servicios & Espacios</h2>
+              <p class="text-xs text-slate-500 mt-1">Desayuno buffet, sauna seco, gimnasio y recepción 24 horas.</p>
             </div>
 
             <form onsubmit="event.preventDefault(); saveServicesData();" class="space-y-6">
               
               <!-- Desayuno -->
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">1. Desayuno & Snack Bar</h3>
-                <input type="text" id="s-des-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
-                <textarea id="s-des-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
-                <input type="text" id="s-des-horario" placeholder="Horario..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+              <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-base font-bold text-slate-900">1. Desayuno & Snack Bar</h3>
+                <input type="text" id="s-des-title" placeholder="Título..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
+                <textarea id="s-des-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
+                <input type="text" id="s-des-horario" placeholder="Horario..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
                 
-                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                      onclick="triggerSingleUpload('s-des-img', 'prev-s-des-img')"
                      ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-des-img', 'prev-s-des-img')">
-                  <p class="text-xs text-[#E6E9F0]">Subir foto de desayuno desde escritorio</p>
+                  <p class="text-xs text-slate-700 font-medium">Subir foto de desayuno desde escritorio</p>
                 </div>
                 <input type="hidden" id="s-des-img" />
-                <img id="prev-s-des-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
+                <img id="prev-s-des-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
               <!-- Sauna -->
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">2. Sauna & Relax</h3>
-                <input type="text" id="s-sau-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
-                <textarea id="s-sau-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+              <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-base font-bold text-slate-900">2. Sauna & Relax</h3>
+                <input type="text" id="s-sau-title" placeholder="Título..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
+                <textarea id="s-sau-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 
-                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                      onclick="triggerSingleUpload('s-sau-img', 'prev-s-sau-img')"
                      ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-sau-img', 'prev-s-sau-img')">
-                  <p class="text-xs text-[#E6E9F0]">Subir foto de sauna desde escritorio</p>
+                  <p class="text-xs text-slate-700 font-medium">Subir foto de sauna desde escritorio</p>
                 </div>
                 <input type="hidden" id="s-sau-img" />
-                <img id="prev-s-sau-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
+                <img id="prev-s-sau-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
               <!-- Gym -->
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">3. Mini Gym</h3>
-                <input type="text" id="s-gym-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
-                <textarea id="s-gym-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+              <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-base font-bold text-slate-900">3. Mini Gym</h3>
+                <input type="text" id="s-gym-title" placeholder="Título..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
+                <textarea id="s-gym-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 
-                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                      onclick="triggerSingleUpload('s-gym-img', 'prev-s-gym-img')"
                      ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-gym-img', 'prev-s-gym-img')">
-                  <p class="text-xs text-[#E6E9F0]">Subir foto de gimnasio desde escritorio</p>
+                  <p class="text-xs text-slate-700 font-medium">Subir foto de gimnasio desde escritorio</p>
                 </div>
                 <input type="hidden" id="s-gym-img" />
-                <img id="prev-s-gym-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
+                <img id="prev-s-gym-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
               <!-- Recepción -->
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[#C5A880]">4. Recepción 24 Horas</h3>
-                <input type="text" id="s-rec-title" placeholder="Título..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
-                <textarea id="s-rec-desc" rows="2" placeholder="Descripción..." class="w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+              <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-base font-bold text-slate-900">4. Recepción 24 Horas</h3>
+                <input type="text" id="s-rec-title" placeholder="Título..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
+                <textarea id="s-rec-desc" rows="2" placeholder="Descripción..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all"></textarea>
                 
-                <div class="dropzone border-2 border-dashed border-[#2A2F3A] hover:border-[#C5A880] rounded-xl p-4 text-center bg-[#121418] transition-colors cursor-pointer"
+                <div class="dropzone border-2 border-dashed border-slate-300 hover:border-slate-500 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100/60 transition-all cursor-pointer"
                      onclick="triggerSingleUpload('s-rec-img', 'prev-s-rec-img')"
                      ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSingle(event, 's-rec-img', 'prev-s-rec-img')">
-                  <p class="text-xs text-[#E6E9F0]">Subir foto de recepción desde escritorio</p>
+                  <p class="text-xs text-slate-700 font-medium">Subir foto de recepción desde escritorio</p>
                 </div>
                 <input type="hidden" id="s-rec-img" />
-                <img id="prev-s-rec-img" class="h-32 w-full object-cover rounded-xl border border-[#2A2F3A]" />
+                <img id="prev-s-rec-img" class="h-32 w-full object-cover rounded-xl border border-slate-200" />
               </div>
 
-              <div class="pt-4 flex justify-end">
-                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+              <div class="pt-3 flex justify-end">
+                <button type="submit" class="bg-[#0F172A] hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
                   Guardar Cambios de Servicios
                 </button>
               </div>
@@ -591,39 +570,39 @@
           </div>
 
           <!-- TAB: AVISO PROMO -->
-          <div id="tab-promo" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4">
-              <h2 class="text-lg font-bold text-white">Aviso / Banner Promocional</h2>
-              <p class="text-xs text-[#8E98AA]">Activá o desactivá un cintillo superior en todo el sitio web.</p>
+          <div id="tab-promo" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h2 class="text-xl font-bold text-slate-900">Aviso / Banner Promocional</h2>
+              <p class="text-xs text-slate-500 mt-1">Activá o desactivá un anuncio destacado en la cabecera del sitio.</p>
             </div>
 
             <form onsubmit="event.preventDefault(); savePromoData();" class="space-y-5">
-              <div class="flex items-center gap-3 p-5 bg-[#181B20] rounded-2xl border border-[#2A2F3A]">
-                <input type="checkbox" id="p-active" class="w-5 h-5 accent-[#C5A880] rounded cursor-pointer" />
+              <div class="flex items-center gap-3 p-5 bg-slate-50 rounded-2xl border border-slate-200">
+                <input type="checkbox" id="p-active" class="w-5 h-5 accent-[#0F172A] rounded cursor-pointer" />
                 <div>
-                  <label for="p-active" class="text-sm font-semibold text-white cursor-pointer">Activar Cintillo Promocional Superior</label>
-                  <p class="text-xs text-[#8E98AA]">Se mostrará en la cabecera de todas las páginas para los visitantes.</p>
+                  <label for="p-active" class="text-sm font-bold text-slate-900 cursor-pointer">Activar Cintillo Promocional Superior</label>
+                  <p class="text-xs text-slate-500">Se mostrará en la barra superior de todas las páginas para los visitantes.</p>
                 </div>
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Texto del Mensaje</label>
-                <input type="text" id="p-texto" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="🌟 Temporada 2026: Reservá directo con 10% de descuento abonando en efectivo." />
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Texto del Mensaje</label>
+                <input type="text" id="p-texto" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" placeholder="🌟 Temporada 2026: Reservá directo con 10% de descuento abonando en efectivo." />
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Texto del Botón (Opcional)</label>
-                  <input type="text" id="p-btn-text" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="Ver Promoción" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Texto del Botón (Opcional)</label>
+                  <input type="text" id="p-btn-text" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" placeholder="Ver Promoción" />
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Enlace de Destino</label>
-                  <input type="text" id="p-btn-url" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="https://wa.me/5492262672626 o reservas.html" />
+                  <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Enlace de Destino</label>
+                  <input type="text" id="p-btn-url" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" placeholder="https://wa.me/5492262672626 o reservas.html" />
                 </div>
               </div>
 
-              <div class="pt-4 flex justify-end">
-                <button type="submit" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+              <div class="pt-3 flex justify-end">
+                <button type="submit" class="bg-[#0F172A] hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
                   Guardar Configuración del Banner
                 </button>
               </div>
@@ -631,51 +610,51 @@
           </div>
 
           <!-- TAB: FAQS -->
-          <div id="tab-faqs" class="tab-content hidden space-y-6">
-            <div class="flex items-center justify-between border-b border-[#2A2F3A] pb-4">
+          <div id="tab-faqs" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
               <div>
-                <h2 class="text-lg font-bold text-white">Preguntas Frecuentes</h2>
-                <p class="text-xs text-[#8E98AA]">Respuestas a dudas comunes de los huéspedes.</p>
+                <h2 class="text-xl font-bold text-slate-900">Preguntas Frecuentes</h2>
+                <p class="text-xs text-slate-500 mt-1">Dudas frecuentes sobre reservas, horarios y estadía.</p>
               </div>
-              <button onclick="addNewFaq()" class="bg-[#232832] hover:bg-[#2A2F3A] text-[#C5A880] font-semibold px-4 py-2 rounded-xl text-xs uppercase tracking-wider border border-[#2A2F3A] transition-colors">
+              <button type="button" onclick="addNewFaq()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-colors">
                 + Nueva Pregunta
               </button>
             </div>
 
             <div id="faqs-list" class="space-y-4"></div>
 
-            <div class="pt-4 flex justify-end">
-              <button onclick="saveFaqsData()" class="bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+            <div class="pt-3 flex justify-end">
+              <button type="button" onclick="saveFaqsData()" class="bg-[#0F172A] hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
                 Guardar Preguntas Frecuentes
               </button>
             </div>
           </div>
 
           <!-- TAB: SEGURIDAD -->
-          <div id="tab-seguridad" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4">
-              <h2 class="text-lg font-bold text-white">Seguridad & Contraseña</h2>
-              <p class="text-xs text-[#8E98AA]">Modificá la clave para el acceso del encargado.</p>
+          <div id="tab-seguridad" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+              <h2 class="text-xl font-bold text-slate-900">Seguridad & Contraseña</h2>
+              <p class="text-xs text-slate-500 mt-1">Modificá la contraseña de acceso para el encargado.</p>
             </div>
 
             <form onsubmit="event.preventDefault(); handleChangePassword();" class="max-w-md space-y-4">
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Contraseña Actual</label>
-                <input type="password" id="pwd-current" required placeholder="••••••••" class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Contraseña Actual</label>
+                <input type="password" id="pwd-current" required placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Nueva Contraseña</label>
-                <input type="password" id="pwd-new" required minlength="6" placeholder="Mínimo 6 caracteres..." class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Nueva Contraseña</label>
+                <input type="password" id="pwd-new" required minlength="6" placeholder="Mínimo 6 caracteres..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-[#8E98AA] uppercase tracking-wider mb-2">Confirmar Nueva Contraseña</label>
-                <input type="password" id="pwd-confirm" required minlength="6" placeholder="Repetí la nueva contraseña..." class="w-full bg-[#181B20] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" />
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Confirmar Nueva Contraseña</label>
+                <input type="password" id="pwd-confirm" required minlength="6" placeholder="Repetí la nueva contraseña..." class="w-full bg-slate-50 border border-slate-200 focus:border-slate-800 focus:bg-white rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none transition-all" />
               </div>
 
               <div class="pt-2">
-                <button type="submit" class="w-full bg-[#C5A880] hover:bg-[#D8C2A2] text-[#0F1115] font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all">
+                <button type="submit" class="w-full bg-[#0F172A] hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm">
                   Actualizar Contraseña
                 </button>
               </div>
@@ -684,31 +663,31 @@
 
           <!-- TAB: BACKUP & RESTORE -->
           <div id="tab-backup" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#2A2F3A] pb-4">
-              <h2 class="text-lg font-bold text-white">Respaldos & Archivos JSON</h2>
-              <p class="text-xs text-[#8E98AA]">Exportá o restaurá una copia exacta de todos los datos y fotos.</p>
+            <div class="border-b border-slate-200 pb-4">
+              <h2 class="text-xl font-bold text-slate-900">Respaldos & Archivos JSON</h2>
+              <p class="text-xs text-slate-500 mt-1">Exportá o restaurá una copia exacta de todos los datos y fotos.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-3">
-                <h3 class="text-sm font-bold text-white">Descargar Copia de Seguridad</h3>
-                <p class="text-xs text-[#8E98AA]">Genera un archivo JSON con todos los textos, imágenes y configuraciones actuales.</p>
-                <button onclick="exportContentAsJSON()" class="w-full bg-[#232832] hover:bg-[#2A2F3A] text-white font-semibold py-3 rounded-xl text-xs uppercase tracking-wider border border-[#2A2F3A] transition-all">
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <h3 class="text-sm font-bold text-slate-900">Descargar Copia de Seguridad</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">Genera un archivo JSON con todos los textos, imágenes y configuraciones actuales.</p>
+                <button type="button" onclick="exportContentAsJSON()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold py-2.5 rounded-xl text-xs uppercase tracking-wider transition-colors">
                   Exportar JSON
                 </button>
               </div>
 
-              <div class="bg-[#181B20] p-6 rounded-2xl border border-[#2A2F3A] space-y-3">
-                <h3 class="text-sm font-bold text-white">Restaurar desde JSON</h3>
-                <p class="text-xs text-[#8E98AA]">Cargá un archivo de copia de seguridad previamente descargado.</p>
-                <input type="file" id="import-json-file" accept=".json" class="w-full text-xs text-[#8E98AA] file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#232832] file:text-white cursor-pointer" onchange="handleImportJSON(event)" />
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <h3 class="text-sm font-bold text-slate-900">Restaurar desde JSON</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">Cargá un archivo de copia de seguridad previamente descargado.</p>
+                <input type="file" id="import-json-file" accept=".json" class="w-full text-xs text-slate-500 file:mr-2 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-800 cursor-pointer" onchange="handleImportJSON(event)" />
               </div>
             </div>
 
-            <div class="bg-[#2B1B1F] p-6 rounded-2xl border border-rose-900/40 space-y-3">
-              <h3 class="text-sm font-bold text-rose-300">Restablecer Valores de Fábrica</h3>
-              <p class="text-xs text-rose-200/70">Esta acción restaurará los textos y fotos originales por defecto del hotel.</p>
-              <button onclick="handleResetContent()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-5 rounded-xl text-xs uppercase tracking-wider transition-colors">
+            <div class="bg-rose-50/70 p-6 rounded-2xl border border-rose-200 space-y-3">
+              <h3 class="text-sm font-bold text-rose-900">Restablecer Valores de Fábrica</h3>
+              <p class="text-xs text-rose-700 leading-relaxed">Esta acción restaurará los textos y fotos originales por defecto del hotel.</p>
+              <button type="button" onclick="handleResetContent()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 px-5 rounded-xl text-xs uppercase tracking-wider transition-colors">
                 Restablecer Todo
               </button>
             </div>
@@ -721,8 +700,8 @@
   </div>
 
   <!-- Toast Notification -->
-  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 bg-[#181B20] text-white px-5 py-3 rounded-xl shadow-2xl border border-[#2A2F3A] text-xs font-semibold tracking-wide transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center gap-3">
-    <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 bg-[#0F172A] text-white px-5 py-3 rounded-xl shadow-xl text-xs font-semibold tracking-wide transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center gap-3">
+    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
     <span id="toast-text">Cambios guardados con éxito</span>
   </div>
 
@@ -883,10 +862,10 @@
       const container = document.getElementById(containerId);
       if (!container) return;
       const card = document.createElement('div');
-      card.className = 'photo-card relative rounded-xl overflow-hidden border border-[#2A2F3A] group h-28 bg-[#121418]';
+      card.className = 'photo-card relative rounded-xl overflow-hidden border border-slate-200 group h-28 bg-slate-100 shadow-sm';
       card.innerHTML = `
         <img src="${url}" class="w-full h-full object-cover" />
-        <button type="button" onclick="this.closest('.photo-card').remove();" class="absolute top-1.5 right-1.5 bg-black/80 hover:bg-rose-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all" title="Eliminar foto">
+        <button type="button" onclick="this.closest('.photo-card').remove();" class="absolute top-1.5 right-1.5 bg-black/70 hover:bg-rose-600 text-white p-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow" title="Eliminar foto">
           <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       `;
@@ -1079,14 +1058,14 @@
       container.innerHTML = '';
       faqs.forEach((faq, index) => {
         const item = document.createElement('div');
-        item.className = 'p-5 bg-[#181B20] rounded-2xl border border-[#2A2F3A] space-y-3';
+        item.className = 'p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3';
         item.innerHTML = `
           <div class="flex justify-between items-center">
-            <span class="text-xs font-bold text-[#C5A880]">Pregunta #${index + 1}</span>
-            <button type="button" onclick="removeFaq(${index})" class="text-xs text-rose-400 font-semibold hover:underline">Eliminar</button>
+            <span class="text-xs font-bold text-slate-700">Pregunta #${index + 1}</span>
+            <button type="button" onclick="removeFaq(${index})" class="text-xs text-rose-600 font-semibold hover:underline">Eliminar</button>
           </div>
-          <input type="text" class="faq-q w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm font-semibold text-white focus:outline-none" value="${faq.pregunta}" placeholder="Pregunta..." />
-          <textarea class="faq-a w-full bg-[#121418] border border-[#2A2F3A] focus:border-[#C5A880] rounded-xl px-4 py-3 text-sm text-white focus:outline-none" rows="2" placeholder="Respuesta...">${faq.respuesta}</textarea>
+          <input type="text" class="faq-q w-full bg-white border border-slate-200 focus:border-slate-800 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-900 focus:outline-none" value="${faq.pregunta}" placeholder="Pregunta..." />
+          <textarea class="faq-a w-full bg-white border border-slate-200 focus:border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none" rows="2" placeholder="Respuesta...">${faq.respuesta}</textarea>
         `;
         container.appendChild(item);
       });
