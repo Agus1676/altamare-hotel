@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alta Mare Hotel & Suites | Necochea — A 30m del Mar</title>
-  <meta name="description" content="Alta Mare Hotel & Suites en Necochea. Exclusividad a 30 metros del mar. Habitaciones con hidromasaje, microcine para 60 personas, spa, desayuno y atención personalizada." />
+  <meta name="description" content="Alta Mare Hotel & Suites en Necochea. Hospitalidad, confort y descanso a 30 metros del mar. Habitaciones con hidromasaje, microcine para 60 personas y atención personalizada." />
   <link rel="icon" type="image/png" href="./assets/images/logo.png" />
 
-  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + Cormorant Garamond -->
+  <!-- Google Fonts: Cormorant Garamond (Editorial Serif) + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,37 +19,26 @@
       theme: {
         extend: {
           colors: {
-            /* Paleta Seca, Orgánica y Tostada */
-            sand: {
-              50:  '#F9F7F3', // Fondo lino principal
-              100: '#F2EDE4', // Pergamino suave
-              200: '#E5DCce', // Tostado claro / bordes
-              300: '#D5C7B3', // Arena seca
-              400: '#BFAB92', // Terracota claro
-              500: '#A48C70', // Tostado medio
-              600: '#8A7156', // Tostado seco
-              700: '#6C5640', // Café tostado
-              800: '#4F3D2C', // Marrón oscuro
-              900: '#34271B', // Espresso tostado
-              950: '#1E160F', // Tostado noche profundo (NO azul)
+            linen: '#F9F7F4',
+            parchment: '#F2EDE5',
+            sandstone: '#E8E1D5',
+            stoneborder: '#D8CEBE',
+            bronze: {
+              DEFAULT: '#8F6E4A',
+              light: '#A88761',
+              dark: '#735434',
             },
-            earth: {
-              800: '#3D2F23',
-              900: '#271D15',
-              950: '#19120C',
+            espresso: {
+              DEFAULT: '#221A15',
+              deep: '#18120E',
+              darker: '#120D0A',
             },
-            ochre: {
-              300: '#E4D1B0',
-              400: '#CFB588',
-              500: '#B89358', // Dorado mate seco
-              600: '#9B773F',
-              700: '#7D5C2C',
-            }
+            charcoal: '#2D241E',
+            mutedtext: '#706256',
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
-            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
           }
         }
       }
@@ -58,143 +47,119 @@
 
   <style>
     html { scroll-behavior: smooth; }
-    ::selection { background: #8A7156; color: #FFFFFF; }
+    ::selection { background: #8F6E4A; color: #FFFFFF; }
 
-    /* Custom Scrollbar - Tono Seco Tostado */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #19120C; }
-    ::-webkit-scrollbar-thumb { background: #6C5640; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #B89358; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #120D0A; }
+    ::-webkit-scrollbar-thumb { background: #735434; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8F6E4A; }
 
-    /* Image zoom hover */
-    .img-frame { overflow: hidden; }
-    .img-frame img { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .img-frame:hover img { transform: scale(1.05); }
+    /* Subtle image zoom */
+    .media-zoom { overflow: hidden; }
+    .media-zoom img { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .media-zoom:hover img { transform: scale(1.04); }
 
-    /* Clean subtle card transition */
-    .card-craft {
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .card-craft:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -15px rgba(25, 18, 12, 0.1);
-    }
+    /* Hairline borders */
+    .border-hairline { border-color: rgba(216, 206, 190, 0.6); }
+    .border-hairline-dark { border-color: rgba(143, 110, 74, 0.25); }
 
-    /* Navbar scroll transition */
-    .navbar-solid {
+    /* Navbar scroll state */
+    .nav-scrolled {
       top: 0 !important;
-      background: rgba(249, 247, 243, 0.98) !important;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 4px 20px -5px rgba(25, 18, 12, 0.08);
-      border-bottom: 1px solid #E5DCCE;
-      padding-top: 0.6rem !important;
-      padding-bottom: 0.6rem !important;
+      background: rgba(249, 247, 244, 0.98) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #E8E1D5;
+      box-shadow: 0 4px 25px -5px rgba(18, 13, 10, 0.05);
+      padding-top: 0.75rem !important;
+      padding-bottom: 0.75rem !important;
     }
 
-    /* FAQ accordion transitions */
-    .faq-body {
+    /* FAQ accordion */
+    .faq-panel {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease-out;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .faq-body.open {
-      max-height: 400px;
-      transition: max-height 0.45s ease-in;
+    .faq-panel.active {
+      max-height: 500px;
     }
   </style>
 </head>
 
-<body class="bg-sand-50 text-sand-900 font-sans antialiased">
+<body class="bg-linen text-espresso font-sans antialiased selection:bg-bronze selection:text-white">
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 1. TOP BAR INSTITUCIONAL (TOSTADO SECO)     -->
+  <!-- TOP ANNOUNCEMENT BAR                        -->
   <!-- ═══════════════════════════════════════════ -->
-  <aside class="bg-earth-950 text-sand-300 text-[11px] py-2.5 px-4 border-b border-sand-800/80 hidden md:block">
-    <div class="max-w-7xl mx-auto flex justify-between items-center tracking-wider">
+  <aside class="bg-espresso-deep text-sandstone text-[11px] py-2 px-6 border-b border-white/5 hidden md:block tracking-widest uppercase">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-6">
-        <span class="flex items-center gap-2">
-          <svg class="w-3.5 h-3.5 text-ochre-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          <strong class="text-sand-100 font-medium">Av. 79 Nº 217</strong> &bull; Necochea, Buenos Aires &bull; <span class="text-ochre-400 font-semibold">A 30m del mar</span>
-        </span>
-        <span class="text-sand-700">|</span>
-        <span class="flex items-center gap-1.5 text-sand-400">
-          <svg class="w-3.5 h-3.5 text-ochre-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          Recepción 24 Horas
-        </span>
+        <span>Av. 79 Nº 217 &bull; Necochea &bull; <strong class="text-white font-medium">A 30m del mar</strong></span>
+        <span class="text-white/20">|</span>
+        <span class="text-sandstone/80">Recepción 24 Horas</span>
       </div>
-      
-      <div class="flex items-center gap-6">
-        <a href="tel:+5492262672626" class="hover:text-ochre-400 transition-colors flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-ochre-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          +54 9 2262 67-2626
-        </a>
-        <a href="https://www.instagram.com/altamare.hotel" target="_blank" rel="noopener noreferrer" class="hover:text-ochre-400 transition-colors">
-          @altamare.hotel
-        </a>
-        <a href="mailto:altamarenecochea@gmail.com" class="hover:text-ochre-400 transition-colors">
-          altamarenecochea@gmail.com
-        </a>
+      <div class="flex items-center gap-6 text-sandstone/80">
+        <a href="tel:+5492262672626" class="hover:text-white transition-colors">+54 9 2262 67-2626</a>
+        <span class="text-white/20">&bull;</span>
+        <a href="https://www.instagram.com/altamare.hotel" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">@altamare.hotel</a>
+        <span class="text-white/20">&bull;</span>
+        <a href="mailto:altamarenecochea@gmail.com" class="hover:text-white transition-colors">altamarenecochea@gmail.com</a>
       </div>
     </div>
   </aside>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 2. NAVBAR REFINADO                          -->
+  <!-- BESPOKE NAVBAR                              -->
   <!-- ═══════════════════════════════════════════ -->
-  <header id="site-header" class="fixed top-0 md:top-9 left-0 right-0 z-50 transition-all duration-300 py-4">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between">
+  <header id="site-nav" class="fixed top-0 md:top-8 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#inicio" class="flex items-center gap-3">
+        <img id="nav-logo" src="./assets/images/logo.png" alt="Alta Mare Hotel & Suites" class="h-12 md:h-14 w-auto object-contain transition-all duration-300 brightness-0 invert drop-shadow" />
+      </a>
 
-        <!-- Logo con auto-contraste -->
-        <a href="#inicio" class="flex items-center gap-3">
-          <img id="nav-logo" src="./assets/images/logo.png" alt="Alta Mare Hotel & Suites" class="h-14 sm:h-16 w-auto object-contain transition-all duration-300 brightness-0 invert drop-shadow" />
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-9 tracking-[0.2em] text-[11px] font-semibold uppercase text-white/90" id="nav-links-wrap">
+        <a href="#inicio" class="nav-item hover:text-bronze-light transition-colors py-1">Inicio</a>
+        <a href="#hotel" class="nav-item hover:text-bronze-light transition-colors py-1">El Hotel</a>
+        <a href="#habitaciones" class="nav-item hover:text-bronze-light transition-colors py-1">Habitaciones</a>
+        <a href="#espacios" class="nav-item hover:text-bronze-light transition-colors py-1">Espacios</a>
+        <a href="#ubicacion" class="nav-item hover:text-bronze-light transition-colors py-1">Ubicación</a>
+        <a href="#contacto" class="nav-item hover:text-bronze-light transition-colors py-1">Contacto</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/5492262672626?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Alta%20Mare%20Hotel"
+           target="_blank" rel="noopener noreferrer"
+           class="hidden sm:inline-flex items-center gap-2 border border-white/30 text-white hover:border-bronze hover:bg-bronze text-[11px] font-semibold uppercase tracking-[0.2em] px-6 py-2.5 rounded-full transition-all duration-300" id="nav-cta">
+          <span>Reservar</span>
         </a>
 
-        <!-- Enlaces de Navegación -->
-        <nav class="hidden lg:flex items-center gap-8 bg-earth-950/80 backdrop-blur-md px-8 py-3 rounded-full border border-sand-700/60 shadow-lg" id="nav-container">
-          <a href="#inicio" class="nav-item text-xs font-semibold uppercase tracking-[0.18em] text-sand-200 hover:text-ochre-400 transition-colors">Inicio</a>
-          <a href="#hotel" class="nav-item text-xs font-semibold uppercase tracking-[0.18em] text-sand-200 hover:text-ochre-400 transition-colors">El Hotel</a>
-          <a href="#habitaciones" class="nav-item text-xs font-semibold uppercase tracking-[0.18em] text-sand-200 hover:text-ochre-400 transition-colors">Habitaciones</a>
-          <a href="#servicios" class="nav-item text-xs font-semibold uppercase tracking-[0.18em] text-sand-200 hover:text-ochre-400 transition-colors">Servicios</a>
-          <a href="#galeria" class="nav-item text-xs font-semibold uppercase tracking-[0.18em] text-sand-200 hover:text-ochre-400 transition-colors">Galería</a>
-          <a href="#ubicacion" class="nav-item text-xs font-semibold uppercase tracking-[0.18em] text-sand-200 hover:text-ochre-400 transition-colors">Ubicación</a>
-          <a href="#contacto" class="nav-item text-xs font-semibold uppercase tracking-[0.18em] text-sand-200 hover:text-ochre-400 transition-colors">Contacto</a>
-        </nav>
-
-        <!-- CTA & Botón Móvil -->
-        <div class="flex items-center gap-3.5">
-          <a href="https://wa.me/5492262672626?text=Hola!%20Quiero%20consultar%20disponibilidad%20y%20tarifas%20en%20Alta%20Mare%20Hotel"
-             target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-2 bg-ochre-500 hover:bg-ochre-600 text-earth-950 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-[0.15em] shadow-md transition-all hover:scale-105">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
-            <span>Reservar Directo</span>
-          </a>
-
-          <button id="mobile-toggle-btn" type="button" aria-label="Abrir Menú" class="lg:hidden p-3 rounded-2xl bg-earth-950/80 text-sand-200 border border-sand-700/60 hover:bg-earth-900 transition-colors">
-            <svg id="icon-hamburger" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
-            <svg id="icon-close" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-          </button>
-        </div>
-
+        <!-- Mobile Trigger -->
+        <button id="mobile-toggle" type="button" aria-label="Abrir Menú" class="lg:hidden p-2 text-white">
+          <svg id="burger-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><line x1="4" x2="20" y1="9" y2="9"></line><line x1="4" x2="20" y1="15" y2="15"></line></svg>
+          <svg id="burger-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        </button>
       </div>
+
     </div>
 
-    <!-- Menú Móvil Desplegable -->
-    <div id="mobile-dropdown" class="hidden lg:hidden mt-3 mx-4 bg-earth-950/95 backdrop-blur-xl rounded-3xl border border-sand-700/60 p-6 shadow-2xl">
-      <nav class="flex flex-col gap-2">
-        <a href="#inicio" class="mobile-link py-3 px-4 text-sand-200 hover:text-ochre-400 hover:bg-sand-900/60 rounded-xl text-sm font-semibold tracking-wider uppercase">Inicio</a>
-        <a href="#hotel" class="mobile-link py-3 px-4 text-sand-200 hover:text-ochre-400 hover:bg-sand-900/60 rounded-xl text-sm font-semibold tracking-wider uppercase">El Hotel</a>
-        <a href="#habitaciones" class="mobile-link py-3 px-4 text-sand-200 hover:text-ochre-400 hover:bg-sand-900/60 rounded-xl text-sm font-semibold tracking-wider uppercase">Habitaciones & Suites</a>
-        <a href="#servicios" class="mobile-link py-3 px-4 text-sand-200 hover:text-ochre-400 hover:bg-sand-900/60 rounded-xl text-sm font-semibold tracking-wider uppercase">Servicios & Microcine</a>
-        <a href="#galeria" class="mobile-link py-3 px-4 text-sand-200 hover:text-ochre-400 hover:bg-sand-900/60 rounded-xl text-sm font-semibold tracking-wider uppercase">Galería</a>
-        <a href="#ubicacion" class="mobile-link py-3 px-4 text-sand-200 hover:text-ochre-400 hover:bg-sand-900/60 rounded-xl text-sm font-semibold tracking-wider uppercase">Ubicación</a>
-        <a href="#contacto" class="mobile-link py-3 px-4 text-sand-200 hover:text-ochre-400 hover:bg-sand-900/60 rounded-xl text-sm font-semibold tracking-wider uppercase">Contacto</a>
-        
-        <div class="mt-4 pt-4 border-t border-sand-800">
-          <a href="https://wa.me/5492262672626?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Alta%20Mare%20Hotel"
-             target="_blank" class="flex items-center justify-center gap-2 bg-ochre-500 text-earth-950 py-3.5 rounded-xl font-bold text-xs uppercase tracking-widest shadow-md">
-            <span>Contactar Recepción</span>
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden mt-3 bg-espresso-deep/98 backdrop-blur-2xl rounded-2xl border border-white/10 p-6 shadow-2xl">
+      <nav class="flex flex-col gap-3 text-xs tracking-[0.2em] uppercase font-medium">
+        <a href="#inicio" class="mobile-item py-2 text-sandstone hover:text-white">Inicio</a>
+        <a href="#hotel" class="mobile-item py-2 text-sandstone hover:text-white">El Hotel</a>
+        <a href="#habitaciones" class="mobile-item py-2 text-sandstone hover:text-white">Habitaciones & Suites</a>
+        <a href="#espacios" class="mobile-item py-2 text-sandstone hover:text-white">Espacios & Servicios</a>
+        <a href="#ubicacion" class="mobile-item py-2 text-sandstone hover:text-white">Ubicación</a>
+        <a href="#contacto" class="mobile-item py-2 text-sandstone hover:text-white">Contacto</a>
+        <div class="pt-4 border-t border-white/10 mt-2">
+          <a href="https://wa.me/5492262672626" target="_blank" class="block text-center py-3 bg-bronze text-white font-semibold rounded-full text-xs uppercase tracking-widest">
+            Contactar por WhatsApp
           </a>
         </div>
       </nav>
@@ -202,626 +167,137 @@
   </header>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 3. HERO SECTION (EDITORIAL TOSTADO CÁLIDO)  -->
+  <!-- HERO CINEMATOGRÁFICO                        -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="inicio" class="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-earth-950 pt-28 pb-32">
-    <!-- Fotografía Cálida de la Costa -->
-    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2000&auto=format&fit=crop"
+  <section id="inicio" class="relative min-h-screen flex items-center justify-center bg-espresso-darker overflow-hidden pt-28 pb-20">
+    <!-- Hero Image Background -->
+    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2000&auto=format&fit=crop"
          alt="Alta Mare Hotel & Suites Fachada"
-         class="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-[0.70] contrast-[1.05]" />
+         class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.55] contrast-[1.05]" />
     
-    <!-- Filtro Tostado Orgánico (Elimina cualquier rastro azulado) -->
-    <div class="absolute inset-0 bg-gradient-to-t from-earth-950 via-earth-950/70 to-earth-950/80"></div>
-    <div class="absolute inset-0 bg-earth-950/30 mix-blend-multiply"></div>
+    <!-- Warm Vignette Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-espresso-darker via-espresso-deep/40 to-espresso-darker/80"></div>
 
-    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center text-white">
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
       
-      <!-- Insignia Editorial -->
-      <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-earth-900/80 backdrop-blur-md text-ochre-300 text-xs font-semibold tracking-[0.25em] uppercase mb-8 border border-ochre-500/40 shadow-xl">
-        <span class="w-1.5 h-1.5 rounded-full bg-ochre-400 animate-pulse"></span>
-        <span>A 30m del mar &bull; Necochea</span>
-      </div>
-
-      <!-- Titular Principal -->
-      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-sand-50 mb-6 leading-[1.05] tracking-tight">
-        Mar, descanso <br class="hidden sm:inline" />
-        <span class="font-display italic text-ochre-400 font-normal">y hospitalidad.</span>
-      </h1>
-
-      <!-- Bajada Editorial -->
-      <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-sand-200 font-light leading-relaxed mb-10">
-        Un espacio de calma, confort superior y atención personalizada diseñado para vivir Necochea a pasos de la playa.
+      <p class="text-[11px] uppercase tracking-[0.35em] text-sandstone/90 mb-6 font-medium">
+        Necochea &bull; A 30 metros del mar
       </p>
 
-      <!-- Botones Principales -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#habitaciones" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-ochre-500 hover:bg-ochre-600 text-earth-950 font-bold px-9 py-4 rounded-full text-xs uppercase tracking-[0.18em] transition-all shadow-xl hover:scale-105">
-          <span>Explorar Habitaciones</span>
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal leading-[1.02] tracking-tight text-white mb-8">
+        Mar, serenidad <br />
+        <span class="italic font-light text-sandstone">y hospitalidad.</span>
+      </h1>
+
+      <p class="max-w-xl mx-auto text-sm sm:text-base text-sandstone/80 font-light leading-relaxed mb-12">
+        Un refugio de calma y confort superior en el corazón de la costa de Necochea. Habitaciones con hidromasaje, microcine y atención personalizada.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+        <a href="#habitaciones" class="w-full sm:w-auto bg-bronze hover:bg-bronze-dark text-white px-8 py-3.5 rounded-full text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300">
+          Explorar Habitaciones
         </a>
-        <a href="#contacto" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-earth-900/80 hover:bg-earth-800 text-sand-100 hover:text-ochre-300 font-semibold px-9 py-4 rounded-full text-xs uppercase tracking-[0.18em] transition-all border border-sand-700/60">
-          <span>Contacto Directo</span>
+        <a href="#contacto" class="w-full sm:w-auto border border-white/40 hover:border-white text-white px-8 py-3.5 rounded-full text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300">
+          Consultar Disponibilidad
         </a>
       </div>
 
     </div>
 
-    <!-- Separador Ondulado Suave -->
-    <div class="absolute bottom-0 left-0 right-0 pointer-events-none z-10">
-      <svg viewBox="0 0 1440 60" fill="none" class="w-full h-10 sm:h-14 text-sand-50" preserveAspectRatio="none">
-        <path d="M0,25 C360,60 1080,0 1440,25 L1440,60 L0,60 Z" fill="currentColor"></path>
-      </svg>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 text-[10px] uppercase tracking-[0.3em] flex flex-col items-center gap-2">
+      <span>Descubrir</span>
+      <div class="w-px h-8 bg-white/30"></div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 4. MOTOR DE CONSULTA RÁPIDA FLOTANTE        -->
+  <!-- BARRA DE RESERVA INTEGRADA                  -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="relative z-30 -mt-16 max-w-6xl mx-auto px-4 sm:px-6 mb-20">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-earth-950/10 border border-sand-200">
-      
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-sand-100">
-        <div>
-          <span class="text-[10px] font-bold text-ochre-600 uppercase tracking-[0.25em]">Planificá tu Estadía</span>
-          <h3 class="font-serif text-xl sm:text-2xl font-bold text-sand-900">Consulta Rápida de Tarifas</h3>
-        </div>
-        <div class="inline-flex items-center gap-2 text-xs font-semibold text-sand-800 bg-sand-100 px-4 py-1.5 rounded-full border border-sand-200 self-start sm:self-auto">
-          <span class="w-2 h-2 rounded-full bg-ochre-600 animate-pulse"></span>
-          <span>Trato directo sin comisiones intermedias</span>
-        </div>
-      </div>
-
-      <form id="hero-booking-form" onsubmit="event.preventDefault(); submitBooking();" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
+  <section class="bg-parchment border-y border-stoneborder py-10 px-6">
+    <div class="max-w-6xl mx-auto">
+      <form id="quick-inquiry-form" onsubmit="event.preventDefault(); sendQuickInquiry();" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 items-end">
         
-        <!-- Check-in -->
         <div class="lg:col-span-3">
-          <label for="book-in" class="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-2">Llegada (Check-in)</label>
-          <input type="date" id="book-in" required class="w-full bg-sand-50 hover:bg-white focus:bg-white border border-sand-200 rounded-xl px-4 py-3 text-sm text-sand-900 font-medium focus:outline-none focus:ring-2 focus:ring-ochre-500 focus:border-transparent transition-all cursor-pointer" />
+          <label for="qin-checkin" class="block text-[10px] uppercase tracking-[0.25em] text-mutedtext font-semibold mb-2">Llegada</label>
+          <input type="date" id="qin-checkin" required class="w-full bg-linen border border-stoneborder rounded-lg px-4 py-3 text-sm text-espresso font-medium focus:outline-none focus:border-bronze transition-colors cursor-pointer" />
         </div>
 
-        <!-- Check-out -->
         <div class="lg:col-span-3">
-          <label for="book-out" class="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-2">Salida (Check-out)</label>
-          <input type="date" id="book-out" required class="w-full bg-sand-50 hover:bg-white focus:bg-white border border-sand-200 rounded-xl px-4 py-3 text-sm text-sand-900 font-medium focus:outline-none focus:ring-2 focus:ring-ochre-500 focus:border-transparent transition-all cursor-pointer" />
+          <label for="qin-checkout" class="block text-[10px] uppercase tracking-[0.25em] text-mutedtext font-semibold mb-2">Salida</label>
+          <input type="date" id="qin-checkout" required class="w-full bg-linen border border-stoneborder rounded-lg px-4 py-3 text-sm text-espresso font-medium focus:outline-none focus:border-bronze transition-colors cursor-pointer" />
         </div>
 
-        <!-- Categoría -->
         <div class="lg:col-span-3">
-          <label for="book-category" class="block text-[11px] font-bold text-sand-700 uppercase tracking-wider mb-2">Categoría / Espacio</label>
-          <select id="book-category" class="w-full bg-sand-50 hover:bg-white focus:bg-white border border-sand-200 rounded-xl px-4 py-3 text-sm text-sand-900 font-medium focus:outline-none focus:ring-2 focus:ring-ochre-500 focus:border-transparent transition-all cursor-pointer">
-            <option value="Habitación Preferencial al Frente (con Hidromasaje)">Preferencial con Hidro & Vista al Mar</option>
-            <option value="Habitación Standard Matrimonial / Twin">Standard Matrimonial / Twin</option>
-            <option value="Microcine & Sala de Conferencias (60 Pax)">Microcine / Auditorio 60 Pax</option>
-            <option value="Consulta General de Disponibilidad">Consulta General</option>
+          <label for="qin-room" class="block text-[10px] uppercase tracking-[0.25em] text-mutedtext font-semibold mb-2">Categoría</label>
+          <select id="qin-room" class="w-full bg-linen border border-stoneborder rounded-lg px-4 py-3 text-sm text-espresso font-medium focus:outline-none focus:border-bronze transition-colors cursor-pointer">
+            <option value="Habitación Preferencial al Frente (Hidromasaje)">Preferencial Frente (Hidromasaje)</option>
+            <option value="Habitación Standard (Matrimonial / Twin)">Standard (Matrimonial / Twin)</option>
+            <option value="Microcine & Sala de Conferencias">Microcine / Eventos (60 pax)</option>
+            <option value="Consulta General">Consulta General</option>
           </select>
         </div>
 
-        <!-- Botón -->
         <div class="lg:col-span-3">
-          <button type="submit" class="w-full bg-earth-950 hover:bg-earth-900 text-ochre-400 hover:text-white font-bold py-3.5 px-6 rounded-xl text-xs uppercase tracking-[0.16em] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group border border-ochre-500/30">
-            <span>Consultar Tarifa</span>
-            <svg class="w-4 h-4 text-ochre-400 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          <button type="submit" class="w-full bg-espresso hover:bg-espresso-deep text-sandstone hover:text-white py-3.5 px-6 rounded-lg text-xs uppercase tracking-[0.2em] font-semibold transition-colors">
+            Consultar Tarifa
           </button>
         </div>
+
       </form>
-
-      <!-- 4 Pilares -->
-      <div class="mt-8 pt-6 border-t border-sand-100 grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-sand-100 flex items-center justify-center text-ochre-600 shrink-0">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>
-          </div>
-          <div>
-            <h4 class="text-xs font-bold text-sand-900">A 30m del Mar</h4>
-            <p class="text-[11px] text-sand-600">Av. 79 Nº 217</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-sand-100 flex items-center justify-center text-ochre-600 shrink-0">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"></path><path d="M2 12h20"></path></svg>
-          </div>
-          <div>
-            <h4 class="text-xs font-bold text-sand-900">Hidromasaje</h4>
-            <p class="text-[11px] text-sand-600">En suites preferenciales</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-sand-100 flex items-center justify-center text-ochre-600 shrink-0">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="15" x="2" y="3" rx="2"></rect><polyline points="10 9 15 12 10 15 10 9"></polyline></svg>
-          </div>
-          <div>
-            <h4 class="text-xs font-bold text-sand-900">Microcine 60 Pax</h4>
-            <p class="text-[11px] text-sand-600">Pantalla 200" & Eventos</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-sand-100 flex items-center justify-center text-ochre-600 shrink-0">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          </div>
-          <div>
-            <h4 class="text-xs font-bold text-sand-900">Tarifa Directa</h4>
-            <p class="text-[11px] text-sand-600">Atención de recepción</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 5. 01 — EL HOTEL                            -->
+  <!-- EL HOTEL (EDITORIAL NARRATIVE)              -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="hotel" class="py-20 md:py-28 bg-sand-50 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="hotel" class="py-24 md:py-32 px-6">
+    <div class="max-w-6xl mx-auto">
       
-      <div class="flex items-center gap-4 mb-12">
-        <span class="text-xs font-bold text-ochre-600 uppercase tracking-[0.3em]">01 &mdash; El Hotel</span>
-        <div class="flex-1 h-px bg-sand-200"></div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
-        <!-- Columna Izquierda: Composición de Fotos -->
-        <div class="lg:col-span-6 relative">
-          <div class="relative">
-            <div class="img-frame rounded-3xl overflow-hidden shadow-xl border border-sand-200">
-              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop"
-                   alt="Lobby y Arquitectura Alta Mare"
-                   class="w-full h-[450px] sm:h-[520px] object-cover" />
-            </div>
-
-            <div class="absolute -bottom-8 -right-4 sm:-right-8 w-52 sm:w-64 img-frame rounded-2xl overflow-hidden shadow-2xl border-4 border-white hidden sm:block">
-              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=600&auto=format&fit=crop"
-                   alt="Detalle de Confort Alta Mare"
-                   class="w-full h-44 object-cover" />
-            </div>
-
-            <div class="absolute -top-6 -left-4 sm:-left-6 bg-earth-950 text-ochre-400 p-5 rounded-2xl shadow-xl border border-ochre-500/30 flex flex-col items-center justify-center text-center">
-              <span class="font-serif text-3xl font-bold text-sand-50">30m</span>
-              <span class="text-[9px] font-bold uppercase tracking-widest text-ochre-400 mt-0.5">Del Mar</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Columna Derecha: Texto Editorial -->
-        <div class="lg:col-span-6">
-          <p class="text-xs font-bold text-ochre-600 uppercase tracking-[0.25em] mb-3">Bienvenidos a Necochea</p>
-          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-sand-900 mb-6 leading-tight">
-            Bienvenidos a <br />
-            <span class="italic text-sand-700 font-serif">Alta Mare</span> Hotel & Suites
-          </h2>
-
-          <div class="space-y-4 text-sand-700 leading-relaxed text-sm sm:text-base">
-            <p>
-              A pocos metros del mar, <strong class="text-sand-900 font-semibold">Alta Mare Hotel & Suites</strong> nace como un espacio pensado para disfrutar de Necochea desde otro lugar: con calma, comodidad y la cercanía de todo lo que hace especial a una ciudad junto al mar.
-            </p>
-            <p>
-              Nuestro hotel combina una <strong class="text-sand-900 font-semibold">ubicación privilegiada</strong> con ambientes cálidos y cuidados, pensados para que cada estadía sea una experiencia agradable, tanto para quienes vienen a descansar como para quienes visitan la ciudad por trabajo, eventos o vacaciones.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-3 gap-4 my-8 pt-6 border-t border-sand-200">
-            <div>
-              <p class="font-serif text-3xl sm:text-4xl font-bold text-sand-900">30<span class="text-ochre-500 text-2xl">m</span></p>
-              <p class="text-xs text-sand-600 font-medium mt-1">Distancia real al mar</p>
-            </div>
-            <div>
-              <p class="font-serif text-3xl sm:text-4xl font-bold text-sand-900">60<span class="text-ochre-500 text-2xl">pax</span></p>
-              <p class="text-xs text-sand-600 font-medium mt-1">Microcine & Auditorio</p>
-            </div>
-            <div>
-              <p class="font-serif text-3xl sm:text-4xl font-bold text-sand-900">24<span class="text-ochre-500 text-2xl">h</span></p>
-              <p class="text-xs text-sand-600 font-medium mt-1">Recepción permanente</p>
-            </div>
-          </div>
-
-          <blockquote class="p-5 rounded-2xl bg-white border-l-4 border-ochre-500 border border-sand-200 shadow-sm">
-            <p class="font-serif italic text-sand-900 text-sm sm:text-base leading-relaxed">
-              &ldquo;En Alta Mare creemos que la hospitalidad está en los detalles: una habitación confortable, un ambiente agradable, una atención cercana.&rdquo;
-            </p>
-          </blockquote>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- 6. 02 — HABITACIONES & SUITES               -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section id="habitaciones" class="py-20 md:py-28 bg-white relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <div class="flex items-center gap-4 mb-4">
-        <span class="text-xs font-bold text-ochre-600 uppercase tracking-[0.3em]">02 &mdash; Habitaciones & Suites</span>
-        <div class="flex-1 h-px bg-sand-200"></div>
-      </div>
-
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-        <div>
-          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-sand-900 leading-tight">
-            Descanso de excelencia frente al mar
-          </h2>
-          <p class="text-sand-600 text-sm sm:text-base mt-2 max-w-xl">
-            Ambientes cuidadosamente acondicionados con tecnología de climatización, sommier premium y detalles para una estadía inmejorable.
-          </p>
-        </div>
-        <div class="flex items-center gap-2 bg-sand-50 px-4 py-2 rounded-full border border-sand-200 self-start">
-          <span class="text-xs font-bold text-sand-700 uppercase tracking-wider">2 Categorías exclusivas</span>
-        </div>
-      </div>
-
-      <!-- Habitación 1: Preferencial al Frente -->
-      <div class="mb-14 bg-sand-50 rounded-3xl overflow-hidden border border-sand-200 shadow-md card-craft">
-        <div class="grid grid-cols-1 lg:grid-cols-12">
-          
-          <div class="lg:col-span-7 relative img-frame h-80 sm:h-96 lg:h-auto lg:min-h-[500px]">
-            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop"
-                 alt="Habitación Preferencial al Frente Alta Mare"
-                 class="w-full h-full object-cover" />
-            <div class="absolute top-6 left-6 bg-earth-950/90 backdrop-blur-md text-ochre-400 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-ochre-500/30">
-              ★ Categoría Preferencial
-            </div>
-            <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-sand-100 text-xs font-medium bg-earth-950/80 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/10 hidden sm:flex">
-              <span>Vista al frente y mar de costado</span>
-              <span class="text-ochre-300 font-bold">Bañera con Hidromasaje</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between">
-            <div>
-              <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-ochre-600 block mb-2">Doble Matrimonial o Triple</span>
-              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-sand-900 mb-3 leading-tight">
-                Habitaciones Preferenciales al Frente
-              </h3>
-              <p class="text-sand-700 text-sm leading-relaxed mb-6">
-                Nuestras habitaciones destacadas con vista privilegiada al frente y al mar de costado. Equipadas con bañera de hidromasaje y aberturas con doble vidriado hermético (DVH) para un aislamiento acústico y térmico superior.
-              </p>
-
-              <div class="grid grid-cols-2 gap-2.5 mb-8 text-xs font-semibold text-sand-900">
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Sommier Queen Size
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Bañera Hidromasaje
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Smart TV 43"
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> A/C + Radiadores
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Aberturas DVH
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Cofre Seguridad
-                </div>
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-sand-200 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] uppercase tracking-wider text-sand-500 block">Tarifa Directa</span>
-                <span class="text-xs font-bold text-sand-900">Consultar Disponibilidad</span>
-              </div>
-              <a href="https://wa.me/5492262672626?text=Hola!%20Quisiera%20consultar%20tarifa%20y%20disponibilidad%20para%20la%20Habitaci%C3%B3n%20Preferencial%20al%20Frente%20con%20Hidromasaje"
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-2 bg-earth-950 hover:bg-earth-900 text-ochre-400 hover:text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow">
-                <span>Cotizar</span>
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Habitación 2: Standard -->
-      <div class="bg-sand-50 rounded-3xl overflow-hidden border border-sand-200 shadow-md card-craft">
-        <div class="grid grid-cols-1 lg:grid-cols-12">
-
-          <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between order-2 lg:order-1">
-            <div>
-              <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-ochre-600 block mb-2">Doble Matrimonial o Twin</span>
-              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-sand-900 mb-3 leading-tight">
-                Habitaciones Standard
-              </h3>
-              <p class="text-sand-700 text-sm leading-relaxed mb-6">
-                Espacios cálidos, confortables y funcionales. Ideales para viajes de descanso o trabajo, con sommier de alta calidad, climatización inteligente frío/calor, LED TV y amenities completos.
-              </p>
-
-              <div class="grid grid-cols-2 gap-2.5 mb-8 text-xs font-semibold text-sand-900">
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Sommier Matrimonial / Twin
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> LED TV
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Wi-Fi Alta Velocidad
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> A/C + Radiadores
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Cofre Seguridad
-                </div>
-                <div class="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-sand-200">
-                  <span class="text-ochre-600">✓</span> Amenities & Secador
-                </div>
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-sand-200 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] uppercase tracking-wider text-sand-500 block">Tarifa Directa</span>
-                <span class="text-xs font-bold text-sand-900">Consultar Disponibilidad</span>
-              </div>
-              <a href="https://wa.me/5492262672626?text=Hola!%20Quisiera%20consultar%20tarifa%20y%20disponibilidad%20para%20la%20Habitaci%C3%B3n%20Standard%20(Matrimonial%2FTwin)"
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-2 bg-earth-950 hover:bg-earth-900 text-ochre-400 hover:text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow">
-                <span>Cotizar</span>
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-              </a>
-            </div>
-
-          </div>
-
-          <div class="lg:col-span-7 relative img-frame h-80 sm:h-96 lg:h-auto lg:min-h-[500px] order-1 lg:order-2">
-            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop"
-                 alt="Habitación Standard Alta Mare"
-                 class="w-full h-full object-cover" />
-            <div class="absolute top-6 right-6 bg-earth-950/90 backdrop-blur-md text-sand-200 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-white/20">
-              Categoría Standard
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- 7. 03 — SERVICIOS & EXPERIENCIAS            -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section id="servicios" class="py-20 md:py-28 bg-sand-50 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <div class="flex items-center gap-4 mb-4">
-        <span class="text-xs font-bold text-ochre-600 uppercase tracking-[0.3em]">03 &mdash; Servicios & Experiencias</span>
-        <div class="flex-1 h-px bg-sand-200"></div>
-      </div>
-
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-sand-900 leading-tight">
-          Espacios pensados para cada momento
-        </h2>
-        <p class="text-sand-600 text-sm sm:text-base mt-3">
-          Instalaciones exclusivas para combinar relax, trabajo y descanso durante tu estadía en Necochea.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-        <!-- 1. Microcine (Destacado Tostado Cálido) -->
-        <div class="card-craft bg-earth-950 rounded-3xl overflow-hidden border border-ochre-500/40 shadow-xl flex flex-col text-white lg:col-span-1 md:col-span-2">
-          <div class="relative h-64 overflow-hidden bg-black img-frame">
-            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800&auto=format&fit=crop"
-                 alt="Microcine y Sala de Conferencias" class="w-full h-full object-cover" />
-            <div class="absolute top-4 left-4 bg-ochre-500 text-earth-950 text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow">
-              Capacidad 60 Pax
-            </div>
-          </div>
-          <div class="p-7 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-serif text-xl font-bold text-ochre-400 mb-2">Microcine & Auditorio</h3>
-              <p class="text-sand-200 text-xs sm:text-sm leading-relaxed mb-6">
-                Auditorio exclusivo equipado para eventos corporativos, presentaciones y conferencias con tecnología audiovisual de alta gama.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-sand-800 grid grid-cols-2 gap-2 text-xs text-sand-300 font-medium">
-              <span class="flex items-center gap-1.5"><strong class="text-ochre-400">✓</strong> Pantalla 200"</span>
-              <span class="flex items-center gap-1.5"><strong class="text-ochre-400">✓</strong> 5000 Lumens</span>
-              <span class="flex items-center gap-1.5"><strong class="text-ochre-400">✓</strong> Audio Pro</span>
-              <span class="flex items-center gap-1.5"><strong class="text-ochre-400">✓</strong> Climatizado</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Breakfast & Snack Bar -->
-        <div class="card-craft bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm flex flex-col">
-          <div class="relative h-64 overflow-hidden bg-sand-100 img-frame">
-            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=800&auto=format&fit=crop"
-                 alt="Breakfast & Snack Bar" class="w-full h-full object-cover" />
-            <div class="absolute top-4 left-4 bg-earth-950/80 backdrop-blur-md text-ochre-400 text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-ochre-500/30">
-              Gastronomía
-            </div>
-          </div>
-          <div class="p-7 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-serif text-xl font-bold text-sand-900 mb-2">Breakfast & Snack Bar</h3>
-              <p class="text-sand-700 text-xs sm:text-sm leading-relaxed mb-6">
-                Comenzá tus mañanas con nuestro desayuno completo y disfrutá de opciones de cafetería y snack bar durante el día.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-sand-100 flex items-center justify-between text-xs text-sand-600 font-semibold">
-              <span>Desayuno Buffet</span>
-              <span>&bull;</span>
-              <span>Snack Bar Diario</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. Sauna, Hidromasaje & Relax -->
-        <div class="card-craft bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm flex flex-col">
-          <div class="relative h-64 overflow-hidden bg-sand-100 img-frame">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6e?q=80&w=800&auto=format&fit=crop"
-                 alt="Sauna, Hidromasaje y Relax" class="w-full h-full object-cover" />
-            <div class="absolute top-4 left-4 bg-earth-950/80 backdrop-blur-md text-ochre-400 text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-ochre-500/30">
-              Bienestar & Spa
-            </div>
-          </div>
-          <div class="p-7 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-serif text-xl font-bold text-sand-900 mb-2">Sauna & Hidromasaje</h3>
-              <p class="text-sand-700 text-xs sm:text-sm leading-relaxed mb-6">
-                Espacio de bienestar pensado para desconectar la mente y recargar energías después de una jornada al aire libre o de trabajo.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-sand-100 flex items-center justify-between text-xs text-sand-600 font-semibold">
-              <span>Sauna Seco</span>
-              <span>&bull;</span>
-              <span>Hidromasaje Relax</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Hall & Recepción 24h -->
-        <div class="card-craft bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm flex flex-col">
-          <div class="relative h-64 overflow-hidden bg-sand-100 img-frame">
-            <img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?q=80&w=800&auto=format&fit=crop"
-                 alt="Hall y Recepción" class="w-full h-full object-cover" />
-            <div class="absolute top-4 left-4 bg-earth-950/80 backdrop-blur-md text-ochre-400 text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-ochre-500/30">
-              Atención 24h
-            </div>
-          </div>
-          <div class="p-7 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-serif text-xl font-bold text-sand-900 mb-2">Hall & Recepción</h3>
-              <p class="text-sand-700 text-xs sm:text-sm leading-relaxed mb-6">
-                Un lobby cálido, elegante y confortable. Atención personalizada, check-in ágil y asesoramiento turístico permanente sobre Necochea.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-sand-100 flex items-center justify-between text-xs text-sand-600 font-semibold">
-              <span>Lobby Climatizado</span>
-              <span>&bull;</span>
-              <span>Asesoría Permanente</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. Mini Gym -->
-        <div class="card-craft bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm flex flex-col">
-          <div class="relative h-64 overflow-hidden bg-sand-100 img-frame">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop"
-                 alt="Mini Gym Alta Mare" class="w-full h-full object-cover" />
-            <div class="absolute top-4 left-4 bg-earth-950/80 backdrop-blur-md text-ochre-400 text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-ochre-500/30">
-              Fitness
-            </div>
-          </div>
-          <div class="p-7 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-serif text-xl font-bold text-sand-900 mb-2">Mini Gym</h3>
-              <p class="text-sand-700 text-xs sm:text-sm leading-relaxed mb-6">
-                Mantené tu rutina activa durante tu viaje con equipamiento aeróbico y funcional listo para tus sesiones de entrenamiento.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-sand-100 flex items-center justify-between text-xs text-sand-600 font-semibold">
-              <span>Cardio</span>
-              <span>&bull;</span>
-              <span>Mancuernas & Funcional</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6. Conectividad & Climatización -->
-        <div class="card-craft bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-sm flex flex-col">
-          <div class="relative h-64 overflow-hidden bg-sand-100 img-frame">
-            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format&fit=crop"
-                 alt="Confort y Conectividad" class="w-full h-full object-cover" />
-            <div class="absolute top-4 left-4 bg-earth-950/80 backdrop-blur-md text-ochre-400 text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-ochre-500/30">
-              Confort Total
-            </div>
-          </div>
-          <div class="p-7 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-serif text-xl font-bold text-sand-900 mb-2">Conectividad & Clima</h3>
-              <p class="text-sand-700 text-xs sm:text-sm leading-relaxed mb-6">
-                Conexión Wi-Fi de alta velocidad en todo el complejo y sistema de climatización Frío/Calor para cada estación del año.
-              </p>
-            </div>
-            <div class="pt-4 border-t border-sand-100 flex items-center justify-between text-xs text-sand-600 font-semibold">
-              <span>Wi-Fi Full</span>
-              <span>&bull;</span>
-              <span>A/C + Calefacción</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- 8. GALERÍA VISUAL                           -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section id="galeria" class="py-20 md:py-28 bg-white relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex items-center gap-4 mb-4">
-        <span class="text-xs font-bold text-ochre-600 uppercase tracking-[0.3em]">Galería</span>
-        <div class="flex-1 h-px bg-sand-200"></div>
-      </div>
-
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-        <div>
-          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-sand-900 leading-tight">
-            Cada rincón, una postal
-          </h2>
-          <p class="text-sand-600 text-sm sm:text-base mt-2">
-            Descubrí los espacios y la atmósfera cálida que te esperan en Alta Mare.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
         
-        <div class="img-frame rounded-3xl overflow-hidden shadow-sm h-72 lg:h-80 relative group">
-          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" alt="Suites Preferenciales" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-earth-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <span class="text-white text-sm font-semibold">Suites con Hidromasaje</span>
+        <!-- Left: Image Composition -->
+        <div class="lg:col-span-6 relative">
+          <div class="media-zoom rounded-2xl shadow-lg">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop"
+                 alt="Arquitectura Alta Mare"
+                 class="w-full h-[480px] object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-parchment p-6 rounded-xl border border-stoneborder shadow-md hidden sm:block">
+            <p class="font-serif text-3xl text-espresso font-normal">30m</p>
+            <p class="text-[10px] uppercase tracking-[0.2em] text-mutedtext mt-0.5">De la playa</p>
           </div>
         </div>
 
-        <div class="img-frame rounded-3xl overflow-hidden shadow-sm h-72 lg:h-80 relative group">
-          <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800&auto=format&fit=crop" alt="Microcine Auditorio" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-earth-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <span class="text-white text-sm font-semibold">Microcine para 60 Personas</span>
-          </div>
-        </div>
+        <!-- Right: Narrative -->
+        <div class="lg:col-span-6 space-y-6">
+          <p class="text-[11px] uppercase tracking-[0.3em] text-bronze font-semibold">Hospitalidad & Confort</p>
+          
+          <h2 class="font-serif text-4xl sm:text-5xl font-normal text-espresso leading-tight">
+            Un espacio pensado para disfrutar de Necochea
+          </h2>
 
-        <div class="img-frame rounded-3xl overflow-hidden shadow-sm h-72 lg:h-80 relative group">
-          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6e?q=80&w=800&auto=format&fit=crop" alt="Spa y Sauna" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-earth-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <span class="text-white text-sm font-semibold">Circuito de Sauna & Relax</span>
-          </div>
-        </div>
+          <p class="text-mutedtext text-sm sm:text-base leading-relaxed">
+            A escasos metros del mar, <strong class="text-espresso font-medium">Alta Mare Hotel & Suites</strong> nace como un refugio de serenidad. Combinamos una ubicación privilegiada en Av. 79 Nº 217 con ambientes cálidos y cuidados, pensados para quienes viajan a descansar, trabajar o disfrutar de las mejores playas del país.
+          </p>
 
-        <div class="img-frame rounded-3xl overflow-hidden shadow-sm h-72 lg:h-80 relative group">
-          <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=800&auto=format&fit=crop" alt="Desayuno Buffet" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-earth-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <span class="text-white text-sm font-semibold">Desayuno Buffet y Snack Bar</span>
-          </div>
-        </div>
+          <p class="text-mutedtext text-sm sm:text-base leading-relaxed">
+            Nuestras instalaciones cuentan con amplias suites con hidromasaje, un microcine auditorio exclusivo para 60 personas, desayunador buffet y una atención cercana las 24 horas.
+          </p>
 
-        <div class="img-frame rounded-3xl overflow-hidden shadow-sm h-72 lg:h-80 relative group">
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop" alt="Lobby y Hall" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-earth-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <span class="text-white text-sm font-semibold">Hall de Recepción 24h</span>
-          </div>
-        </div>
-
-        <div class="img-frame rounded-3xl overflow-hidden shadow-sm h-72 lg:h-80 relative group">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="Costanera de Necochea" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-earth-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <span class="text-white text-sm font-semibold">Playas de Necochea a 30 metros</span>
+          <div class="pt-6 border-t border-stoneborder grid grid-cols-3 gap-6 text-center sm:text-left">
+            <div>
+              <p class="font-serif text-3xl font-normal text-espresso">30<span class="text-bronze text-xl">m</span></p>
+              <p class="text-[11px] text-mutedtext uppercase tracking-wider mt-1">Al mar</p>
+            </div>
+            <div>
+              <p class="font-serif text-3xl font-normal text-espresso">60<span class="text-bronze text-xl">pax</span></p>
+              <p class="text-[11px] text-mutedtext uppercase tracking-wider mt-1">Microcine</p>
+            </div>
+            <div>
+              <p class="font-serif text-3xl font-normal text-espresso">24<span class="text-bronze text-xl">h</span></p>
+              <p class="text-[11px] text-mutedtext uppercase tracking-wider mt-1">Recepción</p>
+            </div>
           </div>
         </div>
 
@@ -831,76 +307,207 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 9. 04 — UBICACIÓN (NECOCHEA)                -->
+  <!-- HABITACIONES & SUITES (EDITORIAL LAYOUT)    -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="ubicacion" class="py-20 md:py-28 bg-sand-50 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="habitaciones" class="py-24 md:py-32 bg-parchment border-y border-stoneborder px-6">
+    <div class="max-w-6xl mx-auto">
 
-      <div class="flex items-center gap-4 mb-4">
-        <span class="text-xs font-bold text-ochre-600 uppercase tracking-[0.3em]">04 &mdash; Ubicación</span>
-        <div class="flex-1 h-px bg-sand-200"></div>
+      <div class="text-center max-w-2xl mx-auto mb-20">
+        <p class="text-[11px] uppercase tracking-[0.3em] text-bronze font-semibold mb-3">Habitaciones & Suites</p>
+        <h2 class="font-serif text-4xl sm:text-5xl font-normal text-espresso leading-tight">
+          Descanso de excelencia frente al mar
+        </h2>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Suite 1: Preferencial al Frente -->
+      <div class="mb-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-linen p-8 sm:p-12 rounded-2xl border border-stoneborder">
+        
+        <div class="lg:col-span-7 media-zoom rounded-xl overflow-hidden h-80 sm:h-96">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop"
+               alt="Habitación Preferencial al Frente"
+               class="w-full h-full object-cover" />
+        </div>
 
-        <div class="lg:col-span-5">
-          <p class="text-xs font-bold text-ochre-600 uppercase tracking-[0.25em] mb-3">Necochea junto al mar</p>
-          <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-sand-900 mb-6 leading-tight">
-            Una ubicación inmejorable
-          </h2>
-          <p class="text-sand-700 text-sm sm:text-base leading-relaxed mb-8">
-            Estamos ubicados en <strong class="text-sand-900 font-semibold">Av. 79 Nº 217</strong>, a escasos <strong class="text-sand-900 font-semibold">30 metros de la playa</strong>. La distancia perfecta para salir caminando hacia el mar, contemplar los atardeceres y disfrutar de los mejores restaurantes de la ciudad.
+        <div class="lg:col-span-5 space-y-5">
+          <span class="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">Categoría Destacada</span>
+          <h3 class="font-serif text-3xl font-normal text-espresso leading-tight">
+            Preferencial al Frente con Hidromasaje
+          </h3>
+          <p class="text-mutedtext text-sm leading-relaxed">
+            Habitaciones con vista al frente y al mar de costado. Equipadas con bañera de hidromasaje privada, aberturas con doble vidriado hermético (DVH), sommier Queen Size y Smart TV de 43 pulgadas.
           </p>
 
-          <div class="space-y-4 mb-8">
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-sand-200 shadow-sm">
-              <div class="w-10 h-10 rounded-xl bg-sand-100 flex items-center justify-center text-ochre-600 shrink-0">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>
-              </div>
-              <div>
-                <h4 class="text-sm font-bold text-sand-900">A 30 metros del mar</h4>
-                <p class="text-xs text-sand-600 mt-0.5">Acceso inmediato a la costanera y las mejores playas de Necochea.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-sand-200 shadow-sm">
-              <div class="w-10 h-10 rounded-xl bg-sand-100 flex items-center justify-center text-ochre-600 shrink-0">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" x2="6" y1="1" y2="4"></line><line x1="10" x2="10" y1="1" y2="4"></line></svg>
-              </div>
-              <div>
-                <h4 class="text-sm font-bold text-sand-900">Polo Gastronómico</h4>
-                <p class="text-xs text-sand-600 mt-0.5">Cafeterías, restaurantes y paseos comerciales a pasos caminando.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-sand-200 shadow-sm">
-              <div class="w-10 h-10 rounded-xl bg-sand-100 flex items-center justify-center text-ochre-600 shrink-0">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 22h20L12 2Z"></path></svg>
-              </div>
-              <div>
-                <h4 class="text-sm font-bold text-sand-900">Parque Miguel Lillo</h4>
-                <p class="text-xs text-sand-600 mt-0.5">El pulmón verde costero para caminatas y paseos en bicicleta.</p>
-              </div>
-            </div>
+          <div class="py-4 border-y border-stoneborder grid grid-cols-2 gap-2 text-xs text-espresso font-medium">
+            <span>&bull; Sommier Queen Size</span>
+            <span>&bull; Bañera Hidromasaje</span>
+            <span>&bull; Smart TV 43&quot;</span>
+            <span>&bull; A/C + Radiadores</span>
+            <span>&bull; Aberturas DVH</span>
+            <span>&bull; Cofre de Seguridad</span>
           </div>
 
-          <a href="https://maps.google.com/?q=Alta+Mare+Hotel+%26+Suites+Necochea"
+          <a href="https://wa.me/5492262672626?text=Hola!%20Quisiera%20consultar%20tarifa%20para%20la%20Habitaci%C3%B3n%20Preferencial%20al%20Frente%20con%20Hidromasaje"
              target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-2.5 bg-earth-950 hover:bg-earth-900 text-ochre-400 hover:text-white px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.16em] transition-all shadow-md">
-            <span>Abrir en Google Maps</span>
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg>
+             class="inline-block bg-espresso hover:bg-espresso-deep text-sandstone hover:text-white px-7 py-3 rounded-full text-xs uppercase tracking-[0.2em] transition-colors">
+            Cotizar Suite
           </a>
         </div>
 
-        <div class="lg:col-span-7">
-          <div class="rounded-3xl overflow-hidden shadow-xl border border-sand-200 h-[440px] lg:h-[500px]">
-            <iframe
-              src="https://maps.google.com/maps?q=Alta+Mare+Hotel+%26+Suites,+Av+79+217,+Necochea&t=&z=16&ie=UTF8&iwloc=&output=embed"
-              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Ubicación Alta Mare Hotel & Suites en Necochea"
-              class="w-full h-full">
-            </iframe>
+      </div>
+
+      <!-- Suite 2: Standard -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-linen p-8 sm:p-12 rounded-2xl border border-stoneborder">
+        
+        <div class="lg:col-span-5 space-y-5 order-2 lg:order-1">
+          <span class="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">Categoría Standard</span>
+          <h3 class="font-serif text-3xl font-normal text-espresso leading-tight">
+            Habitaciones Standard Matrimonial / Twin
+          </h3>
+          <p class="text-mutedtext text-sm leading-relaxed">
+            Espacios cálidos y funcionales para estadías de descanso o trabajo. Cuentan con sommier matrimonial o individual, climatización Frío/Calor, LED TV con cable, Wi-Fi y amenities completos.
+          </p>
+
+          <div class="py-4 border-y border-stoneborder grid grid-cols-2 gap-2 text-xs text-espresso font-medium">
+            <span>&bull; Sommier Matrimonial / Twin</span>
+            <span>&bull; LED TV con Cable</span>
+            <span>&bull; Wi-Fi Alta Velocidad</span>
+            <span>&bull; A/C + Radiadores</span>
+            <span>&bull; Amenities & Secador</span>
+            <span>&bull; Cofre de Seguridad</span>
+          </div>
+
+          <a href="https://wa.me/5492262672626?text=Hola!%20Quisiera%20consultar%20tarifa%20para%20la%20Habitaci%C3%B3n%20Standard"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-block bg-espresso hover:bg-espresso-deep text-sandstone hover:text-white px-7 py-3 rounded-full text-xs uppercase tracking-[0.2em] transition-colors">
+            Cotizar Standard
+          </a>
+        </div>
+
+        <div class="lg:col-span-7 media-zoom rounded-xl overflow-hidden h-80 sm:h-96 order-1 lg:order-2">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop"
+               alt="Habitación Standard Alta Mare"
+               class="w-full h-full object-cover" />
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- ESPACIOS & EXPERIENCIAS                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="espacios" class="py-24 md:py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center max-w-2xl mx-auto mb-20">
+        <p class="text-[11px] uppercase tracking-[0.3em] text-bronze font-semibold mb-3">Instalaciones</p>
+        <h2 class="font-serif text-4xl sm:text-5xl font-normal text-espresso leading-tight">
+          Espacios pensados para cada momento
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Microcine -->
+        <div class="bg-espresso text-white p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="media-zoom rounded-lg h-48 mb-6">
+              <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800&auto=format&fit=crop" alt="Microcine" class="w-full h-full object-cover" />
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-bronze-light font-semibold">Capacidad 60 Personas</span>
+            <h3 class="font-serif text-2xl font-normal text-white mt-1">Microcine & Auditorio</h3>
+            <p class="text-sandstone/80 text-xs leading-relaxed mt-2">
+              Auditorio exclusivo con pantalla de 200", proyector de 5000 lumens y audio profesional para conferencias y eventos.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 text-xs text-sandstone/70">
+            Eventos Corporativos & Proyecciones
+          </div>
+        </div>
+
+        <!-- Desayunador -->
+        <div class="bg-parchment p-8 rounded-2xl border border-stoneborder space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="media-zoom rounded-lg h-48 mb-6">
+              <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=800&auto=format&fit=crop" alt="Breakfast & Snack Bar" class="w-full h-full object-cover" />
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">Gastronomía</span>
+            <h3 class="font-serif text-2xl font-normal text-espresso mt-1">Breakfast & Snack Bar</h3>
+            <p class="text-mutedtext text-xs leading-relaxed mt-2">
+              Desayuno buffet completo todas las mañanas y opciones de cafetería y snack bar durante la tarde.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stoneborder text-xs text-mutedtext">
+            Desayuno Buffet Diario
+          </div>
+        </div>
+
+        <!-- Sauna & Relax -->
+        <div class="bg-parchment p-8 rounded-2xl border border-stoneborder space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="media-zoom rounded-lg h-48 mb-6">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6e?q=80&w=800&auto=format&fit=crop" alt="Sauna y Relax" class="w-full h-full object-cover" />
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">Bienestar</span>
+            <h3 class="font-serif text-2xl font-normal text-espresso mt-1">Sauna & Hidromasaje</h3>
+            <p class="text-mutedtext text-xs leading-relaxed mt-2">
+              Espacio de relax con sauna seco e hidromasaje para renovar energías después de la playa o el trabajo.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stoneborder text-xs text-mutedtext">
+            Circuito de Descanso
+          </div>
+        </div>
+
+        <!-- Recepción -->
+        <div class="bg-parchment p-8 rounded-2xl border border-stoneborder space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="media-zoom rounded-lg h-48 mb-6">
+              <img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?q=80&w=800&auto=format&fit=crop" alt="Hall y Recepción" class="w-full h-full object-cover" />
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">Atención Permanente</span>
+            <h3 class="font-serif text-2xl font-normal text-espresso mt-1">Hall & Recepción 24h</h3>
+            <p class="text-mutedtext text-xs leading-relaxed mt-2">
+              Living cálido y confortable con atención de recepción las 24 horas y asesoramiento turístico sobre la ciudad.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stoneborder text-xs text-mutedtext">
+            Concierge & Living
+          </div>
+        </div>
+
+        <!-- Mini Gym -->
+        <div class="bg-parchment p-8 rounded-2xl border border-stoneborder space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="media-zoom rounded-lg h-48 mb-6">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Mini Gym" class="w-full h-full object-cover" />
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">Actividad</span>
+            <h3 class="font-serif text-2xl font-normal text-espresso mt-1">Mini Gym</h3>
+            <p class="text-mutedtext text-xs leading-relaxed mt-2">
+              Equipamiento aeróbico y funcional para mantener tu rutina activa durante tu estadía en Necochea.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stoneborder text-xs text-mutedtext">
+            Cardio & Funcional
+          </div>
+        </div>
+
+        <!-- Climatización y Wi-Fi -->
+        <div class="bg-parchment p-8 rounded-2xl border border-stoneborder space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="media-zoom rounded-lg h-48 mb-6">
+              <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format&fit=crop" alt="Confort Total" class="w-full h-full object-cover" />
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">Conectividad</span>
+            <h3 class="font-serif text-2xl font-normal text-espresso mt-1">Wi-Fi & Climatización</h3>
+            <p class="text-mutedtext text-xs leading-relaxed mt-2">
+              Conexión Wi-Fi de alta velocidad en todo el hotel y sistema de calefacción y aire acondicionado Frío/Calor.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stoneborder text-xs text-mutedtext">
+            Confort 365 Días
           </div>
         </div>
 
@@ -910,65 +517,99 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 10. PREGUNTAS FRECUENTES (FAQ)              -->
+  <!-- UBICACIÓN & NECOCHEA                        -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="py-20 bg-white relative">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+  <section id="ubicacion" class="py-24 md:py-32 bg-parchment border-y border-stoneborder px-6">
+    <div class="max-w-6xl mx-auto">
       
-      <div class="text-center mb-12">
-        <span class="text-xs font-bold text-ochre-600 uppercase tracking-[0.3em]">Información Útil</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-sand-900 mt-2">
-          Preguntas Frecuentes
-        </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <p class="text-[11px] uppercase tracking-[0.3em] text-bronze font-semibold">Ubicación Privilegiada</p>
+          <h2 class="font-serif text-4xl font-normal text-espresso leading-tight">
+            A 30 metros de la costa
+          </h2>
+          <p class="text-mutedtext text-sm sm:text-base leading-relaxed">
+            Estamos situados en <strong class="text-espresso font-medium">Av. 79 Nº 217</strong>, a escasos pasos de la arena. La distancia ideal para disfrutar del mar, caminar por la costanera y estar a minutos del Parque Miguel Lillo y los mejores restaurantes de Necochea.
+          </p>
+
+          <div class="space-y-3 pt-4 border-t border-stoneborder text-xs text-espresso">
+            <p><strong>&bull; Mar y Costanera:</strong> A 30 metros caminando</p>
+            <p><strong>&bull; Polo Gastronómico:</strong> Cafeterías y marisquerías a metros</p>
+            <p><strong>&bull; Parque Miguel Lillo:</strong> A 5 minutos en vehículo</p>
+          </div>
+
+          <a href="https://maps.google.com/?q=Alta+Mare+Hotel+%26+Suites+Necochea" target="_blank" rel="noopener noreferrer"
+             class="inline-block bg-espresso hover:bg-espresso-deep text-sandstone hover:text-white px-7 py-3 rounded-full text-xs uppercase tracking-[0.2em] transition-colors">
+            Ver en Google Maps &rarr;
+          </a>
+        </div>
+
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden shadow-md border border-stoneborder h-[420px]">
+          <iframe
+            src="https://maps.google.com/maps?q=Alta+Mare+Hotel+%26+Suites,+Av+79+217,+Necochea&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Alta Mare Hotel & Suites"
+            class="w-full h-full">
+          </iframe>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PREGUNTAS FRECUENTES                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-6">
+    <div class="max-w-3xl mx-auto">
+      
+      <div class="text-center mb-16">
+        <p class="text-[11px] uppercase tracking-[0.3em] text-bronze font-semibold mb-2">Información</p>
+        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-espresso">Preguntas Frecuentes</h2>
       </div>
 
       <div class="space-y-4">
         
-        <div class="border border-sand-200 rounded-2xl p-5 bg-sand-50 cursor-pointer faq-block">
-          <div class="flex items-center justify-between font-serif text-lg font-semibold text-sand-900">
-            <span>¿A qué distancia exacta está el hotel de la playa?</span>
-            <span class="faq-toggle text-ochre-600 text-xl font-bold">+</span>
+        <div class="border-b border-stoneborder pb-4 cursor-pointer faq-item">
+          <div class="flex justify-between items-center py-2">
+            <h3 class="font-serif text-lg text-espresso font-normal">¿A qué distancia exacta está el hotel del mar?</h3>
+            <span class="faq-icon text-bronze text-xl font-light">+</span>
           </div>
-          <div class="faq-body text-sand-700 text-sm leading-relaxed mt-0">
-            <p class="pt-3">
-              Estamos ubicados en Av. 79 Nº 217, a exactamente 30 metros de la costanera y la playa. Solo tenés que cruzar la avenida para acceder a la arena.
-            </p>
+          <div class="faq-panel text-mutedtext text-sm leading-relaxed">
+            <p class="pt-2">Estamos ubicados en Av. 79 Nº 217, a exactamente 30 metros de la costanera. Solo tenés que cruzar la avenida para acceder a la playa.</p>
           </div>
         </div>
 
-        <div class="border border-sand-200 rounded-2xl p-5 bg-sand-50 cursor-pointer faq-block">
-          <div class="flex items-center justify-between font-serif text-lg font-semibold text-sand-900">
-            <span>¿Qué incluye el desayuno y los servicios?</span>
-            <span class="faq-toggle text-ochre-600 text-xl font-bold">+</span>
+        <div class="border-b border-stoneborder pb-4 cursor-pointer faq-item">
+          <div class="flex justify-between items-center py-2">
+            <h3 class="font-serif text-lg text-espresso font-normal">¿Cuáles son los horarios de Check-in y Check-out?</h3>
+            <span class="faq-icon text-bronze text-xl font-light">+</span>
           </div>
-          <div class="faq-body text-sand-700 text-sm leading-relaxed mt-0">
-            <p class="pt-3">
-              Todas las estadías incluyen nuestro desayuno completo buffet, acceso a las áreas de living, Wi-Fi de alta velocidad en todo el complejo y atención personalizada de recepción 24h.
-            </p>
+          <div class="faq-panel text-mutedtext text-sm leading-relaxed">
+            <p class="pt-2">El ingreso (Check-in) es a partir de las 14:00 hs y el egreso (Check-out) hasta las 10:00 hs. Recepción funciona las 24 horas.</p>
           </div>
         </div>
 
-        <div class="border border-sand-200 rounded-2xl p-5 bg-sand-50 cursor-pointer faq-block">
-          <div class="flex items-center justify-between font-serif text-lg font-semibold text-sand-900">
-            <span>¿Cómo se puede reservar el microcine para conferencias o eventos?</span>
-            <span class="faq-toggle text-ochre-600 text-xl font-bold">+</span>
+        <div class="border-b border-stoneborder pb-4 cursor-pointer faq-item">
+          <div class="flex justify-between items-center py-2">
+            <h3 class="font-serif text-lg text-espresso font-normal">¿Qué servicios incluye la estadía?</h3>
+            <span class="faq-icon text-bronze text-xl font-light">+</span>
           </div>
-          <div class="faq-body text-sand-700 text-sm leading-relaxed mt-0">
-            <p class="pt-3">
-              El Microcine & Sala de Conferencias cuenta con capacidad para 60 personas y equipamiento audiovisual pro (pantalla 200", proyector 5000 lumens). Para coordinar eventos corporativos o privados, podés contactarnos directamente por WhatsApp o correo electrónico.
-            </p>
+          <div class="faq-panel text-mutedtext text-sm leading-relaxed">
+            <p class="pt-2">Todas las estadías incluyen desayuno buffet completo, acceso al Wi-Fi de alta velocidad en todo el complejo y atención personalizada 24h.</p>
           </div>
         </div>
 
-        <div class="border border-sand-200 rounded-2xl p-5 bg-sand-50 cursor-pointer faq-block">
-          <div class="flex items-center justify-between font-serif text-lg font-semibold text-sand-900">
-            <span>¿Cuáles son los horarios de Check-in y Check-out?</span>
-            <span class="faq-toggle text-ochre-600 text-xl font-bold">+</span>
+        <div class="border-b border-stoneborder pb-4 cursor-pointer faq-item">
+          <div class="flex justify-between items-center py-2">
+            <h3 class="font-serif text-lg text-espresso font-normal">¿Se puede reservar el microcine para eventos privados?</h3>
+            <span class="faq-icon text-bronze text-xl font-light">+</span>
           </div>
-          <div class="faq-body text-sand-700 text-sm leading-relaxed mt-0">
-            <p class="pt-3">
-              El horario estándar de ingreso (Check-in) es a partir de las 14:00 hs y el egreso (Check-out) hasta las 10:00 hs. Recepción funciona las 24 horas para recibirte con total flexibilidad.
-            </p>
+          <div class="faq-panel text-mutedtext text-sm leading-relaxed">
+            <p class="pt-2">Sí, el auditorio para 60 personas está disponible para conferencias, capacitaciones o eventos corporativos coordinando previamente con recepción.</p>
           </div>
         </div>
 
@@ -978,374 +619,244 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 11. 05 — CONTACTO & RESERVAS (BESPOKE LUXURY)-->
+  <!-- CONTACTO & CONCIERGE (BESPOKE EDITORIAL)    -->
   <!-- ═══════════════════════════════════════════ -->
-  <section id="contacto" class="py-24 md:py-32 bg-earth-950 text-white relative overflow-hidden">
-    <!-- Subtle Ambient Warm Glow -->
-    <div class="absolute -top-40 -right-40 w-96 h-96 bg-ochre-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-sand-700/10 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-      <!-- Section Tag -->
-      <div class="flex items-center gap-4 mb-14">
-        <span class="text-xs font-bold text-ochre-400 uppercase tracking-[0.3em]">05 &mdash; Contacto & Reservas</span>
-        <div class="flex-1 h-px bg-sand-800/80"></div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-
-        <!-- Columna Izquierda: Información Editorial y Concierge -->
-        <div class="lg:col-span-6 space-y-10">
-          
-          <div>
-            <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-ochre-400 block mb-3">Atención & Hospitalidad</span>
-            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-sand-50 leading-tight mb-5">
-              Planificá tu estadía <br />
-              <span class="italic font-display text-ochre-300 font-normal">frente al mar</span>
-            </h2>
-            <p class="text-sand-300 text-sm sm:text-base leading-relaxed max-w-lg">
-              Nuestro equipo de recepción está a tu entera disposición las 24 horas para coordinar tu viaje, asesorarte sobre nuestras suites y brindarte la mejor tarifa directa.
-            </p>
-          </div>
-
-          <!-- Canales Editoriales Integrados -->
-          <div class="space-y-6 pt-4 border-t border-sand-800/80">
-            
-            <!-- WhatsApp Concierge -->
-            <a href="https://wa.me/5492262672626?text=Hola!%20Quiero%20consultar%20disponibilidad%20en%20Alta%20Mare%20Hotel"
-               target="_blank" rel="noopener noreferrer"
-               class="group flex items-start gap-4 p-4 rounded-2xl bg-earth-900/60 hover:bg-earth-900 border border-sand-800/80 hover:border-ochre-500/50 transition-all duration-300">
-              <div class="w-12 h-12 rounded-xl bg-earth-950 flex items-center justify-center text-ochre-400 shrink-0 border border-sand-700/60 group-hover:scale-105 transition-transform">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.106 1.513 5.837L.055 23.513a.5.5 0 0 0 .612.612l5.676-1.458A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.585l-.386-.232-3.368.865.882-3.282-.254-.404A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2">
-                  <h4 class="text-sm font-bold text-sand-100 font-serif">WhatsApp Oficial Recepción</h4>
-                  <span class="inline-flex items-center gap-1 text-[10px] text-ochre-400 bg-earth-950 px-2.5 py-0.5 rounded-full border border-ochre-500/30">
-                    <span class="w-1.5 h-1.5 rounded-full bg-ochre-400 animate-pulse"></span>
-                    En línea
-                  </span>
-                </div>
-                <p class="text-xs text-sand-400 mt-1">Respuesta inmediata & asesoramiento</p>
-                <span class="text-sm font-bold text-ochre-400 font-mono mt-1 block">+54 9 2262 67-2626</span>
-              </div>
-              <svg class="w-4 h-4 text-sand-500 group-hover:text-ochre-400 group-hover:translate-x-1 transition-all mt-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-            </a>
-
-            <!-- Ubicación -->
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-earth-900/40 border border-sand-800/60">
-              <div class="w-12 h-12 rounded-xl bg-earth-950 flex items-center justify-center text-ochre-400 shrink-0 border border-sand-700/60">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              </div>
-              <div>
-                <h4 class="text-sm font-bold text-sand-100 font-serif">Ubicación</h4>
-                <p class="text-xs text-sand-300 mt-1">Av. 79 Nº 217 (a 30m del mar), Necochea, Buenos Aires</p>
-                <a href="https://maps.google.com/?q=Alta+Mare+Hotel+%26+Suites+Necochea" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-ochre-400 hover:underline mt-1 inline-block">Ver mapa en Google Maps &rarr;</a>
-              </div>
-            </div>
-
-            <!-- Email & Instagram en 2 Columnas -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a href="mailto:altamarenecochea@gmail.com" class="p-4 rounded-2xl bg-earth-900/40 hover:bg-earth-900/70 border border-sand-800/60 hover:border-ochre-500/40 transition-all flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-lg bg-earth-950 flex items-center justify-center text-ochre-400 shrink-0 border border-sand-700/60">
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-                </div>
-                <div class="min-w-0">
-                  <span class="text-[10px] text-sand-400 block">Correo Electrónico</span>
-                  <span class="text-xs font-medium text-sand-200 group-hover:text-ochre-300 truncate block">altamarenecochea@gmail.com</span>
-                </div>
-              </a>
-
-              <a href="https://www.instagram.com/altamare.hotel" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-earth-900/40 hover:bg-earth-900/70 border border-sand-800/60 hover:border-ochre-500/40 transition-all flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-lg bg-earth-950 flex items-center justify-center text-ochre-400 shrink-0 border border-sand-700/60">
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-                </div>
-                <div class="min-w-0">
-                  <span class="text-[10px] text-sand-400 block">Instagram Oficial</span>
-                  <span class="text-xs font-medium text-sand-200 group-hover:text-ochre-300 block">@altamare.hotel</span>
-                </div>
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- Columna Derecha: Formulario Concierge de Lujo -->
-        <div class="lg:col-span-6">
-          <div class="bg-earth-900/90 rounded-3xl p-8 sm:p-10 border border-sand-700/80 shadow-2xl relative">
-            
-            <div class="mb-8">
-              <span class="text-[10px] font-bold text-ochre-400 uppercase tracking-[0.25em]">Solicitud de Reserva</span>
-              <h3 class="font-serif text-2xl font-bold text-sand-50 mt-1">Consultar Tarifa Directa</h3>
-              <p class="text-sand-300 text-xs mt-1.5">Completá tus datos para recibir respuesta inmediata de recepción.</p>
-            </div>
-
-            <form id="contact-main-form" onsubmit="event.preventDefault(); submitContactForm();" class="space-y-4">
-              
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label for="c-name" class="block text-[11px] font-bold text-sand-300 uppercase tracking-wider mb-2">Nombre y Apellido</label>
-                  <input type="text" id="c-name" required placeholder="Ej: Agustín Pollán" class="w-full bg-earth-950/80 border border-sand-700/80 rounded-xl px-4 py-3 text-sm text-sand-100 placeholder-sand-500 focus:outline-none focus:ring-2 focus:ring-ochre-500 transition-all" />
-                </div>
-                <div>
-                  <label for="c-phone" class="block text-[11px] font-bold text-sand-300 uppercase tracking-wider mb-2">Teléfono / WhatsApp</label>
-                  <input type="tel" id="c-phone" required placeholder="Ej: +54 9 2262..." class="w-full bg-earth-950/80 border border-sand-700/80 rounded-xl px-4 py-3 text-sm text-sand-100 placeholder-sand-500 focus:outline-none focus:ring-2 focus:ring-ochre-500 transition-all" />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label for="c-dates" class="block text-[11px] font-bold text-sand-300 uppercase tracking-wider mb-2">Fechas Estimadas</label>
-                  <input type="text" id="c-dates" placeholder="Ej: 15 al 20 de Enero" class="w-full bg-earth-950/80 border border-sand-700/80 rounded-xl px-4 py-3 text-sm text-sand-100 placeholder-sand-500 focus:outline-none focus:ring-2 focus:ring-ochre-500 transition-all" />
-                </div>
-                <div>
-                  <label for="c-room" class="block text-[11px] font-bold text-sand-300 uppercase tracking-wider mb-2">Categoría / Espacio</label>
-                  <select id="c-room" class="w-full bg-earth-950/80 border border-sand-700/80 rounded-xl px-4 py-3 text-sm text-sand-100 focus:outline-none focus:ring-2 focus:ring-ochre-500 transition-all">
-                    <option value="Habitación Preferencial al Frente (Hidromasaje)">Preferencial Frente (Hidro)</option>
-                    <option value="Habitación Standard">Habitación Standard</option>
-                    <option value="Microcine & Conferencias">Microcine / Eventos (60 pax)</option>
-                    <option value="Consulta General">Consulta General</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label for="c-msg" class="block text-[11px] font-bold text-sand-300 uppercase tracking-wider mb-2">Mensaje o Consulta Especial</label>
-                <textarea id="c-msg" rows="3" placeholder="Contanos cuántas personas viajan o si tenés alguna preferencia..." class="w-full bg-earth-950/80 border border-sand-700/80 rounded-xl px-4 py-3 text-sm text-sand-100 placeholder-sand-500 focus:outline-none focus:ring-2 focus:ring-ochre-500 transition-all"></textarea>
-              </div>
-
-              <button type="submit" class="w-full bg-ochre-500 hover:bg-ochre-600 text-earth-950 font-bold py-4 px-6 rounded-xl text-xs uppercase tracking-[0.18em] transition-all shadow-md hover:scale-[1.01] flex items-center justify-center gap-2">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.106 1.513 5.837L.055 23.513a.5.5 0 0 0 .612.612l5.676-1.458A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.585l-.386-.232-3.368.865.882-3.282-.254-.404A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-                <span>Consultar por WhatsApp a Recepción</span>
-              </button>
-
-              <p class="text-center text-[11px] text-sand-400 mt-2">
-                Trato directo &bull; Sin cargos adicionales por reserva
-              </p>
-            </form>
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- 12. FOOTER                                  -->
-  <!-- ═══════════════════════════════════════════ -->
-  <footer class="bg-earth-950 text-sand-400 relative overflow-hidden border-t border-sand-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
-
-        <!-- Columna Marca -->
-        <div class="md:col-span-5">
-          <img src="./assets/images/logo.png" alt="Alta Mare Hotel & Suites" class="h-14 w-auto brightness-0 invert opacity-95 mb-4" />
-          <p class="text-sand-300/80 text-xs sm:text-sm leading-relaxed max-w-sm mb-6">
-            A pocos metros del mar, Alta Mare Hotel & Suites nace como un espacio pensado para disfrutar de Necochea con calma, comodidad y hospitalidad.
-          </p>
-          <div class="flex items-center gap-3">
-            <a href="https://www.instagram.com/altamare.hotel" target="_blank" rel="noopener noreferrer"
-               class="w-10 h-10 rounded-2xl bg-earth-900 hover:bg-earth-800 flex items-center justify-center text-sand-200 hover:text-white transition-all border border-sand-800">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-            </a>
-            <a href="https://wa.me/5492262672626" target="_blank" rel="noopener noreferrer"
-               class="w-10 h-10 rounded-2xl bg-earth-900 hover:bg-earth-800 flex items-center justify-center text-sand-200 hover:text-white transition-all border border-sand-800">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.106 1.513 5.837L.055 23.513a.5.5 0 0 0 .612.612l5.676-1.458A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.585l-.386-.232-3.368.865.882-3.282-.254-.404A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-            </a>
-            <a href="mailto:altamarenecochea@gmail.com"
-               class="w-10 h-10 rounded-2xl bg-earth-900 hover:bg-earth-800 flex items-center justify-center text-sand-200 hover:text-white transition-all border border-sand-800">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Columna Navegación -->
-        <div class="md:col-span-3">
-          <h4 class="text-sand-100 font-bold text-xs uppercase tracking-[0.2em] mb-4">Navegación</h4>
-          <ul class="space-y-2.5 text-xs font-medium">
-            <li><a href="#inicio" class="text-sand-400 hover:text-ochre-400 transition-colors">&bull; Inicio</a></li>
-            <li><a href="#hotel" class="text-sand-400 hover:text-ochre-400 transition-colors">&bull; El Hotel</a></li>
-            <li><a href="#habitaciones" class="text-sand-400 hover:text-ochre-400 transition-colors">&bull; Habitaciones & Suites</a></li>
-            <li><a href="#servicios" class="text-sand-400 hover:text-ochre-400 transition-colors">&bull; Servicios & Microcine</a></li>
-            <li><a href="#galeria" class="text-sand-400 hover:text-ochre-400 transition-colors">&bull; Galería</a></li>
-            <li><a href="#ubicacion" class="text-sand-400 hover:text-ochre-400 transition-colors">&bull; Ubicación</a></li>
-            <li><a href="#contacto" class="text-sand-400 hover:text-ochre-400 transition-colors">&bull; Contacto</a></li>
-          </ul>
-        </div>
-
-        <!-- Columna Información -->
-        <div class="md:col-span-4">
-          <h4 class="text-sand-100 font-bold text-xs uppercase tracking-[0.2em] mb-4">Información del Hotel</h4>
-          <ul class="space-y-3 text-xs">
-            <li class="flex items-start gap-3">
-              <svg class="w-4 h-4 text-ochre-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <span class="text-sand-300">Av. 79 Nº 217 (a 30m del mar), Necochea, Buenos Aires</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-4 h-4 text-ochre-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              <span class="text-sand-300 font-mono">+54 9 2262 67-2626</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-4 h-4 text-ochre-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-              <span class="text-sand-300 break-all">altamarenecochea@gmail.com</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Firma del Desarrollador -->
-      <div class="pt-8 border-t border-sand-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-sand-500">
-        <p>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina. Todos los derechos reservados.</p>
+  <section id="contacto" class="py-24 md:py-32 bg-espresso text-white px-6">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
         
-        <div class="flex items-center gap-2 bg-earth-900/60 px-4 py-2 rounded-full border border-sand-800">
-          <span>Desarrollado por</span>
-          <a href="https://agustinpollan.vercel.app/" target="_blank" rel="noopener noreferrer" class="font-bold text-ochre-400 hover:text-white transition-colors underline-offset-4 hover:underline">
-            Agustín Pollán
-          </a>
+        <!-- Left: Concierge channels -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.3em] text-bronze-light font-semibold mb-3">Atención & Reservas</p>
+            <h2 class="font-serif text-4xl sm:text-5xl font-normal text-white leading-tight">
+              Estamos a tu disposición
+            </h2>
+            <p class="text-sandstone/80 text-sm leading-relaxed mt-4">
+              Comunícate directamente con recepción para coordinar fechas, solicitar presupuestos grupales o consultar tarifas vigentes.
+            </p>
+          </div>
+
+          <div class="space-y-5 pt-6 border-t border-white/10 text-sm">
+            <div>
+              <span class="text-[10px] uppercase tracking-[0.2em] text-bronze-light block mb-1">WhatsApp & Teléfono</span>
+              <a href="https://wa.me/5492262672626" target="_blank" class="text-lg font-medium text-white hover:text-bronze-light transition-colors font-mono">
+                +54 9 2262 67-2626
+              </a>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase tracking-[0.2em] text-bronze-light block mb-1">Dirección</span>
+              <p class="text-sandstone/90">Av. 79 Nº 217 (a 30m del mar), Necochea, Buenos Aires</p>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase tracking-[0.2em] text-bronze-light block mb-1">Correo Electrónico</span>
+              <a href="mailto:altamarenecochea@gmail.com" class="text-sandstone hover:text-white transition-colors">
+                altamarenecochea@gmail.com
+              </a>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase tracking-[0.2em] text-bronze-light block mb-1">Instagram</span>
+              <a href="https://www.instagram.com/altamare.hotel" target="_blank" rel="noopener noreferrer" class="text-sandstone hover:text-white transition-colors">
+                @altamare.hotel
+              </a>
+            </div>
+          </div>
         </div>
+
+        <!-- Right: Inquiry Form -->
+        <div class="lg:col-span-7 bg-espresso-deep p-8 sm:p-12 rounded-2xl border border-white/10">
+          <h3 class="font-serif text-2xl font-normal text-white mb-2">Enviar Consulta Directa</h3>
+          <p class="text-sandstone/70 text-xs mb-8">Te responderemos con la cotización exacta a la brevedad.</p>
+
+          <form id="contact-form" onsubmit="event.preventDefault(); handleContactSubmit();" class="space-y-4">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="f-name" class="block text-[10px] uppercase tracking-[0.2em] text-sandstone/70 mb-2">Nombre</label>
+                <input type="text" id="f-name" required placeholder="Tu nombre" class="w-full bg-espresso border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-bronze transition-colors" />
+              </div>
+              <div>
+                <label for="f-phone" class="block text-[10px] uppercase tracking-[0.2em] text-sandstone/70 mb-2">Teléfono / WhatsApp</label>
+                <input type="tel" id="f-phone" required placeholder="+54 9..." class="w-full bg-espresso border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-bronze transition-colors" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="f-dates" class="block text-[10px] uppercase tracking-[0.2em] text-sandstone/70 mb-2">Fechas Estimadas</label>
+                <input type="text" id="f-dates" placeholder="Ej: 10 al 15 de Febrero" class="w-full bg-espresso border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-bronze transition-colors" />
+              </div>
+              <div>
+                <label for="f-room" class="block text-[10px] uppercase tracking-[0.2em] text-sandstone/70 mb-2">Categoría</label>
+                <select id="f-room" class="w-full bg-espresso border border-white/15 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-bronze transition-colors">
+                  <option value="Habitación Preferencial al Frente con Hidromasaje">Preferencial Frente (Hidro)</option>
+                  <option value="Habitación Standard">Habitación Standard</option>
+                  <option value="Microcine para Eventos (60 pax)">Microcine / Auditorio</option>
+                  <option value="Consulta General">Consulta General</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="f-msg" class="block text-[10px] uppercase tracking-[0.2em] text-sandstone/70 mb-2">Mensaje</label>
+              <textarea id="f-msg" rows="3" placeholder="Consultas sobre disponibilidad, cantidad de personas, etc." class="w-full bg-espresso border border-white/15 rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-bronze transition-colors"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-bronze hover:bg-bronze-dark text-white font-medium py-3.5 px-6 rounded-lg text-xs uppercase tracking-[0.2em] transition-colors">
+              Consultar por WhatsApp
+            </button>
+          </form>
+        </div>
+
       </div>
 
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer class="bg-espresso-darker text-sandstone/60 py-12 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 text-xs">
+      <div class="flex items-center gap-4">
+        <img src="./assets/images/logo.png" alt="Alta Mare" class="h-10 w-auto brightness-0 invert opacity-80" />
+        <span>&copy; 2026 Alta Mare Hotel & Suites &bull; Necochea, Argentina.</span>
+      </div>
+
+      <div>
+        <span>Desarrollado por</span>
+        <a href="https://agustinpollan.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-sandstone hover:text-white font-medium ml-1 underline-offset-4 hover:underline">
+          Agustín Pollán
+        </a>
+      </div>
     </div>
   </footer>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 13. BOTÓN FLOTANTE WHATSAPP                 -->
-  <!-- ═══════════════════════════════════════════ -->
-  <aside class="fixed bottom-6 right-6 z-50 group">
-    <div class="hidden sm:block absolute bottom-full right-0 mb-3 bg-earth-950 text-white text-xs py-2 px-4 rounded-xl shadow-xl border border-sand-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-      ¡Consultá tarifas por WhatsApp!
-    </div>
-    <a href="https://wa.me/5492262672626?text=Hola!%20Quisiera%20hacer%20una%20consulta%20en%20Alta%20Mare%20Hotel"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Abrir WhatsApp"
-       class="relative flex items-center justify-center w-14 h-14 bg-earth-950 hover:bg-earth-900 text-ochre-400 rounded-full shadow-2xl border border-ochre-500/40 hover:scale-110 transition-all duration-300">
-      <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ochre-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-ochre-400 border-2 border-earth-950"></span>
-      </span>
-      <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.106 1.513 5.837L.055 23.513a.5.5 0 0 0 .612.612l5.676-1.458A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.585l-.386-.232-3.368.865.882-3.282-.254-.404A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-    </a>
-  </aside>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SCRIPTS JS                                  -->
+  <!-- JAVASCRIPT INTERACTIONS                     -->
   <!-- ═══════════════════════════════════════════ -->
   <script>
-    // Fecha mínima = hoy
+    // 1. Min dates
     const today = new Date().toISOString().split('T')[0];
-    const bookIn = document.getElementById('book-in');
-    const bookOut = document.getElementById('book-out');
-    if (bookIn) bookIn.min = today;
-    if (bookOut) bookOut.min = today;
+    const checkin = document.getElementById('qin-checkin');
+    const checkout = document.getElementById('qin-checkout');
+    if (checkin) checkin.min = today;
+    if (checkout) checkout.min = today;
 
-    // Navbar Scroll Transition
-    const header = document.getElementById('site-header');
+    // 2. Navbar scroll transition
+    const nav = document.getElementById('site-nav');
     const navLogo = document.getElementById('nav-logo');
-    const navContainer = document.getElementById('nav-container');
-    const navItems = document.querySelectorAll('.nav-item');
+    const navLinks = document.querySelectorAll('.nav-item');
+    const navCta = document.getElementById('nav-cta');
+    const mobileToggle = document.getElementById('mobile-toggle');
 
-    function updateNav() {
+    function onScroll() {
       if (window.scrollY > 30) {
-        header.classList.add('navbar-solid');
-        header.classList.remove('md:top-9');
+        nav.classList.add('nav-scrolled');
         if (navLogo) navLogo.classList.remove('brightness-0', 'invert');
-        if (navContainer) {
-          navContainer.classList.remove('bg-earth-950/80', 'border-sand-700/60');
-          navContainer.classList.add('bg-sand-100', 'border-sand-200');
-        }
-        navItems.forEach(item => {
-          item.classList.remove('text-sand-200');
-          item.classList.add('text-sand-800');
+        navLinks.forEach(l => {
+          l.classList.remove('text-white/90');
+          l.classList.add('text-espresso');
         });
+        if (navCta) {
+          navCta.classList.remove('border-white/30', 'text-white');
+          navCta.classList.add('border-espresso', 'text-espresso', 'hover:bg-espresso', 'hover:text-white');
+        }
+        if (mobileToggle) {
+          mobileToggle.classList.remove('text-white');
+          mobileToggle.classList.add('text-espresso');
+        }
       } else {
-        header.classList.remove('navbar-solid');
-        header.classList.add('md:top-9');
+        nav.classList.remove('nav-scrolled');
         if (navLogo) navLogo.classList.add('brightness-0', 'invert');
-        if (navContainer) {
-          navContainer.classList.add('bg-earth-950/80', 'border-sand-700/60');
-          navContainer.classList.remove('bg-sand-100', 'border-sand-200');
-        }
-        navItems.forEach(item => {
-          item.classList.add('text-sand-200');
-          item.classList.remove('text-sand-800');
+        navLinks.forEach(l => {
+          l.classList.add('text-white/90');
+          l.classList.remove('text-espresso');
         });
+        if (navCta) {
+          navCta.classList.add('border-white/30', 'text-white');
+          navCta.classList.remove('border-espresso', 'text-espresso', 'hover:bg-espresso', 'hover:text-white');
+        }
+        if (mobileToggle) {
+          mobileToggle.classList.add('text-white');
+          mobileToggle.classList.remove('text-espresso');
+        }
       }
     }
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-    // Menú Móvil
-    const toggleBtn = document.getElementById('mobile-toggle-btn');
-    const mobileDropdown = document.getElementById('mobile-dropdown');
-    const iconBurger = document.getElementById('icon-hamburger');
-    const iconClose = document.getElementById('icon-close');
+    // 3. Mobile menu toggle
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const bOpen = document.getElementById('burger-open');
+    const bClose = document.getElementById('burger-close');
 
-    if (toggleBtn && mobileDropdown) {
-      toggleBtn.addEventListener('click', () => {
-        const isHidden = mobileDropdown.classList.contains('hidden');
-        mobileDropdown.classList.toggle('hidden');
-        iconBurger.classList.toggle('hidden', isHidden);
-        iconClose.classList.toggle('hidden', !isHidden);
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const isClosed = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        bOpen.classList.toggle('hidden', isClosed);
+        bClose.classList.toggle('hidden', !isClosed);
       });
 
-      document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileDropdown.classList.add('hidden');
-          iconBurger.classList.remove('hidden');
-          iconClose.classList.add('hidden');
+      document.querySelectorAll('.mobile-item').forEach(i => {
+        i.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          bOpen.classList.remove('hidden');
+          bClose.classList.add('hidden');
         });
       });
     }
 
-    // Submit Booking Rápido
-    function submitBooking() {
-      const cin = document.getElementById('book-in').value;
-      const cout = document.getElementById('book-out').value;
-      const cat = document.getElementById('book-category').value;
+    // 4. Quick Inquiry Submit
+    function sendQuickInquiry() {
+      const cin = document.getElementById('qin-checkin').value;
+      const cout = document.getElementById('qin-checkout').value;
+      const room = document.getElementById('qin-room').value;
 
       let msg = '¡Hola Alta Mare Hotel & Suites! Quisiera consultar tarifa y disponibilidad:\n\n';
-      if (cat) msg += '🏨 *Categoría:* ' + cat + '\n';
-      if (cin) msg += '📅 *Llegada:* ' + cin + '\n';
+      if (room) msg += '🏨 *Categoría:* ' + room + '\n';
+      if (cin)  msg += '📅 *Llegada:* ' + cin + '\n';
       if (cout) msg += '📅 *Salida:* ' + cout + '\n';
 
       window.open('https://wa.me/5492262672626?text=' + encodeURIComponent(msg), '_blank');
     }
 
-    // Submit Formulario Completo de Contacto
-    function submitContactForm() {
-      const name = document.getElementById('c-name').value;
-      const phone = document.getElementById('c-phone').value;
-      const dates = document.getElementById('c-dates').value;
-      const room = document.getElementById('c-room').value;
-      const msgUser = document.getElementById('c-msg').value;
+    // 5. Contact Form Submit
+    function handleContactSubmit() {
+      const name = document.getElementById('f-name').value;
+      const phone = document.getElementById('f-phone').value;
+      const dates = document.getElementById('f-dates').value;
+      const room = document.getElementById('f-room').value;
+      const notes = document.getElementById('f-msg').value;
 
       let msg = '¡Hola Alta Mare Hotel & Suites! Mi nombre es *' + name + '*.\n\n';
-      msg += '📱 *Teléfono de contacto:* ' + phone + '\n';
+      msg += '📱 *Teléfono:* ' + phone + '\n';
       if (dates) msg += '📅 *Fechas estimadas:* ' + dates + '\n';
-      if (room) msg += '🏨 *Categoría/Espacio:* ' + room + '\n';
-      if (msgUser) msg += '💬 *Mensaje:* ' + msgUser + '\n';
+      if (room)  msg += '🏨 *Categoría/Consulta:* ' + room + '\n';
+      if (notes) msg += '💬 *Mensaje:* ' + notes + '\n';
 
       window.open('https://wa.me/5492262672626?text=' + encodeURIComponent(msg), '_blank');
     }
 
-    // FAQ Acordeón
-    document.querySelectorAll('.faq-block').forEach(block => {
-      block.addEventListener('click', () => {
-        const body = block.querySelector('.faq-body');
-        const toggle = block.querySelector('.faq-toggle');
-        const isOpen = body.classList.contains('open');
+    // 6. FAQ Accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const panel = item.querySelector('.faq-panel');
+        const icon = item.querySelector('.faq-icon');
+        const isActive = panel.classList.contains('active');
 
-        document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
-        document.querySelectorAll('.faq-toggle').forEach(t => t.textContent = '+');
+        document.querySelectorAll('.faq-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
 
-        if (!isOpen) {
-          body.classList.add('open');
-          toggle.textContent = '−';
+        if (!isActive) {
+          panel.classList.add('active');
+          icon.textContent = '−';
         }
       });
     });
