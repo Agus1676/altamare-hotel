@@ -82,8 +82,10 @@
 
     /* Navbar scroll transition */
     .navbar-solid {
+      top: 0 !important;
       background: rgba(249, 247, 243, 0.98) !important;
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 4px 20px -5px rgba(25, 18, 12, 0.08);
       border-bottom: 1px solid #E5DCCE;
       padding-top: 0.6rem !important;
@@ -1209,8 +1211,9 @@
     const navItems = document.querySelectorAll('.nav-item');
 
     function updateNav() {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 30) {
         header.classList.add('navbar-solid');
+        header.classList.remove('md:top-9');
         if (navLogo) navLogo.classList.remove('brightness-0', 'invert');
         if (navContainer) {
           navContainer.classList.remove('bg-earth-950/80', 'border-sand-700/60');
@@ -1222,6 +1225,7 @@
         });
       } else {
         header.classList.remove('navbar-solid');
+        header.classList.add('md:top-9');
         if (navLogo) navLogo.classList.add('brightness-0', 'invert');
         if (navContainer) {
           navContainer.classList.add('bg-earth-950/80', 'border-sand-700/60');
